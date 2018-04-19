@@ -61,5 +61,5 @@ Modifier = Targets * Weather * Badge * Critical * random * STAB * Type * Burn * 
                 Attacker is holding Life Orb,               1.33
 
 I excluded information that would involve knowing what the
-defender is holding. 
+defender is holding.
 """
