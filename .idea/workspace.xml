@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3c64234-dafb-4c94-bd4b-388ac781b680" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/showdownNavigator/ShowdownWebDriver.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/showdownNavigator/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Danielle_Nunez.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/battle/Moves.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/battle/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/showdownNavigator/PokemonTypes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,11 +17,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ShowdownWebDriver.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ShowdownWebDriver.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/showdownNavigator/ShowdownWebDriver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="28" column="78" selection-start-line="28" selection-start-column="78" selection-end-line="28" selection-end-column="78" />
+            <state relative-caret-position="920">
+              <caret line="40" column="8" lean-forward="true" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PokemonTypes.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/showdownNavigator/PokemonTypes.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="224">
+              <caret line="94" column="22" lean-forward="true" selection-start-line="94" selection-start-column="22" selection-end-line="94" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Moves.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/battle/Moves.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="575">
+              <caret line="58" column="64" selection-start-line="58" selection-start-column="64" selection-end-line="58" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -45,6 +65,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/showdownNavigator/ShowdownWebDriver.py" />
+        <option value="$PROJECT_DIR$/showdownNavigator/PokemonTypes.py" />
+        <option value="$PROJECT_DIR$/battle/move.py" />
+        <option value="$PROJECT_DIR$/battle/Moves.py" />
       </list>
     </option>
   </component>
@@ -72,6 +95,11 @@
             <path>
               <item name="pokemonAI" type="b2602c69:ProjectViewProjectNode" />
               <item name="pokemonAI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pokemonAI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pokemonAI" type="462c0819:PsiDirectoryNode" />
+              <item name="battle" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pokemonAI" type="b2602c69:ProjectViewProjectNode" />
@@ -173,8 +201,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/showdownNavigator/ShowdownWebDriver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="28" column="78" selection-start-line="28" selection-start-column="78" selection-end-line="28" selection-end-column="78" />
+        <state relative-caret-position="920">
+          <caret line="40" column="8" lean-forward="true" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/showdownNavigator/PokemonTypes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="94" column="22" lean-forward="true" selection-start-line="94" selection-start-column="22" selection-end-line="94" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/battle/Moves.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="58" column="64" selection-start-line="58" selection-start-column="64" selection-end-line="58" selection-end-column="64" />
         </state>
       </provider>
     </entry>
