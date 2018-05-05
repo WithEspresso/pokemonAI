@@ -1,7 +1,4 @@
-'use strict';
-
-/**@type {{[k: string]: EffectData}} */
-let BattleStatuses = {
+BattleStatuses = {
 	brn: {
 		name: 'brn',
 		id: 'brn',
@@ -775,6 +772,4 @@ let BattleStatuses = {
 			pokemon.setType(type, true);
 		},
 	},
-};
-
-exports.BattleStatuses = BattleStatuses;
+}
