@@ -28,7 +28,7 @@ class ShowdownBrowserDriver:
         """
         desired_capabilities = DesiredCapabilities.CHROME
         desired_capabilities['loggingPrefs'] = {'browser': 'ALL'}
-        self.driver = webdriver.Chrome(desired_capabilities=desired_capabilities)
+        self.driver = webdriver.Firefox()
         self.driver.get(self.SHOWDOWN_URL)
         self.login()
 
@@ -88,6 +88,19 @@ class ShowdownBrowserDriver:
         battle.click()
         time.sleep(5)
 
+    def get_moves(self):
+        """
+        Returns a list of legal moves. Legal moves are moves
+        not locked out by choice items or moves that have remaining PP.
+        :param      self
+        :return:    A list of legal moves.
+        """
+        legal_moves = []
+        move_set = self.driver.find_elements_by_xpath("//button[@name='chooseMove']")
+        for element in move_set:
+            legal_moves.append(element.get_attribute('data-move'))
+        return legal_moves
+
     def select_move(self, index):
         # TODO: Pass move information to the json parser to give to the
         # TODO: expectimax tree.
@@ -128,6 +141,9 @@ class ShowdownBrowserDriver:
         # TODO: Parse information from the console about your team.
         # The console automatically displays information about your Pokemon when the battle starts
         pass
+
+    def get_turn_information(self):
+        self.driver.find_element_by_class_name()
 
     def get_current_health(self):
         # TODO: Get information about this Pokemon's health.
