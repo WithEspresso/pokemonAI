@@ -89,18 +89,40 @@ class ShowdownBrowserDriver:
         time.sleep(5)
 
     def select_move(self, index):
-        # TODO: Given an index of the moves, select that move to use it.
-        pass
+        # TODO: Pass move information to the json parser to give to the
+        # TODO: expectimax tree.
+        """
+        Selects a move to use given the index.
+        When moves run out of PP or are locked due to choice items, they're marked
+        as the name being 'disabled'. This function should pass the moves
+        to the json damage evaluator first in order to allow choices based on the
+        remaining moves rather than the available moves.
+        Class "PP" stores pp information.
+        :param      index:
+        :return:    None
+        """
+        moveset = self.driver.find_elements_by_xpath("//button[@name='chooseMove']")
+        move = moveset[index]
+        move.click()
 
     def mega_evolve(self):
         # TODO: If mega evolution is available, mega evolve before selecting a move.
         # Mega evolving as soon as possible is best for the AI,
         pass
 
-    def switch_pokemon(index):
+    def switch_pokemon(self, index):
         # TODO: Given an index of a Pokemon to switch to, switch to that Pokemon.
         # Check for shadow tag, mean look, etc first before calling this function.
-        pass
+        """
+        Selects a Pokemon to switch to.
+        If a Pokemon is unusable, it is marked with the html tag as "chooseDisabled"
+        and the value contains "fainted".
+        :param      index:   Index of the pokemon to switch to
+        :return:    None
+        """
+        remaining_pokemon = self.driver.find_elements_by_xpath("//button[@name='chooseSwitch']")
+        next_pokemon = remaining_pokemon[index]
+        next_pokemon.click()
 
     def get_team_data(self):
         # TODO: Parse information from the console about your team.
