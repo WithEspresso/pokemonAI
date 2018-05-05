@@ -1,4 +1,4 @@
-/*
+"""
 
 Ratings and how they work:
 
@@ -34,12 +34,8 @@ Ratings and how they work:
 	  The sort of ability that defines metagames.
 	ex. Desolate Land, Shadow Tag
 
-*/
-
-'use strict';
-
-/**@type {{[k: string]: AbilityData}} */
-let BattleAbilities = {
+"""
+BattleAbilities = {
 	"adaptability": {
 		desc: "This Pokemon's moves that match one of its types have a same-type attack bonus (STAB) of 2 instead of 1.5.",
 		shortDesc: "This Pokemon's same-type attack bonus (STAB) is 2 instead of 1.5.",
@@ -4159,6 +4155,4 @@ let BattleAbilities = {
 		rating: 3.5,
 		num: -4,
 	},
-};
-
-exports.BattleAbilities = BattleAbilities;
+}
