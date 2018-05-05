@@ -21,8 +21,8 @@ class ShowdownBrowserDriver:
     PASSWORD_ELEMENT = 'password'
     driver = None
 
-    # TODO: Some options in constructor.
     def __init__(self):
+        # TODO: Some options in constructor. Let it select tiers, select teams in the future?
         """
         Create web driver, launches browser, goes to Pokemon Showdown.
         """
@@ -33,8 +33,8 @@ class ShowdownBrowserDriver:
         self.login()
 
     def login(self):
-        """
         # TODO VERIFY LOGIN AFTER THIS METHOD HAS RUN.
+        """
         Logs the user into Pokemon showdown by using
         selenium selectors based on eleme nt name.
         :param      A web driver:
@@ -56,12 +56,13 @@ class ShowdownBrowserDriver:
         # Delay to give the page time to load.
         time.sleep(3)
 
-    def verify_element_has_loaded(self, element_name, delay=5):
+    def verify_element_has_loaded(self, element_name, delay=3):
         """
+        Helper function to ensure that an element loads before clicking on it.
         Given an element name, waits until it has loaded onto the screen then
         prints a success method to the console.
-        :param  element_name to wait for
-        :param delay   The time to wait for in seconds.
+        :param  element_name    to wait for
+        :param delay            The time to wait for in seconds.
         :return: None
         :except TimeoutException
         """
@@ -71,10 +72,21 @@ class ShowdownBrowserDriver:
         except TimeoutException:
             print("Timeout has occurred.")
 
-    def start_random_battle(self):
-        # TODO: Select the random battle HTML object and wait in queue
-        # Possible idea: Wait until battle has started before exiting out of function.
-        pass
+    def start_battle(self, battle_type="gen7randombattle"):
+        """
+        Selects the type of battle to get itself into.
+        Be default, I had it set to gen 7 random battles.
+        For future extensions, look up the name of the element and pass it.
+        :param battle_type:    The type of battle to start.
+        :return:        None
+        """
+        battle = self.driver.find_element_by_name("format")
+        battle.click()
+        battle = self.driver.find_element_by_xpath("//button[@name='selectFormat' and @value='%s']" % battle_type);
+        battle.click()
+        battle = self.driver.find_element_by_name("search")
+        battle.click()
+        time.sleep(5)
 
     def select_move(self, index):
         # TODO: Given an index of the moves, select that move to use it.
@@ -99,8 +111,7 @@ class ShowdownBrowserDriver:
         # TODO: Get information about this Pokemon's health.
         pass
 
-
-    def get_opponent_health():
+    def get_opponent_health(self):
         # TODO: Get information about the opponent's health
         pass
 
