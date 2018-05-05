@@ -63,3 +63,4 @@ Modifier = Targets * Weather * Badge * Critical * random * STAB * Type * Burn * 
 I excluded information that would involve knowing what the
 defender is holding.
 """
+
