@@ -1,4 +1,3 @@
-
 class Pokemon:
     def __init__(self, species=None):
         # Stats
@@ -8,6 +7,7 @@ class Pokemon:
         self.special_attack = 0
         self.special_defense = 0
         self.speed = 0
+        self.level = 0
         # Species
         self.species = species
         # Item
