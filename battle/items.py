@@ -1,7 +1,4 @@
-'use strict';
-
-/**@type {{[k: string]: ItemData}} */
-let BattleItems = {
+BattleItems = {
 	"abomasite": {
 		id: "abomasite",
 		name: "Abomasite",
@@ -6480,6 +6477,4 @@ let BattleItems = {
 		isNonstandard: true,
 		desc: "If held by a Crucibelle, this item allows it to Mega Evolve in battle.",
 	},
-};
-
-exports.BattleItems = BattleItems;
+}
