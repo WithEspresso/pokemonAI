@@ -1,3 +1,8 @@
+"""
+The dictionary name is the attacker.
+
+"""
+
 damage_multipliers = {
     "Normal": {
         "Fighting": 2.0,
