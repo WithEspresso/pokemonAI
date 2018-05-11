@@ -23,19 +23,18 @@ class Move:
 
 
 def calculate_damage(attacker, defender, move, weather=None):
-    modifier = 0
+    modifier = 1
     burnMod = 1
     typeAdvantageMod = 1
     weatherMod = 1
     stabMod = 1
     attack = 1
     oppDefense = 1
-    power = self.base_power
-    moveAttr = self.is_physical
+    power = move.base_power
     # damage = ((((2 * attacker.level) / 5 ) * Move.base_power * attacker.attack/defender.defense) / 50) + 2) * modifier
 
     #Check if we need to use attack/defense or spAtt/spDef for damage calculation depending on move attribute
-    if moveAttr == True:
+    if move.is_physical:
         attack = attacker.attack
         oppDefense = defender.defense
 
@@ -62,16 +61,16 @@ def calculate_damage(attacker, defender, move, weather=None):
 
     #Check if weather will increase/decrease/not effect move power
     if weather != None:
-        if weather == "harsh sunlight" && moveType == "fire":
+        if weather == "harsh sunlight" and moveType == "fire":
             weatherMod = 1.5
 
-        else if weather == "harsh sunlight" && moveType == "water":
+        elif weather == "harsh sunlight" and moveType == "water":
             weatherMod = 0.5
 
-        if weather == "rain" && moveType == "water":
+        if weather == "rain" and moveType == "water":
             weatherMod = 1.5
 
-        else if weather == "rain" && moveType == "fire":
+        elif weather == "rain" and moveType == "fire":
             weatherMod = 0.5
 
     #Calculate actual Stat values based on EVs and IVs
@@ -81,6 +80,6 @@ def calculate_damage(attacker, defender, move, weather=None):
     #Calculate the modifier
     modifier = weatherMod * stabMod * typeAdvantageMod * burnMod
 
-    damage = ((((2 * attacker.level) / 5 ) * Move.base_power * attacker.attack/defender.defense) / 50) + 2) * modifier
+    damage = (((((2 * attacker.level) / 5 ) * Move.base_power * attack/oppDefense) / 50) + 2) * modifier
 
     return damage
