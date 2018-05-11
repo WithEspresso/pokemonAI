@@ -1,5 +1,6 @@
 """
-The dictionary name is the attacker.
+The dictionary name is the defender
+The value in the dictionary is the attacker
 
 """
 
@@ -12,7 +13,7 @@ damage_multipliers = {
         "Fire": 0.5,
         "Water": 2.0,
         "Grass": 0.5,
-        "Ground": 2.0,
+        "Ground": 0.5,
         "Rock": 2.0,
         "Bug": 0.5,
         "Steel": 0.5,
@@ -161,3 +162,19 @@ damage_multipliers = {
         "Dark": 0.5
     },
 }
+
+
+def get_multiplier(attacking_type, defending_types):
+    """
+    Returns the damage multiplier for the move.
+    :param attacking_type:  The type of the move being used to attack with.
+    :param defending_types: The types of the defending pokemon
+    :return:    The damage multiplier.
+    """
+    total_multiplier = 1.0
+    for defending_type in defending_types:
+        multiplier = damage_multipliers.get(attacking_type).get(defending_type)
+        print(attacking_type + "attacking" + defending_type + "'s multiplier is " + str(multiplier))
+        if multiplier is not None:
+            total_multiplier = total_multiplier * multiplier
+    return total_multiplier
