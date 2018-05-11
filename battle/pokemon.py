@@ -50,7 +50,13 @@ class Pokemon:
         return self.speed
 
     def set_speed(self, speed):
-        self.speed= speed
+        self.speed = speed
+
+    def get_level(self):
+        return self.level
+
+    def set_level(self, level):
+        self.level = level
 
     def get_type(self):
         types = list()
