@@ -95,6 +95,7 @@ class Pokemon:
 
         return string_representation
 
+
 class FriendlyPokemon(Pokemon):
     def __init__(self):
         pass
