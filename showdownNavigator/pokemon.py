@@ -15,8 +15,9 @@ class Pokemon:
     status = "Healthy"
     item = None
     ability = None
+    moveset = None
 
-    def __init__(self, species, level, hp, stats, status, item, ability):
+    def __init__(self, species, level, hp, stats, status, item, ability, moveset):
         """
         Constructor sets the species of the pokemon.
         The species is used to populate pokemon type.
@@ -30,6 +31,7 @@ class Pokemon:
         self.status = status
         self.item = item
         self.ability = ability
+        self.moveset = moveset
 
     def get_type(self):
         """
@@ -88,7 +90,9 @@ class Pokemon:
             + "\n\tStats: " + str(self.stats) \
             + "\n\tStatus: " + str(self.status) \
             + "\n\tHeld Item: " + str(self.item) \
-            + "\n\tAbility: " + str(self.ability)
+            + "\n\tAbility: " + str(self.ability) \
+            + "\n\tMoves: " + str(self.moveset)
+
         return string_representation
 
 class FriendlyPokemon(Pokemon):

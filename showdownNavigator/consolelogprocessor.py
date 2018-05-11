@@ -1,28 +1,27 @@
 import os.path
 import sys
 import re
+
+# TODO: Make system independent
+sys.path.append("C:\\Users\\dnune\\OneDrive\\Documents\\GitHub\\pokemonAI")
+
 from showdownNavigator.pokemon import Pokemon
 
 
-sys.path.append("C:\\Users\\dnune\\OneDrive\\Documents\\GitHub\\pokemonAI")
-
-
-def clean_console_log(console_log):
+def get_team_data_from_console_log(console_log):
     # Gets the dictionary with the game state out of the console log.
     data = None
     for entry in console_log:
         if "request" in entry.get("message"):
-            data = entry
+            data = entry.get("message")
     # Gets the string containing the game state information out of the dictionary
+    # Clean the data and prepare it for parsing by splitting it into an array.
     cleaned_data = data.replace("\"", "").replace("\\", " ")
-    # Gets the side pokemon information
     index = cleaned_data.find('side')
     side_pokemon_data = cleaned_data[index:]
-
-    # Get the information about the side Pokemon
     side = side_pokemon_data.split()
 
-    # Get the names of the species
+    # Create list of pokemon attributes to iterate over and create team.
     side_pokemon_species_names = list()
     side_pokemon_levels = list()
     side_pokemon_hp = list()
@@ -30,6 +29,7 @@ def clean_console_log(console_log):
     side_pokemon_stats = list()
     side_pokemon_held_items = list()
     side_pokemon_abilities = list()
+    side_pokemon_moves = list()
 
     for i in range(0, len(side)):
         item = side[i]
@@ -65,18 +65,17 @@ def clean_console_log(console_log):
         if item == "ability":
             ability = side[i + 2]
             side_pokemon_abilities.append(ability)
+        # Get Pokemon moves
+        if item == "moves":
+            moveset = list()
+            moveset.append(side[i + 2])
+            moveset.append(side[i + 4])
+            moveset.append(side[i + 6])
+            moveset.append(side[i + 8])
+            side_pokemon_moves.append(moveset)
 
-    print(side_pokemon_species_names)
-    print(side_pokemon_levels)
-    print(side_pokemon_hp)
-    print(side_pokemon_status)
-    print(side_pokemon_stats)
-    print(side_pokemon_held_items)
-    print(side_pokemon_abilities)
-
+    # Create friendly pokemon team.
     pokemon_team = list()
-    active_pokemon = None
-
     for i in range(0, len(side_pokemon_species_names)):
         pokemon = Pokemon(side_pokemon_species_names[i],
                           side_pokemon_levels[i],
@@ -84,13 +83,10 @@ def clean_console_log(console_log):
                           side_pokemon_stats[i],
                           side_pokemon_status[i],
                           side_pokemon_held_items[i],
-                          side_pokemon_abilities[i])
-        if i == 0:
-            active_pokemon = pokemon
-        print(pokemon)
+                          side_pokemon_abilities[i],
+                          side_pokemon_moves[i])
         pokemon_team.append(pokemon)
-
-    print("ACTIVE POKEMON is: " + active_pokemon)
+    return pokemon_team
 
 
 
