@@ -10,7 +10,7 @@ from selenium.common.exceptions import TimeoutException
 import time
 
 
-class ShowdownBrowserDriver:
+class ShowdownDriver:
     # Login information
     USERNAME = "csc665"
     PASSWORD = "csc665"
@@ -19,16 +19,22 @@ class ShowdownBrowserDriver:
     LOGIN_ELEMENT = 'login'
     USERNAME_ELEMENT = 'username'
     PASSWORD_ELEMENT = 'password'
+    # Web driver
     driver = None
+    # console log to retrieve
+    console_log = None
 
-    def __init__(self):
+    def __init__(self, browser="Chrome"):
         # TODO: Some options in constructor. Let it select tiers, select teams in the future?
         """
         Create web driver, launches browser, goes to Pokemon Showdown.
         """
         desired_capabilities = DesiredCapabilities.CHROME
         desired_capabilities['loggingPrefs'] = {'browser': 'ALL'}
-        self.driver = webdriver.Firefox()
+        if browser=="Chrome":
+            self.driver = webdriver.Chrome(desired_capabilities=desired_capabilities)
+        else:
+            self.driver = webdriver.Firefox()
         self.driver.get(self.SHOWDOWN_URL)
         self.login()
 
@@ -119,12 +125,16 @@ class ShowdownBrowserDriver:
         move.click()
 
     def mega_evolve(self):
-        # TODO: If mega evolution is available, mega evolve before selecting a move.
-        # Mega evolving as soon as possible is best for the AI,
-        pass
+        """
+        Selects the mega evolution checkbox so that the Pokemon can mega evolve the next
+        turn. The AI will select this as soon as possible.
+        Lparam      none
+        :return:    None
+        """
+        mega = self.driver.find_element_by_name("megaevo")
+        mega.click()
 
     def switch_pokemon(self, index):
-        # TODO: Given an index of a Pokemon to switch to, switch to that Pokemon.
         # Check for shadow tag, mean look, etc first before calling this function.
         """
         Selects a Pokemon to switch to.
@@ -143,7 +153,26 @@ class ShowdownBrowserDriver:
         pass
 
     def get_turn_information(self):
-        self.driver.find_element_by_class_name()
+        """
+        TODO: Figure out a way to get the right dictionary if there is chat.
+        Each passing turn will generate a list of dictionaries in the console log.
+        The first dictionary contains information about the game instance.
+        The second dictionary contains information about the game state.
+        The third dictionary contains information about the turn.
+            The first entry in the third dictionary signifies that it is logging information
+            The second entry in the third dictionary is the message item, which is what we want to parse.
+            The third entry is the source, not important.
+            The fourth entry is the timestamp, not important for our purposes.
+        :return:
+        """
+        self.console_log = self.driver.get_log('browser')
+        turn_log = self.console_log[2].get('message')
+        index = turn_log.find('|')
+        end_index = len(turn_log)
+        turn_information = turn_log[index:]
+        turn_information = turn_information.split("\\n")
+        print(type(turn_information))
+        return turn_information
 
     def get_current_health(self):
         # TODO: Get information about this Pokemon's health.

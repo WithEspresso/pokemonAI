@@ -1,72 +1,70 @@
 class Pokemon:
-    def __init__(self, species=None):
-        # Stats
-        self.hp = 0
-        self.attack = 0
-        self.defense = 0
-        self.special_attack = 0
-        self.special_defense = 0
-        self.speed = 0
-        self.level = 0
-        # Species
+    stats = {
+            "hp": 0,
+            "atk": 0,
+            "def": 0,
+            "spatk": 0,
+            "spdef": 0,
+            "spd": 0
+        }
+    species = None
+    type_1 = None
+    type_2 = None
+
+    def __init__(self, species, stats):
+        """
+        Constructor sets the species of the pokemon.
+        The species is used to populate pokemon type.
+        :param species:     The name of the Pokemon species.
+        :param stats:       A dictionary of stats.
+        """
         self.species = species
-        # Item
-        self.item = None
-        # Pokemon types. Initialize to none for mono typed pokemon
-        self.type_1 = None
-        self.type_2 = None
-
-    def get_hp(self):
-        return self.hp
-
-    def set_hp(self, hp):
-        self.hp = hp
-
-    def get_attack(self):
-        return self.attack
-
-    def set_attack(self, attack):
-        self.attack = attack
-
-    def get_defense(self):
-        return self.defense
-
-    def set_defense(self, defense):
-        self.defense = defense
-
-    def get_special_attack(self):
-        return self.special_attack
-
-    def set_special_attack(self, special_attack):
-        self.special_attack= special_attack
-
-    def get_special_defense(self):
-        return self.special_defense
-
-    def set_special_defense(self, special_defense):
-        self.special_defense = special_defense
-
-    def get_speed(self):
-        return self.speed
-
-    def set_speed(self, speed):
-        self.speed= speed
+        self.stats = stats
 
     def get_type(self):
+        """
+        Type retrieval for damage calc purposes.
+        :return: types:     A list of the Pokemon's types.
+        """
         types = list()
         types.append(self.type1)
         types.append(self.type2)
         return types
 
     def set_type(self, type_1, type_2=None):
+        """
+        TODO: Retrieve Pokemon type from json file.
+        :param type_1:
+        :param type_2:
+        :return:
+        """
         self.type_1 = type_1
         self.type_2 = type_2
 
-    def get_species(self):
-        return self.species
+    def get_stat(self, stat):
+        """
+        Looks up the stat in the dictionary of stats and returns
+        the result.
+        :param stat: Valid stats are hp, atk, def, spatk, spdef, spd
+        :return:
+        """
+        return self.stats.get(stat)
 
-    def set_species(self, species):
-        self.species = species
+    def take_damage(self, new_hp):
+        """
+        Updates the current hp value to a new hp value.
+        :param new_hp: Taken in form of a fraction (e.g. 76/100)
+        :return: None
+        """
+        self.stats["hp"] = new_hp
+
+    def modify_stat(self, stat, modifier):
+        """
+        TODO: Hard code modifier words like "sharply/greatly" to appropriate levels.
+        :param new_hp: Taken in form of a fraction (e.g. 76/100)
+        :return: None
+        """
+        self.stats["hp"] = new_hp
 
 
 class FriendlyPokemon(Pokemon):
