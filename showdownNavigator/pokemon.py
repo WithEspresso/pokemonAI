@@ -11,10 +11,12 @@ class Pokemon:
     type_2 = None
 
     hp = 0
+    level = 0
     status = "Healthy"
     item = None
+    ability = None
 
-    def __init__(self, species, stats, hp, status):
+    def __init__(self, species, level, hp, stats, status, item, ability):
         """
         Constructor sets the species of the pokemon.
         The species is used to populate pokemon type.
@@ -22,9 +24,12 @@ class Pokemon:
         :param stats:       A dictionary of stats.
         """
         self.species = species
-        self.stats = stats
+        self.level= level
         self.hp = hp
+        self.stats = stats
         self.status = status
+        self.item = item
+        self.ability = ability
 
     def get_type(self):
         """
@@ -69,8 +74,22 @@ class Pokemon:
         :param new_hp: Taken in form of a fraction (e.g. 76/100)
         :return: None
         """
-        self.stats["hp"] = new_hp
+        modified_stat = float(self.stats.get(stat)) * modifier
+        self.stats[stat] = modified_stat
 
+    def __str__(self):
+        """
+        Prints string representation of the Pokemon
+        :return:    A string representation of the Pokemon
+        """
+        string_representation = "Pokemon: " + str(self.species) \
+            + "\n\tLV: " + str(self.level)\
+            + "\n\tHP: " + str(self.hp) \
+            + "\n\tStats: " + str(self.stats) \
+            + "\n\tStatus: " + str(self.status) \
+            + "\n\tHeld Item: " + str(self.item) \
+            + "\n\tAbility: " + str(self.ability)
+        return string_representation
 
 class FriendlyPokemon(Pokemon):
     def __init__(self):
