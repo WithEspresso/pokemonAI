@@ -1,6 +1,5 @@
 class Pokemon:
     stats = {
-            "hp": 0,
             "atk": 0,
             "def": 0,
             "spatk": 0,
@@ -11,7 +10,11 @@ class Pokemon:
     type_1 = None
     type_2 = None
 
-    def __init__(self, species, stats):
+    hp = 0
+    status = "Healthy"
+    item = None
+
+    def __init__(self, species, stats, hp, status):
         """
         Constructor sets the species of the pokemon.
         The species is used to populate pokemon type.
@@ -20,6 +23,8 @@ class Pokemon:
         """
         self.species = species
         self.stats = stats
+        self.hp = hp
+        self.status = status
 
     def get_type(self):
         """
@@ -56,7 +61,7 @@ class Pokemon:
         :param new_hp: Taken in form of a fraction (e.g. 76/100)
         :return: None
         """
-        self.stats["hp"] = new_hp
+        self.hp = new_hp
 
     def modify_stat(self, stat, modifier):
         """
