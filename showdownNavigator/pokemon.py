@@ -25,8 +25,11 @@ class Pokemon:
         :param stats:       A dictionary of stats.
         """
         self.species = species
-        self.level= level
+        self.level = level
         self.hp = hp
+
+        # If these arguments are provided, it's a friendly Pokemon. If not, it's an
+        # enemy poke and we're going to do a best guesstimate of their stats.
         if stats is not None:
             self.stats = stats
         else:

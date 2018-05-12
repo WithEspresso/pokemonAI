@@ -1,4 +1,5 @@
-from PokemonTypes import *
+from battle.battleMovedex import *
+from battle.PokemonTypes import *
 
 
 class Move:
@@ -14,6 +15,7 @@ class Move:
         self.base_power = 80        # Base power is used for damage calcu
         self.accuracy = 1.00        # 1.00 is 100% accuracy
         self.secondary = None       # Burn, paralysis, etc.
+        self.boost = None
 
     def get_base_power(self):
         return self.base_power
@@ -23,6 +25,9 @@ class Move:
 
     def get_secondary(self):
         return self.secondary
+
+    def get_boost(self):
+        return self.boost
 
 
 def calculate_damage(attacker, defender, move, weather=None):
