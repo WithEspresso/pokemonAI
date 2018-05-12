@@ -17,7 +17,7 @@ class Pokemon:
     ability = None
     moveset = None
 
-    def __init__(self, species, level, hp, stats, status, item, ability, moveset):
+    def __init__(self, species, level, hp, stats=None, status=None, item=None, ability=None, moveset=None):
         """
         Constructor sets the species of the pokemon.
         The species is used to populate pokemon type.
@@ -27,7 +27,10 @@ class Pokemon:
         self.species = species
         self.level= level
         self.hp = hp
-        self.stats = stats
+        if stats is not None:
+            self.stats = stats
+        else:
+            self.calculate_stats()
         self.status = status
         self.item = item
         self.ability = ability
@@ -69,6 +72,13 @@ class Pokemon:
         :return: None
         """
         self.hp = new_hp
+
+    def calculate_stats(self):
+        """
+        Called in the constructor when an enemy pokemon is given.
+        Gets the stats from t
+        :return:
+        """
 
     def modify_stat(self, stat, modifier):
         """

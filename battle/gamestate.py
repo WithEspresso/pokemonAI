@@ -12,7 +12,11 @@
 
 
 class GameState:
-    pass
+
+    friendly_team = list()
+    enemy_team = list()
+    active_pokemon = None
+    enemy_active_pokemon = None
 
     def __init__(self):
         pass

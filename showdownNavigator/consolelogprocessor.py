@@ -10,13 +10,75 @@ from showdownNavigator.pokemon import Pokemon
 
 def get_team_data_from_console_log(console_log):
     # Gets the dictionary with the game state out of the console log.
-    data = None
     for entry in console_log:
+        # Get the team data
         if "request" in entry.get("message"):
             data = entry.get("message")
+        # Get the initial turn
+        if "|seed|" in entry.get("message"):
+            initial_turn = entry.get("message")
+        # Get the current turn's update
+        if "|move|" in entry.get("message") or "|switch|" in entry.get("message"):
+            current_turn = entry
+
+
+def get_current_turn(log, active_pokemon, enemy_pokemon):
+    """
+    Updates the game state with the results of the last turn.
+    :param log:
+    :return:
+    """
+    ai_id = "p1a:"
+    enemy = "p2a:"
+
+    cleaned_data = log.replace("\"", "").replace("\\", " ")
+    index = cleaned_data.find('|move|')
+    turn_data = cleaned_data[index:]
+    turn_data = turn_data.replace("|", " ").split()
+
+    # Iterate through the split data and parse for turn information.
+    for i in range(0, len(turn_data)):
+        item = turn_data[i]
+        # Search for damage done.
+        if item == "-damage":
+            if turn_data[i + 1] == enemy:
+                enemy_pokemon.take_damage(turn_data[i + 2])
+            else:
+                active_pokemon.take_damage(turn_data[i + 2])
+        # Search for stat boosts
+        if item == "-boost":
+            stat = turn_data[i + 2]
+            modifier = turn_data[i + 3]
+            if turn_data[i + 1] == enemy:
+                enemy_pokemon.modify_stat(stat, modifier)
+            else:
+                active_pokemon.modify_stat(stat, modifier)
+        # Search for debuffs
+        if item == "-unboost":
+            stat = turn_data[i + 2]
+            modifier = "-" + turn_data[i + 3]
+            if turn_data[i + 1] == enemy:
+                enemy_pokemon.modify_stat(stat, modifier)
+            else:
+                active_pokemon.modify_stat(stat, modifier)
+        # Search for switching Pokemon. Your Pokemon will be
+        # updated with the get_team function. This is only
+        # for getting data about the enemy Pokemon
+        if item == "switch":
+            if turn_data[i + 1] == enemy:
+                species = turn_data[i + 2]
+                level = turn_data[i + 4]
+                hp = turn_data[i + 6]
+                enemy_pokemon = Pokemon(species, level, hp)
+
+
+
+
+
+def get_team_data(log):
     # Gets the string containing the game state information out of the dictionary
     # Clean the data and prepare it for parsing by splitting it into an array.
-    cleaned_data = data.replace("\"", "").replace("\\", " ")
+    cleaned_data = log.replace("\"", "").replace("\\", " ")
     index = cleaned_data.find('side')
     side_pokemon_data = cleaned_data[index:]
     side = side_pokemon_data.split()
@@ -34,7 +96,7 @@ def get_team_data_from_console_log(console_log):
     for i in range(0, len(side)):
         item = side[i]
         # Get species names
-        if side[i] == "ident":
+        if item == "ident":
             side_pokemon_species_names.append(side[i + 3])
         # Get the levels of the Pokemon
         if item[0] == "L" and item[1].isdigit():
