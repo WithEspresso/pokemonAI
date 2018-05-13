@@ -72,9 +72,6 @@ def get_current_turn(log, active_pokemon, enemy_pokemon):
                 enemy_pokemon = Pokemon(species, level, hp)
 
 
-
-
-
 def get_team_data(log):
     # Gets the string containing the game state information out of the dictionary
     # Clean the data and prepare it for parsing by splitting it into an array.

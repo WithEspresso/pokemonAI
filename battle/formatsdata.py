@@ -1,4 +1,4 @@
-formats_data = {
+random_battle_pokedex = {
     "bulbasaur": {
         "randomBattleMoves": ["sleeppowder", "gigadrain", "hiddenpowerfire", "hiddenpowerice", "sludgebomb",
                               "powerwhip", "leechseed", "synthesis"],
@@ -14295,3 +14295,37 @@ formats_data = {
         "tier": "Illegal"
     }
 }
+
+
+def get_random_battle_moveset(species):
+    """
+    Returns a list of the available moveset for random battles.
+    :param species:     The name of the Pokemon
+    :return:    A list of available moves for that pokemon.
+    """
+    move_set = random_battle_pokedex.get(species).get("randomBattleMoves")
+    return move_set
+
+
+level_scale = {
+    "LC": 88,
+    'LC Uber': 86,
+    "NFE": 84,
+    "PU": 83,
+    "PUBL": 82,
+    "NU": 81,
+    "NUBL": 80,
+    "RU": 79,
+    "RUBL": 78,
+    "UU": 77,
+    "UUBL": 76,
+    "OU": 75,
+    "Uber": 73,
+    "AG": 71,
+}
+
+
+def get_level(species):
+    tier = random_battle_pokedex.get(species).get("tier")
+    level = level_scale.get(tier)
+    return level

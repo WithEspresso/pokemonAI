@@ -25315,3 +25315,14 @@ def get_abilities(species):
     """
     abilities = pokedex.get(species).get("abilities")
     return abilities
+
+
+def get_ability(species):
+    """
+    Returns a dictionary of possible abilities for the species given.
+    :param species:
+    :return:    A dictionary of possible abilities.
+    """
+    abilities = pokedex.get(species).get("abilities").get("0")
+    return abilities
+

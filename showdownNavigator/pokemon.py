@@ -1,3 +1,11 @@
+from battle.formatsdata import *
+from battle import pokedex
+import math
+
+IV = 31
+EV = 86
+
+
 class Pokemon:
     stats = {
             "atk": 0,
@@ -30,14 +38,26 @@ class Pokemon:
 
         # If these arguments are provided, it's a friendly Pokemon. If not, it's an
         # enemy poke and we're going to do a best guesstimate of their stats.
-        if stats is not None:
-            self.stats = stats
-        else:
+        if stats is None:
             self.calculate_stats()
-        self.status = status
-        self.item = item
-        self.ability = ability
-        self.moveset = moveset
+        else:
+            self.stats = stats
+        if status is None:
+            self.status = status
+        else:
+            self.status = "Healthy"
+        if item is None:
+            self.item = None
+        else:
+            self.item = item
+        if ability is None:
+            self.ability = self.get_ability()
+        else:
+            self.ability = ability
+        if moveset is None:
+            self.moveset = self.get_moveset()
+        else:
+            self.moveset = moveset
 
     def get_type(self):
         """
@@ -59,7 +79,7 @@ class Pokemon:
         self.type_1 = type_1
         self.type_2 = type_2
 
-    def get_stat(self, stat):
+    def get_stat(self, stat=None):
         """
         Looks up the stat in the dictionary of stats and returns
         the result.
@@ -79,9 +99,31 @@ class Pokemon:
     def calculate_stats(self):
         """
         Called in the constructor when an enemy pokemon is given.
-        Gets the stats from t
+        Gets the stats from the pokedex and uses that
         :return:
         """
+        base_stats = pokedex.get_base_stats(self.species)
+        for key in self.stats:
+            value = math.floor(((((base_stats.get("key") + IV) * 2 + (EV ** 0.5 / 4)) * self.level) / 100) + 5)
+            self.stats[key] = value
+
+    def get_ability(self):
+        """
+        Called in the constructor when an enemy pokemon is given.
+        Returns the first ability a pokemon has in its valid abilities
+        dictionary.
+        :return: Ability
+        """
+        return pokedex.get_abilities(self.species).get("0")
+
+    def get_moveset(self):
+        """
+        Called in the constructor when an enemy pokemon is given.
+        Returns the random generated moveset a pokemon can have.
+        Note: It will be more than four moves unless it's Ditto.
+        :return: A moveset list.
+        """
+        return get_random_battle_moveset(self.species)
 
     def modify_stat(self, stat, modifier):
         """
