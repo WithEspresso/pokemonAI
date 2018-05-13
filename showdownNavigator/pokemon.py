@@ -191,13 +191,3 @@ class Pokemon:
             + "\n\tTypes: " + str(self.types)
 
         return string_representation
-
-
-class FriendlyPokemon(Pokemon):
-    def __init__(self):
-        pass
-
-
-class EnemyPokemon(Pokemon):
-    def __init__(self):
-        pass

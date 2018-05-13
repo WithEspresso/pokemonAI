@@ -11,10 +11,8 @@ def calculate_damage(attacker, defender, move, weather=None):
     :param weather:     Current weather conditions
     :return:            The total damage done
     """
-    modifier = 1
     burn_modifier = 1
     stab_multiplier = 1.0
-    type_advantage_multiplier = 1
     weather_mod = 1
     attack = 1
     opp_defense = 1
