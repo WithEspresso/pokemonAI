@@ -7,13 +7,17 @@ EV = 86
 
 
 class Pokemon:
-    stats = {
-            "atk": 0,
-            "def": 0,
-            "spatk": 0,
-            "spdef": 0,
-            "spd": 0
-        }
+    stats = dict()
+
+    base_stats = {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spatk": 0,
+        "spdef": 0,
+        "spd": 0
+    }
+
     species = None
     type_1 = None
     type_2 = None
@@ -32,9 +36,11 @@ class Pokemon:
         :param species:     The name of the Pokemon species.
         :param stats:       A dictionary of stats.
         """
+
         self.species = species
         self.level = level
         self.hp = hp
+        self.get_base_stats()
 
         # If these arguments are provided, it's a friendly Pokemon. If not, it's an
         # enemy poke and we're going to do a best guesstimate of their stats.
@@ -96,6 +102,9 @@ class Pokemon:
         """
         self.hp = new_hp
 
+    def get_base_stats(self):
+        self.base_stats = pokedex.get_base_stats(self.species)
+
     def calculate_stats(self):
         """
         Called in the constructor when an enemy pokemon is given.
@@ -103,8 +112,9 @@ class Pokemon:
         :return:
         """
         base_stats = pokedex.get_base_stats(self.species)
-        for key in self.stats:
-            value = math.floor(((((base_stats.get("key") + IV) * 2 + (EV ** 0.5 / 4)) * self.level) / 100) + 5)
+        print(base_stats)
+        for key in base_stats:
+            value = math.floor(((((int(base_stats.get(key)) + IV) * 2 + (EV ** 0.5 / 4)) * self.level) / 100) + 5)
             self.stats[key] = value
 
     def get_ability(self):
