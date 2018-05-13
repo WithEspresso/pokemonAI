@@ -18,7 +18,16 @@ class GameState:
     weather = None
 
     def __init__(self, friendly_team, enemy_team, active_pokemon, enemy_active_pokemon):
-        pass
+        self.friendly_team = friendly_team
+        self.enemy_team = enemy_team
+        self.active_pokemon = active_pokemon
+        self.enemy_active_pokemon = enemy_active_pokemon
+        for poke in friendly_team:
+            if poke.get_status() is not "fnt":
+                self.remaining_pokemon += 1
+        for poke in enemy_team:
+            if poke.get_status() is not "fnt":
+                self.enemy_remaining_pokemon += 1
 
     def is_win(self):
         """
@@ -53,24 +62,31 @@ class GameState:
         return self.enemy_active_pokemon
 
     def generate_successor(self, action, player, target=None):
+        # Copy the values from the current game state.
+        successor = GameState(friendly_team=self.friendly_team,
+                              enemy_team=self.enemy_team,
+                              active_pokemon=self.active_pokemon,
+                              enemy_active_pokemon=self.enemy_active_pokemon)
+
         # If the move is an attack, update the active pokemon's status.
         if is_attack(action) and player == self.player:
-            damage_done = calculate_damage(self.active_pokemon, self.enemy_active_pokemon, action)
-            previous_hp = self.enemy_active_pokemon.get_hp().split('/')[0]
-            max_hp = self.enemy_active_pokemon.get_hp().split('/')[1]
+            damage_done = calculate_damage(successor.active_pokemon, successor.enemy_active_pokemon, action)
+            previous_hp = successor.enemy_active_pokemon.get_hp().split('/')[0]
+            max_hp = successor.enemy_active_pokemon.get_hp().split('/')[1]
             new_hp = previous_hp - damage_done
+
             if new_hp <= 0:
-                self.enemy_active_pokemon.status = "fnt"
-                self.enemy_active_pokemon.take_damage(0)
+                successor.enemy_active_pokemon.status = "fnt"
+                successor.enemy_active_pokemon.take_damage(0)
+                successor.enemy_remaining_pokemon = successor.enemy_remaining_pokemon - 1
             else:
-                self.enemy_active_pokemon.take_damage(str(new_hp) + "/" + str(max_hp))
+                successor.enemy_active_pokemon.take_damage(str(new_hp) + "/" + str(max_hp))
         # If the move is a switch, update the active pokemon's status.
         else:
-            if player == self.player and target is not None:
-                self.active_pokemon = target
-
-
-
+            if player == successor.player and target is not None:
+                successor.active_pokemon = target
+        # Return the successor game state.
+        return successor
 
     def get_legal_actions(self):
         pass
