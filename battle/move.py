@@ -1,4 +1,4 @@
-from battle.battleMovedex import *
+from battle import battleMovedex
 from battle import PokemonTypes
 
 
@@ -24,9 +24,11 @@ def calculate_damage(attacker, defender, move, weather=None):
     move_type = battleMovedex.get_type(move)
 
     # Not implemented here, leaving for convenience.
+    """
     accuracy = battleMovedex.get_accuracy(move)
     secondary = battleMovedex.get_secondary(move)
     boosts = battleMovedex.get_boosts(move)
+    """
 
     # damage = ((((2 * attacker.level) / 5 ) * Move.base_power * attacker.attack/defender.defense) / 50) + 2) * modifier
 
@@ -75,6 +77,8 @@ def calculate_damage(attacker, defender, move, weather=None):
     # Calculate the modifier
     modifier = weather_mod * stab_multiplier * type_advantage_multiplier * burn_modifier
 
+    # Calculate damage, truncate any digits following the decimal.
     damage = (((((2 * attacker.level) / 5 ) * base_power * attack/opp_defense) / 50) + 2) * modifier
+    damage = round(damage, 0)
 
     return damage

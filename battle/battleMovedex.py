@@ -24,7 +24,7 @@ snatch: Can be stolen from the original user and instead used by another Pokemon
 sound: Has no effect on Pokemon with the Ability Soundproof.
 """
 
-battleMovedex = {
+battle_movedex = {
     "10000000voltthunderbolt": {
         "num": 719,
         "accuracy": True,
@@ -17909,7 +17909,7 @@ def get_base_power(move_name):
     :param move_name    The name of the move as a String.
     :return:    The base power of the move as an integer.
     """
-    base_power = battleMovedex.get(move_name).get("basePower")
+    base_power = battle_movedex.get(move_name).get("basePower")
     return base_power
 
 
@@ -17920,7 +17920,7 @@ def get_type(move_name):
     :param move_name        The name of the move as a String.
     :return:    The type of the move as a string.
     """
-    move_type = battleMovedex.get(move_name).get("type")
+    move_type = battle_movedex.get(move_name).get("type")
     return move_type
 
 
@@ -17930,7 +17930,7 @@ def get_accuracy(move_name):
     :param move_name        The name of the move as a String.
     :return:    A dictionary of possible abilities.
     """
-    accuracy = battleMovedex.get(move_name).get("accuracy")
+    accuracy = battle_movedex.get(move_name).get("accuracy")
     return accuracy
 
 
@@ -17940,7 +17940,7 @@ def get_secondary(move_name):
     :param move_name           The name of the move as a String.
     :return:    A dictionary of possible abilities.
     """
-    secondary = battleMovedex.get(move_name).get("secondary")
+    secondary = battle_movedex.get(move_name).get("secondary")
     return secondary
 
 
@@ -17950,7 +17950,7 @@ def get_boosts(move_name):
     :param move_name           The name of the move as a String.
     :return:    A dictionary of stat boosts
     """
-    boosts = battleMovedex.get(move_name).get("boosts")
+    boosts = battle_movedex.get(move_name).get("boosts")
     return boosts
 
 
@@ -17961,6 +17961,6 @@ def get_category(move_name):
     :param  move_name as a string
     :return:   The category of the move as a string
     """
-    category = battleMovedex.get(move_name).get("category")
+    category = battle_movedex.get(move_name).get("category")
     return category
 

@@ -46,8 +46,7 @@ class Pokemon:
     }
 
     species = None
-    type_1 = None
-    type_2 = None
+    types = [None, None]
 
     hp = 0
     level = 0
@@ -68,6 +67,7 @@ class Pokemon:
         self.level = level
         self.hp = hp
         self.get_base_stats()
+        self.set_type()
 
         # If these arguments are provided, it's a friendly Pokemon. If not, it's an
         # enemy poke and we're going to do a best guesstimate of their stats.
@@ -97,20 +97,13 @@ class Pokemon:
         Type retrieval for damage calc purposes.
         :return: types:     A list of the Pokemon's types.
         """
-        types = list()
-        types.append(self.type1)
-        types.append(self.type2)
-        return types
+        return self.types
 
-    def set_type(self, type_1, type_2=None):
+    def set_type(self):
         """
-        TODO: Retrieve Pokemon type from json file.
-        :param type_1:
-        :param type_2:
         :return:
         """
-        self.type_1 = type_1
-        self.type_2 = type_2
+        self.types = pokedex.get_types(self.species)
 
     def get_stat(self, stat=None):
         """
@@ -176,7 +169,10 @@ class Pokemon:
         self.modifiers[stat] = modifier
         self.calculate_stats()
 
-    def get_status(self, status):
+    def set_status(self, status):
+        self.status = status
+
+    def get_status(self):
         return self.status
 
     def __str__(self):
@@ -191,7 +187,8 @@ class Pokemon:
             + "\n\tStatus: " + str(self.status) \
             + "\n\tHeld Item: " + str(self.item) \
             + "\n\tAbility: " + str(self.ability) \
-            + "\n\tMoves: " + str(self.moveset)
+            + "\n\tMoves: " + str(self.moveset) \
+            + "\n\tTypes: " + str(self.types)
 
         return string_representation
 
