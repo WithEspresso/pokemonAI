@@ -62,8 +62,9 @@ class Pokemon:
         :param species:     The name of the Pokemon species.
         :param stats:       A dictionary of stats.
         """
+        print("CREATING POKEMON WITH SPECIES: " + str(species))
 
-        self.species = species
+        self.species = species.lower()
         self.level = level
         self.hp = hp
         self.get_base_stats()

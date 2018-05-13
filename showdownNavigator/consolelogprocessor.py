@@ -25,7 +25,7 @@ class ConsoleLogProcessor:
                 self.initial_turn = entry.get("message")
             # Get the current turn's update
             if "|move|" in entry.get("message") or "|switch|" in entry.get("message"):
-                self.current_turn = entry
+                self.current_turn = entry.get('message')
 
     def get_current_turn(self, active_pokemon, enemy_pokemon):
         """
@@ -59,10 +59,13 @@ class ConsoleLogProcessor:
 
             # Search for damage done.
             if item == "-damage":
+                damage_taken = turn_data[i + 2]
                 if turn_data[i + 1] == enemy:
-                    enemy_pokemon.take_damage(turn_data[i + 2])
+                    enemy_pokemon.take_damage(damage_taken)
+                    print("Enemy pokemon has taken damage: " + damage_taken)
                 else:
                     active_pokemon.take_damage(turn_data[i + 2])
+                    print("Friendly pokemon has taken damage: " + damage_taken)
 
             # Search for stat boosts
             if item == "-boost":
@@ -70,8 +73,10 @@ class ConsoleLogProcessor:
                 modifier = turn_data[i + 3]
                 if turn_data[i + 1] == enemy:
                     enemy_pokemon.modify_stat(stat, modifier)
+                    print("Enemy pokemon's " + stat + "has been improved by: " + modifier + "levels")
                 else:
                     active_pokemon.modify_stat(stat, modifier)
+                    print("Friendly pokemon's " + stat + "has been improved by: " + modifier + "levels")
 
             # Search for debuffs
             if item == "-unboost":
@@ -79,6 +84,7 @@ class ConsoleLogProcessor:
                 modifier = "-" + turn_data[i + 3]
                 if turn_data[i + 1] == enemy:
                     enemy_pokemon.modify_stat(stat, modifier)
+
                 else:
                     active_pokemon.modify_stat(stat, modifier)
 
@@ -105,7 +111,7 @@ class ConsoleLogProcessor:
         """
         # Gets the string containing the game state information out of the dictionary
         # Clean the data and prepare it for parsing by splitting it into an array.
-        cleaned_data = self.current_turn.replace("\"", "").replace("\\", " ")
+        cleaned_data = self.data.replace("\"", "").replace("\\", " ")
         index = cleaned_data.find('side')
         side_pokemon_data = cleaned_data[index:]
         side = side_pokemon_data.split()

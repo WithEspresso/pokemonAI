@@ -32,14 +32,15 @@ def calculate_damage(attacker, defender, move, weather=None):
 
     # Check if we need to use attack/defense or spAtt/spDef for damage calculation depending on move attribute
     if category == "Physical":
-        attack = attacker.get_stat("atk")
-        opp_defense = defender.get_stat("def")
+        attack = int(attacker.get_stat("atk"))
+        opp_defense = int(defender.get_stat("def"))
     if category == "Special":
-        attack = attacker.get_stat("spa")
-        opp_defense = defender.get_stat("spd")
+        attack = int(attacker.get_stat("spa"))
+        opp_defense = int(defender.get_stat("spd"))
     if category == "Status":
         # TODO: Implement evaluation function for status moves.
-        pass
+        print("Non attacking move. Damage will be zero. ")
+        return 0
 
     # Gets the types as a list.
     defenders_types = defender.get_type()
@@ -65,8 +66,8 @@ def calculate_damage(attacker, defender, move, weather=None):
             weather_mod = 0.5
 
     # Calculate actual Stat values based on EVs and IVs
-    attack = (((attack + 31)*2 + ((85**0.5)/4)*attacker.level)/100) + 5
-    opp_defense = (((opp_defense + 31)*2 + ((85**0.5)/4)*defender.level)/100) + 5
+    # attack = (((attack + 31.0)*2 + ((85.0 ** 0.5) / 4.0) * attacker.level) / 100) + 5
+    # opp_defense = (((opp_defense + 31.0) * 2.0 + ((85.0 ** 0.5) / 4) * defender.level) / 100) + 5
 
     # Calculate burn modifier
     if category == "Physical" and attacker.get_status() == "burn":
@@ -76,7 +77,7 @@ def calculate_damage(attacker, defender, move, weather=None):
     modifier = weather_mod * stab_multiplier * type_advantage_multiplier * burn_modifier
 
     # Calculate damage, truncate any digits following the decimal.
-    damage = (((((2 * attacker.level) / 5 ) * base_power * attack/opp_defense) / 50) + 2) * modifier
+    damage = (((((2.0 * int(attacker.level)) / 5) * int(base_power) * attack/opp_defense) / 50.0) + 2.0) * modifier
     damage = round(damage, 0)
 
     return damage
