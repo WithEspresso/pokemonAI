@@ -5,17 +5,44 @@ import math
 IV = 31
 EV = 86
 
+modifier_multiplier = {
+    -6: round((3/9), 2),
+    -5: round((4/9), 2),
+    -4: round((5/9), 2),
+    -3: round((6/9), 2),
+    -2: round((7/9), 2),
+    -1: round((8/9), 2),
+    0: 1,
+    1: round((4/9), 2),
+    2: round((5/9), 2),
+    3: round((6/9), 2),
+    4: round((7/9), 2),
+    5: round((8/9), 2),
+    6: 3,
+}
+
 
 class Pokemon:
     stats = dict()
 
+    # Dictionary of base stats.
     base_stats = {
         "hp": 0,
         "atk": 0,
         "def": 0,
-        "spatk": 0,
-        "spdef": 0,
-        "spd": 0
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
+    }
+
+    # Dictionary of current modifiers for the stats.
+    modifiers = {
+        "hp": 0,
+        "atk": 0,
+        "def": 0,
+        "spa": 0,
+        "spd": 0,
+        "spe": 0
     }
 
     species = None
@@ -116,6 +143,10 @@ class Pokemon:
         for key in base_stats:
             value = math.floor(((((int(base_stats.get(key)) + IV) * 2 + (EV ** 0.5 / 4)) * self.level) / 100) + 5)
             self.stats[key] = value
+        for key in self.modifiers:
+            multiplier = modifier_multiplier.get(self.modifiers.get(key))
+            new_value = self.stats.get(key) * multiplier
+            self.stats[key] = new_value
 
     def get_ability(self):
         """
@@ -137,12 +168,16 @@ class Pokemon:
 
     def modify_stat(self, stat, modifier):
         """
-        TODO: Hard code modifier words like "sharply/greatly" to appropriate levels.
-        :param new_hp: Taken in form of a fraction (e.g. 76/100)
-        :return: None
+        Modifies a stat and calculates the new stats after modifiecation.
+        :param stat:
+        :param modifier:
+        :return:
         """
-        modified_stat = float(self.stats.get(stat)) * modifier
-        self.stats[stat] = modified_stat
+        self.modifiers[stat] = modifier
+        self.calculate_stats()
+
+    def get_status(self, status):
+        return self.status
 
     def __str__(self):
         """

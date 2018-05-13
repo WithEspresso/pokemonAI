@@ -17953,3 +17953,14 @@ def get_boosts(move_name):
     boosts = battleMovedex.get(move_name).get("boosts")
     return boosts
 
+
+def get_category(move_name):
+    """
+    Returns the category of the move as a string representation.
+    (Physical, Special, or Status)
+    :param  move_name as a string
+    :return:   The category of the move as a string
+    """
+    category = battleMovedex.get(move_name).get("category")
+    return category
+

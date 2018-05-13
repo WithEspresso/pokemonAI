@@ -32,7 +32,11 @@ def get_current_turn(log, active_pokemon, enemy_pokemon):
     enemy = "p2a:"
 
     cleaned_data = log.replace("\"", "").replace("\\", " ")
-    index = cleaned_data.find('|move|')
+    move_index = cleaned_data.find('|move|')
+    switch_index = cleaned_data.find('|switch|')
+    index = -1
+    if move_index > switch_index:
+        index = switch_index
     turn_data = cleaned_data[index:]
     turn_data = turn_data.replace("|", " ").split()
 
