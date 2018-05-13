@@ -9,6 +9,8 @@ class ConsoleLogProcessor:
     initial_turn = None
     current_turn = None
 
+    active_pokemon = None
+
     def __init__(self, console_log):
         """
         Given a console log, parses it by finding keywords in the message
@@ -27,7 +29,10 @@ class ConsoleLogProcessor:
             if "|move|" in entry.get("message") or "|switch|" in entry.get("message"):
                 self.current_turn = entry.get('message')
 
-    def get_current_turn(self, active_pokemon, enemy_pokemon):
+    def get_enemy_active_pokemon(self):
+        pass
+
+    def get_current_turn(self, enemy_pokemon):
         """
         Gets information about the current turn. Modifies the given
         pokemon provided in the method signature to reflect
@@ -41,7 +46,7 @@ class ConsoleLogProcessor:
 
         # DEBUG
         print("Before the turn has occurred: ")
-        print("\tActive pokemon is: " + str(active_pokemon))
+        print("\tActive pokemon is: " + str(self.active_pokemon))
         print("\tEnemy pokemon is: " + str(enemy_pokemon))
 
         cleaned_data = self.current_turn.replace("\"", "").replace("\\", " ")
@@ -50,6 +55,8 @@ class ConsoleLogProcessor:
         index = -1
         if move_index > switch_index:
             index = switch_index
+        else:
+            index = move_index
         turn_data = cleaned_data[index:]
         turn_data = turn_data.replace("|", " ").split()
 
@@ -63,7 +70,7 @@ class ConsoleLogProcessor:
                     enemy_pokemon.take_damage(damage_taken)
                     print("Enemy pokemon has taken damage: " + damage_taken)
                 else:
-                    active_pokemon.take_damage(turn_data[i + 2])
+                    self.active_pokemon.take_damage(turn_data[i + 2])
                     print("Friendly pokemon has taken damage: " + damage_taken)
 
             # Search for stat boosts
@@ -74,7 +81,7 @@ class ConsoleLogProcessor:
                     enemy_pokemon.modify_stat(stat, modifier)
                     print("Enemy pokemon's " + stat + "has been improved by: " + modifier + "levels")
                 else:
-                    active_pokemon.modify_stat(stat, modifier)
+                    self.active_pokemon.modify_stat(stat, modifier)
                     print("Friendly pokemon's " + stat + "has been improved by: " + modifier + "levels")
 
             # Search for debuffs
@@ -85,7 +92,7 @@ class ConsoleLogProcessor:
                     enemy_pokemon.modify_stat(stat, modifier)
                     print("Enemy pokemon's " + stat + "has been lowered by: " + modifier + "levels")
                 else:
-                    active_pokemon.modify_stat(stat, modifier)
+                    self.active_pokemon.modify_stat(stat, modifier)
                     print("Friendly pokemon's " + stat + "has been lowered by: " + modifier + "levels")
 
             # Search for switching Pokemon. Your Pokemon will be
@@ -100,8 +107,8 @@ class ConsoleLogProcessor:
                     enemy_pokemon = pokemon.Pokemon(species, level, hp)
 
         # DEBUG
-        print("Before the turn has occurred: ")
-        print("\tActive pokemon is: " + str(active_pokemon))
+        print("After the turn has occurred: ")
+        print("\tActive pokemon is: " + str(self.active_pokemon))
         print("\tEnemy pokemon is: " + str(enemy_pokemon))
 
     def get_team_data(self):
@@ -138,7 +145,7 @@ class ConsoleLogProcessor:
                 side_pokemon_levels.append(level)
             # Get hp and status
             if item == "condition":
-                current_hp = side[i + 2]
+                current_hp = str(side[i + 2])
                 side_pokemon_hp.append(current_hp)
                 status = side[i + 3]
                 if status is ',':
@@ -174,14 +181,15 @@ class ConsoleLogProcessor:
         pokemon_team = list()
         for i in range(0, len(side_pokemon_species_names)):
             new_pokemon = pokemon.Pokemon(side_pokemon_species_names[i],
-                                              side_pokemon_levels[i],
-                                              side_pokemon_hp[i],
-                                              side_pokemon_stats[i],
-                                              side_pokemon_status[i],
-                                              side_pokemon_held_items[i],
-                                              side_pokemon_abilities[i],
-                                              side_pokemon_moves[i])
+                                          side_pokemon_levels[i],
+                                          side_pokemon_hp[i],
+                                          side_pokemon_stats[i],
+                                          side_pokemon_status[i],
+                                          side_pokemon_held_items[i],
+                                          side_pokemon_abilities[i],
+                                          side_pokemon_moves[i])
             pokemon_team.append(new_pokemon)
+        self.active_pokemon = pokemon_team[0]
         return pokemon_team
 
 

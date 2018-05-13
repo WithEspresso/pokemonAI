@@ -115,6 +115,9 @@ class Pokemon:
         """
         return self.stats.get(stat)
 
+    def get_hp(self):
+        return self.hp.split('/')[0]
+
     def take_damage(self, new_hp):
         """
         Updates the current hp value to a new hp value.

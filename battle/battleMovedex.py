@@ -17903,6 +17903,19 @@ battle_movedex = {
 }
 
 
+def is_attack(move_name):
+    """
+    Used by the game state to determine if a move is a valid attack.
+    Returns true if the dictionary contains it, false otherwise.
+    :param move_name:
+    :return:    False if the move is not an attack, true otherwise.
+    """
+    test_move = battle_movedex.get(move_name)
+    if test_move is None:
+        return False
+    return True
+
+
 def get_base_power(move_name):
     """
     Returns the base power of the move given the move name.
