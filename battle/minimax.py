@@ -15,16 +15,14 @@ class MinimaxAgent(MultiAgentSearchAgent):
         return max(listOfActions) #return best maximizing action for us, we already consider the best minimizing action of our opponent within our evaluation function
 	
     def evaluationFunction(self, currentGameState, action):
-        successorGameState = currentGameState.generateSuccessor(action)				
-		speedEvaluation, damageEvaluation, opposingDamageEvaluation, nondamageEvaluation, switchEvaluation = 0;
-		outSpeedCheck = false
-		if(currentPokemon.speed >= opposingPokemon.speed){ #evaluate speed
+        successorGameState = currentGameState.generateSuccessor(action)
+        speedEvaluation, damageEvaluation, opposingDamageEvaluation, nondamageEvaluation, switchEvaluation = 0
+        outSpeedCheck = false
+        if(currentPokemon.speed >= opposingPokemon.speed): #evaluate speed
 			speedEvaluation += weight	
 			outSpeedCheck = True
-		}
-		else{
+        else:
 			speedEvaluation -= weight
-		}
         
         #megaEvolution
 		megaCheck = currentPokemon.item[:-3] #check for "ite"
@@ -42,8 +40,8 @@ class MinimaxAgent(MultiAgentSearchAgent):
 		
         #opposingDamageEvaluation
         highestOpposingDamage = 0
-		highestOpposingDamageMove = ""
-		for move in opposingPokemon.moveset: #calculate highest damaging move from opposingPokemon
+        highestOpposingDamageMove = ""
+        for move in opposingPokemon.moveset: #calculate highest damaging move from opposingPokemon
 			if(battleMovedex[move]["category"] == ("Special" or "Physical"):		
 				opposingDamage = calculate_damage(opposingPokemon, currentPokemon, move)
 				if(calculate_damage(opposingDamage > highestOpposingDamage):
