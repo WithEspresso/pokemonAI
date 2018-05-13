@@ -56,7 +56,6 @@ class ConsoleLogProcessor:
         # Iterate through the split data and parse for turn information.
         for i in range(0, len(turn_data)):
             item = turn_data[i]
-
             # Search for damage done.
             if item == "-damage":
                 damage_taken = turn_data[i + 2]
@@ -84,9 +83,10 @@ class ConsoleLogProcessor:
                 modifier = "-" + turn_data[i + 3]
                 if turn_data[i + 1] == enemy:
                     enemy_pokemon.modify_stat(stat, modifier)
-
+                    print("Enemy pokemon's " + stat + "has been lowered by: " + modifier + "levels")
                 else:
                     active_pokemon.modify_stat(stat, modifier)
+                    print("Friendly pokemon's " + stat + "has been lowered by: " + modifier + "levels")
 
             # Search for switching Pokemon. Your Pokemon will be
             # updated with the get_team function. This is only
@@ -96,6 +96,7 @@ class ConsoleLogProcessor:
                     species = turn_data[i + 2]
                     level = turn_data[i + 4]
                     hp = turn_data[i + 6]
+                    print("Enemy pokemon " + enemy_pokemon.species + " has switched out to " + species)
                     enemy_pokemon = pokemon.Pokemon(species, level, hp)
 
         # DEBUG
