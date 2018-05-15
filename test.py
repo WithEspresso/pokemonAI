@@ -4,7 +4,7 @@ from battle.pokemonmove import *
 
 
 """
-Test file to check driver functionality. 
+Test file to check driver functionality.
 """
 
 web = ShowdownDriver()
@@ -38,6 +38,21 @@ print(turn_data)
 print("End Cleaned Data")
 
 clp.get_current_turn()
+
+"""
+#Testing if we can pull and calculate the highest damage move
+maxDmgMove = ("" , 0)
+current_pokemon = clp.get_active_pokemon()
+active_enemy_pokemon = clp.get_enemy_active_pokemon()
+for move in current_pokemon.get_moveset():
+    moveDmg = calculate_damage(current_pokemon, active_enemy_pokemon, move, None)
+    print(move + ": " + moveDmg)
+    if moveDmg > maxDmgMove[1]:
+        maxDmgMove = (move, moveDmg)
+print("Choose: " + maxDmgMove[0])
+print("Damage:", maxDmgMove[1])
+#End damage test
+"""
 
 """
 enemy = "p1a"
