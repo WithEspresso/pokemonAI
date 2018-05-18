@@ -11,6 +11,8 @@ class ConsoleLogProcessor:
 
     active_pokemon = None
 
+    player = None
+
     def __init__(self, console_log):
         """
         Given a console log, parses it by finding keywords in the message
@@ -31,6 +33,49 @@ class ConsoleLogProcessor:
 
     def get_enemy_active_pokemon(self):
         pass
+
+    def get_p1a_or_p2a(self):
+        """
+        Determines if the bot is p1a or p2a for purposes of processing the
+        console log's turn entries. Called during the first turn.
+        :return: p1a if the bot is player 1, p2a otherwise.
+        """
+        cleaned_data = self.initial_turn.replace("\"", "").replace("\\", " ")
+        index = cleaned_data.find('|player|')
+        data = cleaned_data[index:]
+        data = data.replace("|", " ").split()
+        for i in range(0, len(data)):
+            entry = data[i]
+            if entry == "player":
+                if data[i + 1] == "p2":
+                    if data[i + 2] == "csc665":
+                        self.player = "p2a"
+                        return "p2a"
+                    else:
+                        self.player = "p1a"
+                        return "p1a"
+
+    def get_enemy_active(self, enemy):
+        """
+        Enemy can be p1a: or p2a:
+        :param enemy:
+        :return:
+        """
+        cleaned_data = self.initial_turn.replace("\"", "").replace("\\", " ")
+        index = cleaned_data.find('|player|')
+        data = cleaned_data[index:]
+        data = data.replace("|", " ").split()
+        for i in range(0, len(data)):
+            entry = data[i]
+            if entry == "switch":
+                if data[i + 1] == enemy:
+                    species = data[i + 2]
+                    level = data[i + 4]
+                    level = int(re.sub('[^0-9]', '', level))
+                    hp = data[i + 6]
+                    print("Found enemy pokemon: " + str(species))
+                    enemy_pokemon = pokemon.Pokemon(species, level, hp)
+                    return enemy_pokemon
 
     def get_current_turn(self, enemy_pokemon):
         """

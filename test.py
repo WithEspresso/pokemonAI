@@ -1,6 +1,7 @@
 from showdownNavigator.consolelogprocessor import ConsoleLogProcessor
 from showdownNavigator.pokewebdriver import ShowdownDriver
-from battle.pokemonmove import *
+from showdownNavigator.pokemon import Pokemon
+from showdownNavigator.pokedex import *
 
 
 """
@@ -22,20 +23,17 @@ team = clp.get_team_data()
 print("Your team is: ")
 for pokemon in team:
     print(pokemon)
+player = clp.get_p1a_or_p2a()
+if player == "p1a":
+    enemy = "p2a:"
+else:
+    enemy = "p1a:"
+print("You are player: " + str(clp.get_p1a_or_p2a()))
+enemy_pokemon = clp.get_enemy_active()
+print("The enemy active pokemon is: " + str(enemy_pokemon))
+print("Your possible moves are: ")
+web.get_moves()
 
-# Testing turn information
-
-cleaned_data = clp.current_turn.replace("\"", "").replace("\\", " ")
-move_index = cleaned_data.find('|move|')
-switch_index = cleaned_data.find('|switch|')
-index = -1
-if move_index > switch_index:
-    index = switch_index
-turn_data = cleaned_data[index:]
-turn_data = turn_data.replace("|", " ").split()
-print("Cleaned data is: ")
-print(turn_data)
-print("End Cleaned Data")
 
 clp.get_current_turn()
 
