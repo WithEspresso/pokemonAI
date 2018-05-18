@@ -15,19 +15,22 @@ class GameState:
     remaining_pokemon = 6
     enemy_remaining_pokemon = 6
 
+    enemy_player = "p2a"
+
     weather = None
 
-    def __init__(self, friendly_team, enemy_team, active_pokemon, enemy_active_pokemon):
+    def __init__(self, friendly_team, enemy_active_pokemon, enemy_player):
         self.friendly_team = friendly_team
-        self.enemy_team = enemy_team
-        self.active_pokemon = active_pokemon
         self.enemy_active_pokemon = enemy_active_pokemon
+        self.enemy_player = enemy_player
+
+        self.active_pokemon = friendly_team[0]
+        self.enemy_team.append(enemy_active_pokemon)
+
         for poke in friendly_team:
             if poke.get_status() is not "fnt":
                 self.remaining_pokemon += 1
-        for poke in enemy_team:
-            if poke.get_status() is not "fnt":
-                self.enemy_remaining_pokemon += 1
+        self.enemy_remaining_pokemon = 6
 
     def is_win(self):
         """
@@ -47,6 +50,12 @@ class GameState:
             return True
         return False
 
+    def count_living_pokemon(self):
+        for poke in self.friendly_team:
+            if poke.get_status() is not "fnt":
+                self.remaining_pokemon += 1
+        return self.remaining_pokemon
+
     def get_active_pokemon(self):
         """
         Returns the current active pokemon on the field.
@@ -60,6 +69,38 @@ class GameState:
         :return: The current active pokemon as a pokemon.Pokemon object
         """
         return self.enemy_active_pokemon
+
+    def set_active_pokemon(self, active_pokemon):
+        """
+        Returns the current active pokemon on the field.
+        :return: The current active pokemon as a pokemon.Pokemon object
+        """
+        self.active_pokemon = active_pokemon
+
+    def set_enemy_active_pokemon(self, enemy_active_pokemon):
+        """
+        Returns the current active enemy on the field.
+        :return: The current active pokemon as a pokemon.Pokemon object
+        """
+        self.enemy_active_pokemon = enemy_active_pokemon
+
+    def set_team(self, team):
+        self.friendly_team = team
+        self.active_pokemon = team[0]
+
+    def set_enemy_player(self, enemy):
+        """
+        Set the enemy to p1a: or p2a: in order to process the console log.
+        :param      enemy:
+        :return:    None
+        """
+        self.enemy_player = enemy
+
+    def get_enemy_player(self):
+        return self.enemy_player
+
+    def set_weather(self, weather):
+        self.weather = weather
 
     def generate_successor(self, action, player, target=None):
         # Copy the values from the current game state.

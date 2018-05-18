@@ -1,9 +1,7 @@
-from battle.battleMovedex import *
-from battle.PokemonTypes import *
 from battle.pokemonmove import calculate_damage
 
 
-def calculate_best_damaging_move(attacking, defending):
+def calculate_best_damaging_move(attacking, defending, weather=None):
     """
     Returns the index of the best damaging move.
     :param attacking:   The attacking pokemon.

@@ -11,9 +11,6 @@ web = ShowdownDriver()
 input("Press a key when the battle is ready.")
 
 console_log = web.driver.get_log('browser')
-if console_log is not None:
-    print("Found console log.")
-
 clp = ConsoleLogProcessor(console_log)
 print("clp ready")
 team = clp.get_team_data()
@@ -46,8 +43,14 @@ while game:
     moveset = web.get_moves()
     print("Your possible moves are: ")
     for move in moveset:
-        print(move)
+        print(move, end='', flush=True)
     best_index = calculate_best_damaging_move(active_pokemon, enemy_pokemon)
+
+    # Calculate minimizer's best action
+    print("Enemy's possible moves are: ")
+    for move in enemy_pokemon.get_moveset():
+        print(move, end='', flush=True)
+    best_enemy_move = calculate_best_damaging_move(enemy_pokemon, active_pokemon)
 
     # TODO: Check for html elements before continuing rather than button presses.
     input("Press a key to fight:")
