@@ -173,8 +173,8 @@ def get_multiplier(attacking_type, defending_types):
     """
     total_multiplier = 1.0
     for defending_type in defending_types:
-        multiplier = damage_multipliers.get(attacking_type).get(defending_type)
-        print(attacking_type + "attacking" + defending_type + "'s multiplier is " + str(multiplier))
+        multiplier = damage_multipliers.get(defending_type).get(attacking_type)
+        # print(attacking_type + " attacking " + defending_type + "'s multiplier is " + str(multiplier))
         if multiplier is not None:
             total_multiplier = total_multiplier * multiplier
     return total_multiplier

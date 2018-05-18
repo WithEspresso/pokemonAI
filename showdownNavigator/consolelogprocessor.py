@@ -1,6 +1,7 @@
 import re
 
 from showdownNavigator import pokemon
+from battle.pokedex import check_name
 
 
 class ConsoleLogProcessor:
@@ -30,6 +31,22 @@ class ConsoleLogProcessor:
             # Get the current turn's update
             if "|move|" in entry.get("message") or "|switch|" in entry.get("message"):
                 self.current_turn = entry.get('message')
+
+    def set_console_log(self, console_log):
+        if console_log is not None:
+            for entry in console_log:
+                # Get the team data
+                if "request" in entry.get("message"):
+                    self.data = entry.get("message")
+                # Get the initial turn
+                if "|seed|" in entry.get("message"):
+                    self.initial_turn = entry.get("message")
+                # Get the current turn's update
+                if "|move|" in entry.get("message") or "|switch|" in entry.get("message"):
+                    self.current_turn = entry.get('message')
+            print("Console log updated.")
+        else:
+            print("Error: Console log contains no updates.")
 
     def get_enemy_active_pokemon(self):
         pass
@@ -155,6 +172,7 @@ class ConsoleLogProcessor:
         print("After the turn has occurred: ")
         print("\tActive pokemon is: " + str(self.active_pokemon))
         print("\tEnemy pokemon is: " + str(enemy_pokemon))
+        return enemy_pokemon
 
     def get_team_data(self):
         """
@@ -181,9 +199,14 @@ class ConsoleLogProcessor:
 
         for i in range(0, len(side)):
             item = side[i]
-            # Get species names
+            # Get species name. Checks for names with two words in it
+            # like tapu koko.
             if item == "ident":
-                side_pokemon_species_names.append(side[i + 3])
+                species_name = side[i + 3]
+                if check_name(species_name):
+                    side_pokemon_species_names.append(species_name)
+                else:
+                    species_name += side[i + 4]
             # Get the levels of the Pokemon
             if item[0] == "L" and item[1].isdigit():
                 level = item[1] + item[2]

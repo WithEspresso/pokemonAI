@@ -90,7 +90,7 @@ class Pokemon:
         else:
             self.ability = ability
         if moveset is None:
-            self.moveset = self.get_moveset()
+            self.moveset = self.get_random_moveset()
         else:
             self.moveset = moveset
 
@@ -171,7 +171,7 @@ class Pokemon:
         """
         return pokedex.get_abilities(self.species).get("0")
 
-    def get_moveset(self):
+    def get_random_moveset(self):
         """
         Called in the constructor when an enemy pokemon is given.
         Returns the random generated moveset a pokemon can have.
@@ -179,6 +179,9 @@ class Pokemon:
         :return: A moveset list.
         """
         return get_random_battle_moveset(self.species)
+
+    def get_moveset(self):
+        return self.moveset
 
     def modify_stat(self, stat, modifier):
         """
