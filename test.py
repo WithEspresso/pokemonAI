@@ -1,7 +1,7 @@
 from showdownNavigator.consolelogprocessor import ConsoleLogProcessor
 from showdownNavigator.pokewebdriver import ShowdownDriver
-from battle.pokemonmove import *
-
+from battle.battle import calculate_best_damaging_move
+from battle.gamestate import GameState
 
 """
 Test file to check driver functionality.
@@ -11,33 +11,57 @@ web = ShowdownDriver()
 input("Press a key when the battle is ready.")
 
 console_log = web.driver.get_log('browser')
-if console_log is not None:
-    print("Found console log.")
-    for log in console_log:
-        print(log)
-
 clp = ConsoleLogProcessor(console_log)
 print("clp ready")
 team = clp.get_team_data()
 print("Your team is: ")
 for pokemon in team:
     print(pokemon)
+player = clp.get_p1a_or_p2a()
+enemy = None
+if player == "p1a":
+    enemy = "p2a:"
+else:
+    enemy = "p1a:"
+print("You are player: " + str(clp.get_p1a_or_p2a()))
+enemy_pokemon = clp.get_enemy_active(enemy)
+print("The enemy active pokemon is: " + str(enemy_pokemon))
+active_pokemon = team[0]
+print("Your active pokemon is: " + str(active_pokemon))
 
-# Testing turn information
+game = True
 
-cleaned_data = clp.current_turn.replace("\"", "").replace("\\", " ")
-move_index = cleaned_data.find('|move|')
-switch_index = cleaned_data.find('|switch|')
-index = -1
-if move_index > switch_index:
-    index = switch_index
-turn_data = cleaned_data[index:]
-turn_data = turn_data.replace("|", " ").split()
-print("Cleaned data is: ")
-print(turn_data)
-print("End Cleaned Data")
+while game:
+    # Update console log and game state.
+    console_log = web.driver.get_log('browser')
+    clp.set_console_log(console_log)
+    team = clp.get_team_data()
+    active_pokemon = team[0]
+    enemy_pokemon = clp.get_enemy_active(enemy)
 
-clp.get_current_turn()
+    # Calculate maximizer's best action
+    moveset = web.get_moves()
+    print("Your possible moves are: ")
+    for move in moveset:
+        print(move, end='', flush=True)
+    best_index = calculate_best_damaging_move(active_pokemon, enemy_pokemon)
+
+    # Calculate minimizer's best action
+    print("Enemy's possible moves are: ")
+    for move in enemy_pokemon.get_moveset():
+        print(move, end='', flush=True)
+    best_enemy_move = calculate_best_damaging_move(enemy_pokemon, active_pokemon)
+
+    # TODO: Check for html elements before continuing rather than button presses.
+    input("Press a key to fight:")
+    web.select_move(best_index)
+    input("Press a key when your enemy has selected a move")
+
+clp.get_current_turn(enemy_pokemon)
+enemy_pokemon = clp.get_enemy_active(enemy)
+print("The enemy active pokemon is: " + str(enemy_pokemon))
+active_pokemon = team[0]
+print("Your active pokemon is: " + str(active_pokemon))
 
 """
 #Testing if we can pull and calculate the highest damage move

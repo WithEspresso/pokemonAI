@@ -99,12 +99,15 @@ class ShowdownDriver:
         Returns a list of legal moves. Legal moves are moves
         not locked out by choice items or moves that have remaining PP.
         :param      self
-        :return:    A list of legal moves.
+        :return:    A list of legal moves in a format the battleMovedex can find.
         """
         legal_moves = []
         move_set = self.driver.find_elements_by_xpath("//button[@name='chooseMove']")
         for element in move_set:
-            legal_moves.append(element.get_attribute('data-move'))
+            move = element.get_attribute('data-move')
+            move = move.lower()
+            move = move.replace(" ", "")
+            legal_moves.append(move)
         return legal_moves
 
     def select_move(self, index):

@@ -1,6 +1,8 @@
 import re
 
 from showdownNavigator import pokemon
+from battle.pokedex import check_name
+from battle.gamestate import GameState
 
 
 class ConsoleLogProcessor:
@@ -10,6 +12,8 @@ class ConsoleLogProcessor:
     current_turn = None
 
     active_pokemon = None
+
+    player = None
 
     def __init__(self, console_log):
         """
@@ -29,10 +33,82 @@ class ConsoleLogProcessor:
             if "|move|" in entry.get("message") or "|switch|" in entry.get("message"):
                 self.current_turn = entry.get('message')
 
-    def get_enemy_active_pokemon(self):
-        pass
+    def set_console_log(self, console_log):
+        if console_log is not None:
+            for entry in console_log:
+                # Get the team data
+                if "request" in entry.get("message"):
+                    self.data = entry.get("message")
+                # Get the initial turn
+                if "|seed|" in entry.get("message"):
+                    self.initial_turn = entry.get("message")
+                # Get the current turn's update
+                if "|move|" in entry.get("message") or "|switch|" in entry.get("message"):
+                    self.current_turn = entry.get('message')
+            print("Console log updated.")
+        else:
+            print("Error: Console log contains no updates.")
 
-    def get_current_turn(self, enemy_pokemon):
+    def generate_initial_gamestate(self):
+        """
+        Generates an initial game state. Called when
+        the game first starts.
+        :return:    The initial game state.
+        """
+        team = self.get_team_data()
+        enemy = self.get_p1a_or_p2a()
+        enemy_active = self.get_enemy_active(enemy)
+        return GameState(team, enemy_active, enemy)
+
+    def get_p1a_or_p2a(self):
+        """
+        Determines if the bot is p1a or p2a for purposes of processing the
+        console log's turn entries. Called during the first turn.
+        :return: p1a if the bot is player 1, p2a otherwise.
+        """
+        cleaned_data = self.initial_turn.replace("\"", "").replace("\\", " ")
+        index = cleaned_data.find('|player|')
+        data = cleaned_data[index:]
+        data = data.replace("|", " ").split()
+        for i in range(0, len(data)):
+            entry = data[i]
+            if entry == "player":
+                if data[i + 1] == "p2":
+                    if data[i + 2] == "csc665":
+                        return "p1a:"
+                    else:
+                        return "p2a:"
+
+    def get_enemy_active(self, enemy):
+        """
+        Enemy can be p1a: or p2a:
+        :param enemy:
+        :return:
+        """
+        cleaned_data = self.initial_turn.replace("\"", "").replace("\\", " ")
+        index = cleaned_data.find('|player|')
+        data = cleaned_data[index:]
+        data = data.replace("|", " ").split()
+        for i in range(0, len(data)):
+            entry = data[i]
+            if entry == "switch":
+                if data[i + 1] == enemy:
+                    species = data[i + 2]
+                    level = data[i + 4]
+                    level = int(re.sub('[^0-9]', '', level))
+                    hp = data[i + 5]
+                    if "/" in hp:
+                        print("Found enemy pokemon: " + str(species))
+                        enemy_pokemon = pokemon.Pokemon(species, level, hp)
+                        return enemy_pokemon
+                    else:
+                        hp = data[i + 6]
+                        if "/" in hp:
+                            print("Found enemy pokemon: " + str(species))
+                            enemy_pokemon = pokemon.Pokemon(species, level, hp)
+                            return enemy_pokemon
+
+    def get_current_turn(self, game_state):
         """
         Gets information about the current turn. Modifies the given
         pokemon provided in the method signature to reflect
@@ -41,22 +117,25 @@ class ConsoleLogProcessor:
         :param enemy_pokemon:
         :return:
         """
-        ai_id = "p1a:"
-        enemy = "p2a:"
+        active_pokemon = game_state.get_active_pokemon()
+        enemy_pokemon = game_state.get_enemy_active_pokemon()
+        enemy = game_state.get_enemy_player()
 
         # DEBUG
         print("Before the turn has occurred: ")
-        print("\tActive pokemon is: " + str(self.active_pokemon))
+        print("\tActive pokemon is: " + str(active_pokemon))
         print("\tEnemy pokemon is: " + str(enemy_pokemon))
+        print()
+        print()
 
         cleaned_data = self.current_turn.replace("\"", "").replace("\\", " ")
         move_index = cleaned_data.find('|move|')
         switch_index = cleaned_data.find('|switch|')
         index = -1
         if move_index > switch_index:
-            index = switch_index
-        else:
             index = move_index
+        else:
+            index = switch_index
         turn_data = cleaned_data[index:]
         turn_data = turn_data.replace("|", " ").split()
 
@@ -70,7 +149,7 @@ class ConsoleLogProcessor:
                     enemy_pokemon.take_damage(damage_taken)
                     print("Enemy pokemon has taken damage: " + damage_taken)
                 else:
-                    self.active_pokemon.take_damage(turn_data[i + 2])
+                    active_pokemon.take_damage(turn_data[i + 2])
                     print("Friendly pokemon has taken damage: " + damage_taken)
 
             # Search for stat boosts
@@ -81,7 +160,7 @@ class ConsoleLogProcessor:
                     enemy_pokemon.modify_stat(stat, modifier)
                     print("Enemy pokemon's " + stat + "has been improved by: " + modifier + "levels")
                 else:
-                    self.active_pokemon.modify_stat(stat, modifier)
+                    active_pokemon.modify_stat(stat, modifier)
                     print("Friendly pokemon's " + stat + "has been improved by: " + modifier + "levels")
 
             # Search for debuffs
@@ -92,7 +171,7 @@ class ConsoleLogProcessor:
                     enemy_pokemon.modify_stat(stat, modifier)
                     print("Enemy pokemon's " + stat + "has been lowered by: " + modifier + "levels")
                 else:
-                    self.active_pokemon.modify_stat(stat, modifier)
+                    active_pokemon.modify_stat(stat, modifier)
                     print("Friendly pokemon's " + stat + "has been lowered by: " + modifier + "levels")
 
             # Search for switching Pokemon. Your Pokemon will be
@@ -108,8 +187,11 @@ class ConsoleLogProcessor:
 
         # DEBUG
         print("After the turn has occurred: ")
-        print("\tActive pokemon is: " + str(self.active_pokemon))
+        print("\tActive pokemon is: " + str(active_pokemon))
         print("\tEnemy pokemon is: " + str(enemy_pokemon))
+        game_state.set_active_pokemon(active_pokemon)
+        game_state.set_enemy_active_pokemon(enemy_pokemon)
+        return game_state
 
     def get_team_data(self):
         """
@@ -136,9 +218,14 @@ class ConsoleLogProcessor:
 
         for i in range(0, len(side)):
             item = side[i]
-            # Get species names
+            # Get species name. Checks for names with two words in it
+            # like tapu koko.
             if item == "ident":
-                side_pokemon_species_names.append(side[i + 3])
+                species_name = side[i + 3].lower()
+                if check_name(species_name):
+                    side_pokemon_species_names.append(species_name)
+                else:
+                    species_name += side[i + 4].lower()
             # Get the levels of the Pokemon
             if item[0] == "L" and item[1].isdigit():
                 level = item[1] + item[2]

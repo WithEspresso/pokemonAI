@@ -25287,6 +25287,14 @@ pokedex = {
 }
 
 
+def check_name(species):
+    pokemon = pokedex.get(species)
+    if pokemon is None:
+        return False
+    else:
+        return True
+
+
 def get_base_stats(species):
     """
     Returns a dictionary of the base stats for the species given.

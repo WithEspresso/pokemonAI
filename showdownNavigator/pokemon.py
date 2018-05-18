@@ -62,11 +62,12 @@ class Pokemon:
         :param species:     The name of the Pokemon species.
         :param stats:       A dictionary of stats.
         """
-        print("CREATING POKEMON WITH SPECIES: " + str(species))
 
         self.species = species.lower()
         self.level = level
         self.hp = hp
+        print("CREATING POKEMON WITH SPECIES: " + str(self.species))
+
         self.get_base_stats()
         self.set_type()
 
@@ -89,7 +90,7 @@ class Pokemon:
         else:
             self.ability = ability
         if moveset is None:
-            self.moveset = self.get_moveset()
+            self.moveset = self.get_random_moveset()
         else:
             self.moveset = moveset
 
@@ -136,14 +137,30 @@ class Pokemon:
         :return:
         """
         base_stats = pokedex.get_base_stats(self.species)
+        print("Base stats are: ")
         print(base_stats)
         for key in base_stats:
-            value = math.floor(((((int(base_stats.get(key)) + IV) * 2 + (EV ** 0.5 / 4)) * self.level) / 100) + 5)
+            base_stat = base_stats.get(key)
+            term = EV / 4.0
+            numerator = (2.0 * base_stat + IV + term) * int(self.level)
+            fraction = numerator / 100.0
+            if key is not "hp":
+                value = math.floor(fraction + 5)
+            else:
+                value = math.floor(fraction + self.level + 10)
             self.stats[key] = value
         for key in self.modifiers:
             multiplier = modifier_multiplier.get(self.modifiers.get(key))
             new_value = self.stats.get(key) * multiplier
             self.stats[key] = new_value
+        self.calculate_hp()
+
+    def calculate_hp(self):
+        hp_as_fraction = self.hp.split('/')
+        hp_as_percentage = float(hp_as_fraction[0]) / float(hp_as_fraction[1])
+        current_hp = math.floor(self.get_stat("hp") * hp_as_percentage)
+        self.hp = current_hp
+        print("Current hp is: " + str(current_hp))
 
     def get_ability(self):
         """
@@ -154,7 +171,7 @@ class Pokemon:
         """
         return pokedex.get_abilities(self.species).get("0")
 
-    def get_moveset(self):
+    def get_random_moveset(self):
         """
         Called in the constructor when an enemy pokemon is given.
         Returns the random generated moveset a pokemon can have.
@@ -162,6 +179,9 @@ class Pokemon:
         :return: A moveset list.
         """
         return get_random_battle_moveset(self.species)
+
+    def get_moveset(self):
+        return self.moveset
 
     def modify_stat(self, stat, modifier):
         """
