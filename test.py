@@ -1,7 +1,7 @@
 from showdownNavigator.consolelogprocessor import ConsoleLogProcessor
 from showdownNavigator.pokewebdriver import ShowdownDriver
 from battle.battle import calculate_best_damaging_move
-
+from battle.gamestate import GameState
 
 """
 Test file to check driver functionality.

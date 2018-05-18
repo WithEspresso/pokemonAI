@@ -4,7 +4,6 @@ from showdownNavigator.pokemon import Pokemon
 
 
 class GameState:
-    player = None
 
     friendly_team = list()
     enemy_team = list()
@@ -131,3 +130,35 @@ class GameState:
 
     def get_legal_actions(self):
         pass
+
+    def __str__(self):
+        """
+        String representation of the game state.
+        :return: String
+        """
+        representation = "Team is: "
+        for pokemon in self.friendly_team:
+            representation += (str(pokemon) + " ")
+        representation += "\n Enemy team is: "
+        for pokemon in self.enemy_team:
+            representation += (str(pokemon) + " ")
+        representation += "\n Active pokemon is: \n" + str(self.active_pokemon)
+        representation += "\n Enemy active pokemon is: \n" + str(self.enemy_active_pokemon)
+        representation += "\n Enemy is player: " + str(self.enemy_player)
+        return representation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

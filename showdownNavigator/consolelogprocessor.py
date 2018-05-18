@@ -97,9 +97,16 @@ class ConsoleLogProcessor:
                     level = data[i + 4]
                     level = int(re.sub('[^0-9]', '', level))
                     hp = data[i + 5]
-                    print("Found enemy pokemon: " + str(species))
-                    enemy_pokemon = pokemon.Pokemon(species, level, hp)
-                    return enemy_pokemon
+                    if "/" in hp:
+                        print("Found enemy pokemon: " + str(species))
+                        enemy_pokemon = pokemon.Pokemon(species, level, hp)
+                        return enemy_pokemon
+                    else:
+                        hp = data[i + 6]
+                        if "/" in hp:
+                            print("Found enemy pokemon: " + str(species))
+                            enemy_pokemon = pokemon.Pokemon(species, level, hp)
+                            return enemy_pokemon
 
     def get_current_turn(self, game_state):
         """
@@ -110,7 +117,7 @@ class ConsoleLogProcessor:
         :param enemy_pokemon:
         :return:
         """
-        active_pokemon = game_state.get_enemy_active_pokemon()
+        active_pokemon = game_state.get_active_pokemon()
         enemy_pokemon = game_state.get_enemy_active_pokemon()
         enemy = game_state.get_enemy_player()
 
@@ -118,15 +125,17 @@ class ConsoleLogProcessor:
         print("Before the turn has occurred: ")
         print("\tActive pokemon is: " + str(active_pokemon))
         print("\tEnemy pokemon is: " + str(enemy_pokemon))
+        print()
+        print()
 
         cleaned_data = self.current_turn.replace("\"", "").replace("\\", " ")
         move_index = cleaned_data.find('|move|')
         switch_index = cleaned_data.find('|switch|')
         index = -1
         if move_index > switch_index:
-            index = switch_index
-        else:
             index = move_index
+        else:
+            index = switch_index
         turn_data = cleaned_data[index:]
         turn_data = turn_data.replace("|", " ").split()
 
@@ -181,7 +190,7 @@ class ConsoleLogProcessor:
         print("\tActive pokemon is: " + str(active_pokemon))
         print("\tEnemy pokemon is: " + str(enemy_pokemon))
         game_state.set_active_pokemon(active_pokemon)
-        game_state.set_enemy_pokemon(enemy_pokemon)
+        game_state.set_enemy_active_pokemon(enemy_pokemon)
         return game_state
 
     def get_team_data(self):
