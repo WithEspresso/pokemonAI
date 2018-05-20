@@ -172,20 +172,20 @@ class GameState:
     def set_legal_moves(self, legal_moves):
         self.legal_moves = legal_moves
 
-    def set_legal_switches(self):
+    def set_legal_switches(self, legal_switches):
         """
-        Returns a list of legal switches.
+        Converts legal switches of String species names
+        into matching Pokemon objects
+        :param legal_switches:
         :return:
         """
-        legal_switches = list()
-        for i in range(1, 6):
-            pokemon = self.friendly_team[i]
-            if pokemon.status is not 'fnt' and pokemon.hp is not '0':
-                legal_switches.append(pokemon)
-        self.legal_switches = legal_switches
+        self.legal_switches.clear()
+        for switch in legal_switches:
+            for pokemon in self.friendly_team:
+                if switch == pokemon.species:
+                    self.legal_switches.append(pokemon)
 
     def get_legal_switches(self):
-        self.set_legal_switches()
         return self.legal_switches
 
     def __str__(self):
@@ -202,7 +202,8 @@ class GameState:
         representation += "\n Active pokemon is: \n" + str(self.active_pokemon)
         representation += "\n Enemy active pokemon is: \n" + str(self.enemy_active_pokemon)
         representation += "\n Enemy is player: " + str(self.enemy_player)
-        return representation
+        return str(representation)
+
 
 
 

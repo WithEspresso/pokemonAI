@@ -3,6 +3,9 @@ from showdownNavigator.pokewebdriver import ShowdownDriver
 from battle.battle import get_index_of_best_move
 from battle.battle import calculate_best_damage
 from battle.gamestate import GameState
+from showdownNavigator.pokemon import Pokemon
+
+import time
 
 """
 Test file to check driver functionality.
@@ -36,7 +39,9 @@ def run_game():
         state = clp.get_current_turn(state)
         enemy_pokemon = state.get_enemy_active_pokemon()
         active_pokemon = state.get_active_pokemon()
+        time.sleep(5)
         state.set_legal_moves = web.get_moves()
+        state.set_legal_switches = web.get_legal_switches()
 
         # If we killed the enemy, just wait for them to switch.
         if enemy_pokemon.get_status() is "fnt" or active_pokemon.hp is 0:
@@ -51,6 +56,8 @@ def run_game():
             # If our pokemon is totally helpless, let's switch out to a safer one.
             if best_index is -1:
                 switch_index = get_switch_index(state)
+                next_pokemon = state.get_legal_switches()[switch_index].species
+                input("Switching pokemon to : " + str(next_pokemon))
                 web.switch_pokemon(switch_index)
             web.select_move(best_index)
             # TODO: Implement a way to check if the turn is done. For now,
@@ -58,7 +65,7 @@ def run_game():
             input("Press a key when there is a new turn.")
 
 
-def get_switch_index(game_state):
+def get_switch_index(game_state, web):
     """
     Returns the index of the pokemon best to switch to.
     :param game_state:
@@ -68,10 +75,9 @@ def get_switch_index(game_state):
     enemy_active_pokemon = game_state.get_enemy_active_pokemon()
     best_index = 0
     index = 0
-    print("Available pokemon are: " + str(available_pokemon))
-    if available_pokemon is not None:
-        best_switch = available_pokemon[0].species
-        minimum_damage = float('inf')
+    length = len(available_pokemon)
+    if length > 0:
+        minimum_damage = 999999
         for pokemon in available_pokemon:
             damage = calculate_best_damage(enemy_active_pokemon, pokemon)
             if type(pokemon.hp) == str:
@@ -134,6 +140,8 @@ else:
 enemy_pokemon = clp.get_enemy_active_initial(enemy)
 active_pokemon = team[0]
 state = clp.generate_initial_gamestate()
+state.set_legal_moves() = web.get_moves()
+state.legal_switches = web.get_legal_switches()
 
 # Copy pasta for selecting the best move.
 best_index = get_index_of_best_move(active_pokemon, enemy_pokemon, web)

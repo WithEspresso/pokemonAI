@@ -3,6 +3,7 @@ import re
 from showdownNavigator import pokemon
 from battle.pokedex import check_name
 from battle.gamestate import GameState
+from battle.battleMovedex import is_attack
 
 
 class ConsoleLogProcessor:
@@ -93,7 +94,10 @@ class ConsoleLogProcessor:
             entry = data[i]
             if entry == "switch":
                 if data[i + 1] == enemy:
-                    species = data[i + 2]
+                    species = data[i + 2].lower()
+                    # Porygon-Z breaks the game if you don't do this.
+                    if "-" in species:
+                        species = species.replace("-", "")
                     if not check_name(species.lower()):
                         species += data[i + 3]
                         level = data[i + 6]
@@ -151,10 +155,12 @@ class ConsoleLogProcessor:
         # Iterate through the split data and parse for turn information.
         for i in range(0, len(turn_data)):
             item = turn_data[i]
-
             # Search for damage done.
             if item == "-damage":
                 species = turn_data[i + 2]
+                # Porygon-Z breaks the game if you don't do this.
+                if "-" in species:
+                    species = species.replace("-", "")
                 # Case where the Pokemon's name has two words in it.
                 if not check_name(species.lower()):
                     damage_taken = turn_data[i + 4]
@@ -170,6 +176,9 @@ class ConsoleLogProcessor:
             # Search for healing.
             if item == "-heal":
                 species = turn_data[i + 2]
+                # Porygon z breaks the game if you don't do this.
+                if "-" in species:
+                    species = species.replace("-", "")
                 # Case where the Pokemon's name has two words in it.
                 if not check_name(species.lower()):
                     damage_healed = turn_data[i + 4]
@@ -177,7 +186,7 @@ class ConsoleLogProcessor:
                     damage_healed = turn_data[i + 3]
                 if turn_data[i + 1] == enemy:
                     enemy_pokemon.take_damage(damage_healed)
-                    print("Enemy " + active_pokemon.species + " has healed: " + damage_healed)
+                    print("Enemy " + enemy_pokemon.species + " has healed: " + damage_healed)
                 else:
                     active_pokemon.take_damage(turn_data[i + 2])
                     print("Friendly " + active_pokemon.species + " has healed: " + damage_healed)
@@ -196,6 +205,9 @@ class ConsoleLogProcessor:
             # Search for status changes (i.e. brn, paralysis, etc.)
             if item == "-status":
                 species = turn_data[i + 2]
+                # Porygon z breaks the game if you don't do this.
+                if "-" in species:
+                    species = species.replace("-", "")
                 # Case where the Pokemon's name has two words in it.
                 if not check_name(species.lower()):
                     status = turn_data[i + 4]
@@ -211,6 +223,9 @@ class ConsoleLogProcessor:
             # Search for stat boosts
             if item == "-boost":
                 species = turn_data[i + 2]
+                # Porygon z breaks the game if you don't do this.
+                if "-" in species:
+                    species = species.replace("-", "")
                 # Case where the Pokemon's name has two words in it.
                 if not check_name(species.lower()):
                     stat = turn_data[i + 4]
@@ -229,6 +244,9 @@ class ConsoleLogProcessor:
             # Search for debuffs
             if item == "-unboost":
                 species = turn_data[i + 2]
+                # Porygon z breaks the game if you don't do this.
+                if "-" in species:
+                    species = species.replace("-", "")
                 # Case where the Pokemon's name has two words in it.
                 if not check_name(species.lower()):
                     stat = turn_data[i + 4]
@@ -252,6 +270,9 @@ class ConsoleLogProcessor:
             if item == "switch":
                 species = turn_data[i + 2]
                 # Case where the Pokemon's name has two words in it.
+                # Porygon z breaks the game if you don't do this.
+                if "-" in species:
+                    species = species.replace("-", "")
                 if not check_name(species.lower()):
                     species += turn_data[i + 3]
                     level = turn_data[i + 6]
@@ -275,6 +296,9 @@ class ConsoleLogProcessor:
             # Case where a move will force a switch (i.e. Dragon Tail)
             if item == "drag":
                 species = turn_data[i + 2]
+                # Porygon z breaks the game if you don't do this.
+                if "-" in species:
+                    species = species.replace("-", "")
                 # Case where the Pokemon's name has two words in it.
                 if not check_name(species.lower()):
                     species += turn_data[i + 3]
@@ -393,9 +417,12 @@ class ConsoleLogProcessor:
                 # Hidden power crashes the program if we don't strip the 60.
                 for j in range(1, 5):
                     move = side[i + (j * 2)]
-                    if "hiddenpower" in move or "return" in move:
+                    if "hiddenpower" in move:
                         move = re.sub('[^a-z]', '', move)
-                    moveset.append(move)
+                    if "return" in move:
+                        move = re.sub('[^a-z]', '', move)
+                    if is_attack(move):
+                        moveset.append(move)
                 """
                 moveset.append(side[i + 2])
                 moveset.append(side[i + 4])

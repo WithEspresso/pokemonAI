@@ -151,6 +151,15 @@ class ShowdownDriver:
         next_pokemon = remaining_pokemon[index]
         next_pokemon.click()
 
+    def get_legal_switches(self):
+        remaining_pokemon = self.driver.find_elements_by_xpath("//button[@name='chooseSwitch']")
+        legal_switches = list()
+        for pokemon in remaining_pokemon:
+            species = pokemon.text
+            species = species.lower().replace(" ", "").replace("-", "")
+            legal_switches.append(species)
+        return legal_switches
+
     def get_team_data(self):
         # TODO: Parse information from the console about your team.
         # The console automatically displays information about your Pokemon when the battle starts
