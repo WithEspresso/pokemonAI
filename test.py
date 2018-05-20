@@ -38,6 +38,8 @@ console_log = web.driver.get_log('browser')
 clp.set_console_log(console_log)
 team = clp.get_team_data()
 state = clp.get_current_turn(state)
+enemy_pokemon = state.get_enemy_active_pokemon()
+active_pokemon = state.get_active_pokemon()
 """
 
 # Copy pasta for looking at turn data in cleaned form.

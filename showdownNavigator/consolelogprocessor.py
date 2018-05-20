@@ -113,8 +113,7 @@ class ConsoleLogProcessor:
         Gets information about the current turn. Modifies the given
         pokemon provided in the method signature to reflect
         changes in the game state.
-        :param active_pokemon:
-        :param enemy_pokemon:
+        :param game_state
         :return:
         """
         active_pokemon = game_state.get_active_pokemon()
@@ -180,11 +179,11 @@ class ConsoleLogProcessor:
             if item == 'faint':
                 if turn_data[i + 1] == enemy:
                     enemy_pokemon.status = "fnt"
-                    print("Enemy " + enemy_pokemon.species + "has fainted.")
+                    print("Enemy " + enemy_pokemon.species + " has fainted.")
                     game_state.enemy_remaining_pokemon -= 1
                 else:
                     active_pokemon.status = "fnt"
-                    print("Your " + enemy_pokemon.species + "has fainted.")
+                    print("Your " + active_pokemon.species + " has fainted.")
                     game_state.remaining_pokemon -= 1
 
             # Search for status changes (i.e. brn, paralysis, etc.)
@@ -200,7 +199,7 @@ class ConsoleLogProcessor:
                     print("Enemy " + enemy_pokemon.species + " has been inflicted with " + status)
                 else:
                     active_pokemon.set_status(status)
-                    print("Friendly " + enemy_pokemon.species + " has been inflicted with " + status)
+                    print("Friendly " + active_pokemon.species + " has been inflicted with " + status)
 
             # Search for stat boosts
             if item == "-boost":
@@ -208,32 +207,37 @@ class ConsoleLogProcessor:
                 # Case where the Pokemon's name has two words in it.
                 if not check_name(species.lower()):
                     stat = turn_data[i + 4]
-                    print("Boosting " + stat)
                     modifier = turn_data[i + 5]
-                    print("by " + modifier + "levels")
                 # Case where the pokemon has a one word name.
                 else:
                     stat = turn_data[i + 3]
-                    print("Boosting " + stat)
                     modifier = turn_data[i + 4]
-                    print("by " + modifier + "levels")
                 if turn_data[i + 1] == enemy:
                     enemy_pokemon.modify_stat(stat, modifier)
-                    print("Enemy pokemon's " + stat + "has been improved by: " + modifier + "levels")
+                    print("Enemy " + enemy_pokemon.species + stat + " has been improved by: " + modifier + " levels")
                 else:
                     active_pokemon.modify_stat(stat, modifier)
-                    print("Friendly pokemon's " + stat + "has been improved by: " + modifier + "levels")
+                    print("Friendly " + active_pokemon.species + stat + " has been improved by: " + modifier + " levels")
 
             # Search for debuffs
             if item == "-unboost":
-                stat = turn_data[i + 2]
-                modifier = "-" + turn_data[i + 3]
+                species = turn_data[i + 2]
+                # Case where the Pokemon's name has two words in it.
+                if not check_name(species.lower()):
+                    stat = turn_data[i + 4]
+                    modifier = turn_data[i + 5]
+                # Case where the pokemon has a one word name.
+                else:
+                    stat = turn_data[i + 3]
+                    modifier = turn_data[i + 4]
+                modifier = "-" + modifier
+                print("Debuffing " + stat + "by " + modifier + "levels")
                 if turn_data[i + 1] == enemy:
                     enemy_pokemon.modify_stat(stat, modifier)
-                    print("Enemy pokemon's " + stat + "has been lowered by: " + modifier + "levels")
+                    print("Enemy pokemon's " + stat + "has been debuffed by: " + modifier + "levels")
                 else:
                     active_pokemon.modify_stat(stat, modifier)
-                    print("Friendly pokemon's " + stat + "has been lowered by: " + modifier + "levels")
+                    print("Friendly pokemon's " + stat + "has been debuffed by: " + modifier + "levels")
 
             # Search for switching Pokemon. Your Pokemon will be
             # updated with the get_team function. This is only
@@ -248,7 +252,7 @@ class ConsoleLogProcessor:
                 # Case where the pokemon has a one word name.
                 else:
                     level = turn_data[i + 4]
-                    hp = turn_data[i + 6]
+                    hp = turn_data[i + 5]
                 level = int(re.sub('[^0-9]', '', level))
                 if turn_data[i + 1] == enemy:
                     print("Enemy pokemon " + enemy_pokemon.species + " has switched out to " + species)
@@ -256,19 +260,6 @@ class ConsoleLogProcessor:
                 else:
                     print("You switched out " + active_pokemon.species + " to " + species)
                     active_pokemon = self.get_team_data()[0]
-
-                    """
-                    if turn_data[i + 1] == enemy:
-                    species = turn_data[i + 2]
-                    if not check_name(species):
-                        species += turn_data[i + 3]
-                        level = turn_data[i + 6]
-                        hp = turn_data[i + 7]
-                    level = turn_data[i + 4]
-                    hp = turn_data[i + 6]
-                    print("Enemy pokemon " + enemy_pokemon.species + " has switched out to " + species)
-                    enemy_pokemon = pokemon.Pokemon(species, level, hp)
-                    """
 
             # Case where a move will force a switch (i.e. Dragon Tail)
             if item == "drag":
@@ -290,12 +281,27 @@ class ConsoleLogProcessor:
                     print("Your " + species + "was dragged out!")
                     active_pokemon = self.get_team_data()[0]
 
+            # Check for weather
+            if item == "-weather":
+                weather = turn_data[i + 1]
+                game_state.set_weather(weather)
+
+            # Check for weather
+            if item == "win":
+                if turn_data[i + 1] == "csc665":
+                    game_state.enemy_remaining_pokemon = 0
+                    print("You won!")
+                else:
+                    game_state.remaining_pokemon = 0
+                    print("You lost!")
+
         # DEBUG
         print()
         print()
         print("*****************************")
         print("After the turn has occurred: ")
         print("\tActive pokemon is: " + str(active_pokemon))
+        print()
         print("\tEnemy pokemon is: " + str(enemy_pokemon))
         print("*****************************")
         # END DEBUG

@@ -7,17 +7,17 @@ EV = 86
 
 modifier_multiplier = {
     '-6': round((3/9), 2),
-    '-5': round((4/9), 2),
-    '-4': round((5/9), 2),
-    '-3': round((6/9), 2),
-    '-2': round((7/9), 2),
-    '-1': round((8/9), 2),
+    '-5': round((3/8), 2),
+    '-4': round((3/7), 2),
+    '-3': round((3/6), 2),
+    '-2': round((3/5), 2),
+    '-1': round((3/4), 2),
     '0': 1,
-    '1': round((4/9), 2),
-    '2': round((5/9), 2),
-    '3': round((6/9), 2),
-    '4': round((7/9), 2),
-    '5': round((8/9), 2),
+    '1': round((4/3), 2),
+    '2': round((5/3), 2),
+    '3': round((6/3), 2),
+    '4': round((7/3), 2),
+    '5': round((8/3), 2),
     '6': 3,
 }
 
@@ -66,7 +66,7 @@ class Pokemon:
         self.species = species.lower()
         self.level = level
         self.hp = hp
-        print("CREATING POKEMON WITH SPECIES: " + str(self.species))
+        # print("CREATING POKEMON WITH SPECIES: " + str(self.species))
 
         self.get_base_stats()
         self.set_type()
@@ -137,8 +137,6 @@ class Pokemon:
         :return:
         """
         base_stats = pokedex.get_base_stats(self.species)
-        print("Base stats are: ")
-        print(base_stats)
         for key in base_stats:
             base_stat = base_stats.get(key)
             term = EV / 4.0
@@ -151,16 +149,17 @@ class Pokemon:
             self.stats[key] = value
         for key in self.modifiers:
             multiplier = modifier_multiplier.get(self.modifiers.get(key))
-            new_value = self.stats.get(key) * multiplier
+            new_value = math.floor(self.stats.get(key) * multiplier)
             self.stats[key] = new_value
         self.calculate_hp()
 
     def calculate_hp(self):
-        hp_as_fraction = self.hp.split('/')
-        hp_as_percentage = float(hp_as_fraction[0]) / float(hp_as_fraction[1])
-        current_hp = math.floor(self.get_stat("hp") * hp_as_percentage)
-        self.hp = current_hp
-        print("Current hp is: " + str(current_hp))
+        # If it's an enemy pokemon, their HP will be a fraction we can split.
+        if type(self.hp) == "str":
+            hp_as_fraction = self.hp.split('/')
+            hp_as_percentage = float(hp_as_fraction[0]) / float(hp_as_fraction[1])
+            current_hp = math.floor(self.get_stat("hp") * hp_as_percentage)
+            self.hp = current_hp
 
     def get_ability(self):
         """

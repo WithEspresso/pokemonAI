@@ -28,3 +28,12 @@ TOXIC SPIKES
 
 ['move', 'p2a:', 'Qwilfish', 'Toxic', 'Spikes', 'p1a:', 'Zygarde', 'n', '-sidestart', 'p1:', 'csc665', 'move:', 'Toxic', 'Spikes', 'n', 'move', 'p1a:', 'Zygarde', 'Thousand', 'Arrows', 'p2a:', 'Qwilfish', 'n', '-supereffective', 'p2a:', 'Qwilfish', 'n', '-damage', 'p
 2a:', 'Qwilfish', '52/100', 'n', 'n', 'upkeep', 'n', 'turn', '2', 'n']
+
+ENEMY SWITCHING IN
+
+['switch', 'p2a:', 'Groudon', 'Groudon,', 'L73', '100/100', 'n', '-weather', 'SunnyDay', '[from]', 'ability:', 'Drought', '[of]', 'p2a:', 'Groudon', 'n', 'turn', '6', 'n']
+
+Winning
+
+['move', 'p2a:', 'Sharpedo', 'Crunch', 'p1a:', 'Nihilego', 'n', '-damage', 'p1a:', 'Nihilego', '117/294', 'n', '-enditem', 'p1a:', 'Nihilego', 'Air', 'Balloon', 'n', '-damage', 'p2a:', 'Sharpedo', '71/100', '[from]', 'item:', 'Life', 'Orb', 'n', 'move', 'p1a:', 'Nihi
+lego', 'Power', 'Gem', 'p2a:', 'Sharpedo', 'n', '-damage', 'p2a:', 'Sharpedo', '0', 'fnt', 'n', 'faint', 'p2a:', 'Sharpedo', 'n', 'n', 'win', 'csc665', 'n']

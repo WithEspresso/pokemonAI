@@ -27,6 +27,7 @@ class GameState:
         self.enemy_team.append(enemy_active_pokemon)
 
         for poke in friendly_team:
+            self.remaining_pokemon = 0
             if poke.get_status() is not "fnt":
                 self.remaining_pokemon += 1
         self.enemy_remaining_pokemon = 6
@@ -36,7 +37,7 @@ class GameState:
         Win condition where all enemy pokemon have fainted
         :return: True if all enemy pokemon have fainted, false otherwise.
         """
-        if self.enemy_remaining_pokemon == 0:
+        if self.enemy_remaining_pokemon <= 0:
             return True
         return False
 
@@ -45,7 +46,7 @@ class GameState:
         Lose condition where all of the player's pokemon have fainted
         :return: True if all player pokemon have fainted, false otherwise
         """
-        if self.remaining_pokemon == 0:
+        if self.remaining_pokemon <= 0:
             return True
         return False
 

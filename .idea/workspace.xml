@@ -7,16 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3c64234-dafb-4c94-bd4b-388ac781b680" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/battle/Battle Log examples" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../PacMan/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../PacMan/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../PacMan/multiagent/multiAgents.py" beforeDir="false" afterPath="$PROJECT_DIR$/../PacMan/multiagent/multiAgents.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../csc648-team05/mysite/myapp/templates/views/post/post_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/../csc648-team05/mysite/myapp/templates/views/post/post_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/battle/battle.py" beforeDir="false" afterPath="$PROJECT_DIR$/battle/battle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/battle/Battle Log examples" beforeDir="false" afterPath="$PROJECT_DIR$/battle/Battle Log examples" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/battle/gamestate.py" beforeDir="false" afterPath="$PROJECT_DIR$/battle/gamestate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/debug.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/showdownNavigator/consolelogprocessor.py" beforeDir="false" afterPath="$PROJECT_DIR$/showdownNavigator/consolelogprocessor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/showdownNavigator/pokemon.py" beforeDir="false" afterPath="$PROJECT_DIR$/showdownNavigator/pokemon.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/showdownNavigator/pokewebdriver.py" beforeDir="false" afterPath="$PROJECT_DIR$/showdownNavigator/pokewebdriver.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,7 +30,7 @@
     <SUITE FILE_PATH="coverage/pokemonAI$manage.coverage" NAME="manage Coverage Results" MODIFIED="1526613714270" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../csc648-team05/mysite" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.57628095">
+    <splitter split-orientation="horizontal" split-proportion="0.40299368">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="browser.py" pinned="false" current-in-tab="false">
@@ -47,8 +45,8 @@
           <file leaf-file-name="consolelogprocessor.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/showdownNavigator/consolelogprocessor.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="414">
-                  <caret line="256" column="43" lean-forward="true" selection-start-line="256" selection-start-column="43" selection-end-line="256" selection-end-column="43" />
+                <state relative-caret-position="493">
+                  <caret line="295" column="36" selection-start-line="295" selection-start-column="36" selection-end-line="295" selection-end-column="36" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
                   </folding>
@@ -68,7 +66,7 @@
           <file leaf-file-name="battle.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/battle/battle.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="207">
+                <state relative-caret-position="14">
                   <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
                   <folding>
                     <element signature="e#0#47#0" expanded="true" />
@@ -89,8 +87,8 @@
           <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/test.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="201">
-                  <caret line="36" column="43" lean-forward="true" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="43" />
+                <state relative-caret-position="193">
+                  <caret line="44" column="54" lean-forward="true" selection-start-line="44" selection-start-column="54" selection-end-line="44" selection-end-column="54" />
                   <folding>
                     <element signature="e#0#69#0" expanded="true" />
                   </folding>
@@ -105,8 +103,8 @@
           <file leaf-file-name="gamestate.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/battle/gamestate.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1435">
-                  <caret line="74" column="21" selection-start-line="74" selection-start-column="21" selection-end-line="74" selection-end-column="21" />
+                <state relative-caret-position="299">
+                  <caret line="34" column="21" lean-forward="true" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
                   <folding>
                     <element signature="e#0#47#0" expanded="true" />
                   </folding>
@@ -126,8 +124,8 @@
           <file leaf-file-name="Battle Log examples" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/battle/Battle Log examples">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="505">
-                  <caret line="29" column="20" lean-forward="true" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+                <state relative-caret-position="460">
+                  <caret line="35" column="7" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
                 </state>
               </provider>
             </entry>
@@ -135,8 +133,8 @@
           <file leaf-file-name="pokemon.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/showdownNavigator/pokemon.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="30">
-                  <caret line="41" column="19" lean-forward="true" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
+                <state relative-caret-position="385">
+                  <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
                   <folding>
                     <element signature="e#0#32#0" expanded="true" />
                   </folding>
@@ -167,18 +165,20 @@
       <find>switch</find>
       <find>generatesucc</find>
       <find>type</find>
-      <find>print</find>
       <find>hiddenpowerfire</find>
       <find>tapu</find>
       <find>get_move</find>
       <find>profile</find>
       <find>active_pokemon</find>
       <find>level</find>
-      <find>get</find>
-      <find>uturn</find>
       <find>set_act</find>
       <find>take_dam</find>
+      <find>print</find>
       <find>state</find>
+      <find>modify</find>
+      <find>get</find>
+      <find>weather</find>
+      <find>uturn</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -203,16 +203,16 @@
         <option value="$PROJECT_DIR$/battle/pokedex.py" />
         <option value="$PROJECT_DIR$/battle/console_test.py" />
         <option value="$PROJECT_DIR$/console_test.py" />
-        <option value="$PROJECT_DIR$/battle/gamestate.py" />
         <option value="$PROJECT_DIR$/../csc648-team05/mysite/myapp/models.py" />
         <option value="$PROJECT_DIR$/../csc648-team05/mysite/myapp/views.py" />
         <option value="$PROJECT_DIR$/../csc648-team05/mysite/myapp/templates/views/post/post_view.html" />
         <option value="$PROJECT_DIR$/../csc648-team05/mysite/myapp/templates/views/post/post_detail.html" />
         <option value="$PROJECT_DIR$/battle/battle.py" />
         <option value="$PROJECT_DIR$/showdownNavigator/pokewebdriver.py" />
-        <option value="$PROJECT_DIR$/showdownNavigator/pokemon.py" />
-        <option value="$PROJECT_DIR$/battle/Battle Log examples" />
         <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/showdownNavigator/pokemon.py" />
+        <option value="$PROJECT_DIR$/battle/gamestate.py" />
+        <option value="$PROJECT_DIR$/battle/Battle Log examples" />
         <option value="$PROJECT_DIR$/showdownNavigator/consolelogprocessor.py" />
       </list>
     </option>
@@ -378,7 +378,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.41551542" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.33262485" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.34750265" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.0953125" />
       <window_info anchor="bottom" id="Statistic" order="7" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
@@ -702,10 +702,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/battle/pokedex.py">
+    <entry file="file://$PROJECT_DIR$/showdownNavigator/pokemon.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-45489">
-          <caret line="23302" column="22" selection-start-line="23293" selection-start-column="5" selection-end-line="23293" selection-end-column="9" />
+        <state relative-caret-position="385">
+          <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="44" column="54" lean-forward="true" selection-start-line="44" selection-start-column="54" selection-end-line="44" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#69#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -718,18 +731,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/battle/battle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
+        <state relative-caret-position="14">
           <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/battle/gamestate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1435">
-          <caret line="74" column="21" selection-start-line="74" selection-start-column="21" selection-end-line="74" selection-end-column="21" />
           <folding>
             <element signature="e#0#47#0" expanded="true" />
           </folding>
@@ -743,37 +746,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/showdownNavigator/pokemon.py">
+    <entry file="file://$PROJECT_DIR$/battle/gamestate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="41" column="19" lean-forward="true" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
+        <state relative-caret-position="299">
+          <caret line="34" column="21" lean-forward="true" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#0#47#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/battle/pokedex.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-45489">
+          <caret line="23302" column="22" selection-start-line="23293" selection-start-column="5" selection-end-line="23293" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/battle/Battle Log examples">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="29" column="20" lean-forward="true" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="36" column="43" lean-forward="true" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#69#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="460">
+          <caret line="35" column="7" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/showdownNavigator/consolelogprocessor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="256" column="43" lean-forward="true" selection-start-line="256" selection-start-column="43" selection-end-line="256" selection-end-column="43" />
+        <state relative-caret-position="493">
+          <caret line="295" column="36" selection-start-line="295" selection-start-column="36" selection-end-line="295" selection-end-column="36" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
