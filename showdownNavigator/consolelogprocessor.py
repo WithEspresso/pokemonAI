@@ -170,10 +170,10 @@ class ConsoleLogProcessor:
                     damage_healed = turn_data[i + 3]
                 if turn_data[i + 1] == enemy:
                     enemy_pokemon.take_damage(damage_healed)
-                    print("Enemy pokemon has healed: " + damage_healed)
+                    print("Enemy " + active_pokemon.species + " has healed: " + damage_healed)
                 else:
                     active_pokemon.take_damage(turn_data[i + 2])
-                    print("Friendly pokemon has healed: " + damage_healed)
+                    print("Friendly " + active_pokemon.species + " has healed: " + damage_healed)
 
             # Search for fainted pokemon
             if item == 'faint':
@@ -376,10 +376,18 @@ class ConsoleLogProcessor:
             # Get Pokemon moves
             if item == "moves":
                 moveset = list()
+                # Hidden power crashes the program if we don't strip the 60.
+                for j in range(1, 5):
+                    move = side[i + (j * 2)]
+                    if "hiddenpower" in move:
+                        move = re.sub('[^a-z]', '', move)
+                    moveset.append(move)
+                """
                 moveset.append(side[i + 2])
                 moveset.append(side[i + 4])
                 moveset.append(side[i + 6])
                 moveset.append(side[i + 8])
+                """
                 side_pokemon_moves.append(moveset)
 
         # Create friendly pokemon team.

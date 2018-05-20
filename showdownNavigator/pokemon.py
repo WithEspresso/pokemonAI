@@ -155,7 +155,7 @@ class Pokemon:
 
     def calculate_hp(self):
         # If it's an enemy pokemon, their HP will be a fraction we can split.
-        if type(self.hp) == "str":
+        if type(self.hp) == str:
             hp_as_fraction = self.hp.split('/')
             hp_as_percentage = float(hp_as_fraction[0]) / float(hp_as_fraction[1])
             current_hp = math.floor(self.get_stat("hp") * hp_as_percentage)

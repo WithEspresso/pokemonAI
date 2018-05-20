@@ -1,6 +1,7 @@
 from showdownNavigator.consolelogprocessor import ConsoleLogProcessor
 from showdownNavigator.pokewebdriver import ShowdownDriver
-from battle.battle import calculate_best_damaging_move
+from battle.battle import get_index_of_best_move
+from battle.battle import calculate_best_damage
 from battle.gamestate import GameState
 
 """
@@ -26,8 +27,9 @@ def run_game():
     state = clp.generate_initial_gamestate()
 
     # Start off by picking one move to do.
-    best_index = calculate_best_damaging_move(active_pokemon, enemy_pokemon, web)
+    best_index = get_index_of_best_move(active_pokemon, enemy_pokemon, web)
     web.select_move(best_index)
+    input("Press a key when the next turn has started.")
 
     # Game loop.
     game = True
@@ -35,16 +37,88 @@ def run_game():
         # Update the game state.
         console_log = web.driver.get_log('browser')
         clp.set_console_log(console_log)
+        print_turn_data(clp)
         state = clp.get_current_turn(state)
         enemy_pokemon = state.get_enemy_active_pokemon()
         active_pokemon = state.get_active_pokemon()
         state.set_legal_moves = web.get_moves()
 
-        # Pick a move and fight.
-        best_index = calculate_best_damaging_move(active_pokemon, enemy_pokemon, web)
-        web.select_move(best_index)
+        # If we killed the enemy, just wait for them to switch.
+        if enemy_pokemon.get_status() is "fnt" or active_pokemon.hp is 0:
+            input("Press a key when they send out another pokemon.")
+        # If we were just fainted, switch Pokemon.
+        elif active_pokemon.get_status() is "fnt" or active_pokemon.hp is 0:
+            switch_index = get_switch_index(state)
+            web.switch_pokemon(switch_index)
+        else:
+            # Pick a move and fight.
+            best_index = get_index_of_best_move(active_pokemon, enemy_pokemon, web)
+            # If our pokemon is totally helpless, let's switch out to a safer one.
+            if best_index is -1:
+                switch_index = get_switch_index(state)
+                web.switch_pokemon(switch_index)
+            web.select_move(best_index)
+            # TODO: Implement a way to check if the turn is done. For now,
+            # Just press a button to continue.
+            input("Press a key when there is a new turn.")
 
-        # Switch Pokemon
+
+def get_switch_index(game_state):
+    """
+    Returns the index of the pokemon best to switch to.
+    :param game_state:
+    :return: The index of the best pokemon to switch to as an integer.
+    """
+    available_pokemon = game_state.get_legal_switches()
+    enemy_active_pokemon = game_state.get_enemy_active_pokemon()
+    best_index = 0
+    index = 0
+    print("Available pokemon are: " + available_pokemon)
+    if available_pokemon is not None:
+        best_switch = available_pokemon[0].species
+        minimum_damage = float('inf')
+        for pokemon in available_pokemon:
+            damage = calculate_best_damage(enemy_active_pokemon, pokemon)
+            if damage < pokemon.hp:
+                if damage < minimum_damage:
+                    minimum_damage = damage
+                    best_switch = pokemon.species
+                    best_index = index
+                index += 1
+        print("Best pokemon to switch to is: " + best_switch)
+        print("This pokemon is at index: " + best_index)
+    return best_index
+
+
+def print_turn_data(clp):
+    cleaned_data = clp.current_turn.replace("\"", "").replace("\\", " ")
+    move_index = cleaned_data.find('|move|')
+    switch_index = cleaned_data.find('|switch|')
+    index = -1
+    if move_index > switch_index:
+        index = move_index
+    else:
+        index = switch_index
+
+    turn_data = cleaned_data[index:]
+    turn_data = turn_data.replace("|", " ").split()
+    print(turn_data)
+
+
+def print_initial_data(clp):
+    cleaned_data = clp.data.replace("\"", "").replace("\\", " ")
+    index = cleaned_data.find('side')
+    side_pokemon_data = cleaned_data[index:]
+    side = side_pokemon_data.split()
+    print(side)
+
+"""
+cleaned_data = clp.data.replace("\"", "").replace("\\", " ")
+index = cleaned_data.find('side')
+side_pokemon_data = cleaned_data[index:]
+side = side_pokemon_data.split()
+print(side)
+"""
 
 
 """
@@ -63,7 +137,7 @@ active_pokemon = team[0]
 state = clp.generate_initial_gamestate()
 
 # Copy pasta for selecting the best move.
-best_index = calculate_best_damaging_move(active_pokemon, enemy_pokemon, web)
+best_index = get_index_of_best_move(active_pokemon, enemy_pokemon, web)
 web.select_move(best_index)
 
 print("You are player: " + str(clp.get_enemy_as_p1a_or_p2a()))

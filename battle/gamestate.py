@@ -136,8 +136,8 @@ class GameState:
         # If the move is an attack, update the active pokemon's status.
         if is_attack(action):
             damage_done = calculate_damage(successor.active_pokemon, successor.enemy_active_pokemon, action)
-            previous_hp = successor.enemy_active_pokemon.get_hp().split('/')[0]
-            max_hp = successor.enemy_active_pokemon.get_hp().split('/')[1]
+            previous_hp = successor.enemy_active_pokemon.hp
+            max_hp = successor.enemy_active_pokemon.get_stat("hp")
             new_hp = previous_hp - damage_done
             if new_hp <= 0:
                 successor.enemy_active_pokemon.status = "fnt"
@@ -178,11 +178,10 @@ class GameState:
         :return:
         """
         legal_switches = list()
-        for i in range(0, 6):
+        for i in range(1, 6):
             pokemon = self.friendly_team[i]
-            if pokemon.status is not "fnt" and pokemon.hp is not 0:
-                if self.active_pokemon.species is not pokemon.species:
-                    legal_switches.append(pokemon)
+            if pokemon.status is not 'fnt' and pokemon.hp is not '0':
+                legal_switches.append(pokemon)
         self.legal_switches = legal_switches
 
     def get_legal_switches(self):

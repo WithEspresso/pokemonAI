@@ -1,7 +1,7 @@
 import re
 from showdownNavigator.consolelogprocessor import ConsoleLogProcessor
 from showdownNavigator.pokewebdriver import ShowdownDriver
-from battle.battle import calculate_best_damaging_move
+from battle.battle import get_index_of_best_move
 from consolelogprocessor import ConsoleLogProcessor
 from showdownNavigator.pokemon import Pokemon
 
