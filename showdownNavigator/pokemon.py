@@ -86,7 +86,7 @@ class Pokemon:
         else:
             self.item = item
         if ability is None:
-            self.ability = self.get_ability()
+            self.ability = self.set_ability()
         else:
             self.ability = ability
         if moveset is None:
@@ -161,14 +161,14 @@ class Pokemon:
             current_hp = math.floor(self.get_stat("hp") * hp_as_percentage)
             self.hp = current_hp
 
-    def get_ability(self):
+    def set_ability(self):
         """
         Called in the constructor when an enemy pokemon is given.
         Returns the first ability a pokemon has in its valid abilities
         dictionary.
         :return: Ability
         """
-        return pokedex.get_abilities(self.species).get("0")
+        self.ability = pokedex.get_abilities(self.species).get("0")
 
     def get_random_moveset(self):
         """

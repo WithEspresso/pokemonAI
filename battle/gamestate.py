@@ -18,6 +18,10 @@ class GameState:
 
     weather = None
 
+    legal_actions = list()
+    legal_moves = list()
+    legal_switches = list()
+
     def __init__(self, friendly_team, enemy_active_pokemon, enemy_player):
         self.friendly_team = friendly_team
         self.enemy_active_pokemon = enemy_active_pokemon
@@ -130,11 +134,29 @@ class GameState:
         return successor
 
     def get_legal_actions(self):
-        pass
-
-    def get_legal_switches(self):
         """
-        Returns a list of indices of legal switches.
+        Returns a list of legal moves to do and legal
+        pokemon to switch to.
+        :return:
+        """
+        self.legal_actions.clear()
+        legal_switches = self.get_legal_switches()
+        for pokemon in legal_switches:
+            self.legal_actions.append(pokemon)
+        legal_moves = self.get_legal_moves()
+        for move in legal_moves:
+            self.legal_actions.append(move)
+        return self.legal_actions
+
+    def get_legal_moves(self):
+        return self.legal_moves
+
+    def set_legal_moves(self, legal_moves):
+        self.legal_moves = legal_moves
+
+    def set_legal_switches(self):
+        """
+        Returns a list of legal switches.
         :return:
         """
         legal_switches = list()
@@ -143,8 +165,10 @@ class GameState:
             if pokemon.status is not "fnt" and pokemon.hp is not 0:
                 if self.active_pokemon.species is not pokemon.species:
                     legal_switches.append(pokemon)
-        return legal_switches
+        self.legal_switches = legal_switches
 
+    def get_legal_switches(self):
+        return self.legal_switches
 
     def __str__(self):
         """

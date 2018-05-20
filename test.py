@@ -38,6 +38,7 @@ def run_game():
         state = clp.get_current_turn(state)
         enemy_pokemon = state.get_enemy_active_pokemon()
         active_pokemon = state.get_active_pokemon()
+        state.set_legal_moves = web.get_moves()
 
         # Pick a move and fight.
         best_index = calculate_best_damaging_move(active_pokemon, enemy_pokemon, web)
