@@ -135,10 +135,16 @@ class GameState:
 
         # If the move is an attack, update the active pokemon's status.
         if is_attack(action):
-            damage_done = calculate_damage(successor.active_pokemon, successor.enemy_active_pokemon, action)
-            previous_hp = successor.enemy_active_pokemon.hp
+            print("Generating successor state for attacking action: " + action)
+            enemy_pokemon = successor.get_enemy_active_pokemon()
+            active_pokemon = successor.get_active_pokemon()
+            damage_done = calculate_damage(active_pokemon, enemy_pokemon, action)
+            enemy_hp = enemy_pokemon.hp
+            if type(enemy_hp) is str:
+                enemy_hp = int(enemy_pokemon.get_hp())
+            previous_hp = enemy_hp
             max_hp = successor.enemy_active_pokemon.get_stat("hp")
-            new_hp = previous_hp - damage_done
+            new_hp = int(previous_hp) - int(damage_done)
             if new_hp <= 0:
                 successor.enemy_active_pokemon.status = "fnt"
                 successor.enemy_active_pokemon.take_damage(0)
@@ -147,6 +153,7 @@ class GameState:
                 successor.enemy_active_pokemon.take_damage(str(new_hp) + "/" + str(max_hp))
         # If the move is a switch, update the active pokemon's status.
         elif type(action) is Pokemon:
+            print("Generating successor state for switch: " + action.species)
             successor.active_pokemon = action
         # Return the successor game state.
         return successor

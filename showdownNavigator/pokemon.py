@@ -117,7 +117,14 @@ class Pokemon:
         return self.stats.get(stat)
 
     def get_hp(self):
-        return self.hp.split('/')[0]
+        """
+        Returns the HP of the pokemon as an integer.
+        :return:
+        """
+        if type(self.hp) is str:
+            return int(self.hp.split('/')[0])
+        else:
+            return self.hp
 
     def take_damage(self, new_hp):
         """

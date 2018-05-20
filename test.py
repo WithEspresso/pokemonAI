@@ -42,7 +42,8 @@ def run_game():
             break
         enemy_pokemon = state.get_enemy_active_pokemon()
         active_pokemon = state.get_active_pokemon()
-        time.sleep(5)
+        # Wait for HTML elements to load.
+        time.sleep(3)
         state.set_legal_moves(web.get_moves())
         state.set_legal_switches(web.get_legal_switches())
 
@@ -133,8 +134,10 @@ side = side_pokemon_data.split()
 print(side)
 """
 
-
+# Start of game
 """
+web = ShowdownDriver()
+
 console_log = web.driver.get_log('browser')
 clp = ConsoleLogProcessor(console_log)
 team = clp.get_team_data()
@@ -150,8 +153,10 @@ active_pokemon = team[0]
 state = clp.generate_initial_gamestate()
 state.set_legal_moves(web.get_moves())
 state.set_legal_switches(web.get_legal_switches())
+"""
 
 # Copy pasta for selecting the best move.
+"""
 best_index = get_index_of_best_move(active_pokemon, enemy_pokemon, web)
 web.select_move(best_index)
 
@@ -159,15 +164,22 @@ print("You are player: " + str(clp.get_enemy_as_p1a_or_p2a()))
 print("The enemy active pokemon is: " + str(enemy_pokemon))
 print("Your active pokemon is: " + str(active_pokemon))
 
-# copy pasta for updating the game state.
 """
+# copy pasta for updating the game state.
 """
 console_log = web.driver.get_log('browser')
 clp.set_console_log(console_log)
-team = clp.get_team_data()
+print_turn_data(clp)
 state = clp.get_current_turn(state)
+if state.is_lose() or state.is_win():
+    game = False
+    break
 enemy_pokemon = state.get_enemy_active_pokemon()
 active_pokemon = state.get_active_pokemon()
+# Wait for HTML elements to load.
+time.sleep(3)
+state.set_legal_moves(web.get_moves())
+state.set_legal_switches(web.get_legal_switches())
 """
 
 # Copy pasta for looking at turn data in cleaned form.
