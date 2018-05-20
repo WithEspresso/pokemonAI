@@ -132,6 +132,20 @@ class GameState:
     def get_legal_actions(self):
         pass
 
+    def get_legal_switches(self):
+        """
+        Returns a list of indices of legal switches.
+        :return:
+        """
+        legal_switches = list()
+        for i in range(0, 6):
+            pokemon = self.friendly_team[i]
+            if pokemon.status is not "fnt" and pokemon.hp is not 0:
+                if self.active_pokemon.species is not pokemon.species:
+                    legal_switches.append(pokemon)
+        return legal_switches
+
+
     def __str__(self):
         """
         String representation of the game state.

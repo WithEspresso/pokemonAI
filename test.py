@@ -7,9 +7,46 @@ from battle.gamestate import GameState
 Test file to check driver functionality.
 """
 
-web = ShowdownDriver()
-input("Press a key when the battle is ready.")
 
+def run_game():
+    web = ShowdownDriver()
+    input("Press a key when the battle is ready.")
+    # Initial setup of the game state.
+    console_log = web.driver.get_log('browser')
+    clp = ConsoleLogProcessor(console_log)
+    team = clp.get_team_data()
+    player = clp.get_enemy_as_p1a_or_p2a()
+    enemy = "p2a:"
+    if player == "p1a":
+        enemy = "p2a:"
+    else:
+        enemy = "p1a:"
+    enemy_pokemon = clp.get_enemy_active_initial(enemy)
+    active_pokemon = team[0]
+    state = clp.generate_initial_gamestate()
+
+    # Start off by picking one move to do.
+    best_index = calculate_best_damaging_move(active_pokemon, enemy_pokemon, web)
+    web.select_move(best_index)
+
+    # Game loop.
+    game = True
+    while game:
+        # Update the game state.
+        console_log = web.driver.get_log('browser')
+        clp.set_console_log(console_log)
+        state = clp.get_current_turn(state)
+        enemy_pokemon = state.get_enemy_active_pokemon()
+        active_pokemon = state.get_active_pokemon()
+
+        # Pick a move and fight.
+        best_index = calculate_best_damaging_move(active_pokemon, enemy_pokemon, web)
+        web.select_move(best_index)
+
+        # Switch Pokemon
+
+
+"""
 console_log = web.driver.get_log('browser')
 clp = ConsoleLogProcessor(console_log)
 team = clp.get_team_data()
@@ -33,6 +70,7 @@ print("The enemy active pokemon is: " + str(enemy_pokemon))
 print("Your active pokemon is: " + str(active_pokemon))
 
 # copy pasta for updating the game state.
+"""
 """
 console_log = web.driver.get_log('browser')
 clp.set_console_log(console_log)
@@ -58,7 +96,7 @@ turn_data = cleaned_data[index:]
 turn_data = turn_data.replace("|", " ").split()
 print(turn_data)
 """
-
+"""
 game = True
 while game:
     # Update console log and game state.
@@ -94,7 +132,7 @@ print("The enemy active pokemon is: " + str(enemy_pokemon))
 active_pokemon = team[0]
 print("Your active pokemon is: " + str(active_pokemon))
 
-"""
+
 #Testing if we can pull and calculate the highest damage move
 maxDmgMove = ("" , 0)
 current_pokemon = clp.get_active_pokemon()
@@ -156,7 +194,7 @@ enemy = "p1a"
                     hp = turn_data[i + 6]
                     print("Enemy pokemon " + enemy_pokemon.species + " has switched out to " + species)
                     enemy_pokemon = pokemon.Pokemon(species, level, hp)
-"""
+
 
 input("Press a key when a turn has passed.")
 console_log = web.driver.get_log('browser')
@@ -165,3 +203,4 @@ if console_log is not None:
     for log in console_log:
         print(log)
 team = clp.get_team_data()
+"""

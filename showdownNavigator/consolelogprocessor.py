@@ -343,6 +343,7 @@ class ConsoleLogProcessor:
                     side_pokemon_species_names.append(species_name)
                 else:
                     species_name += side[i + 4].lower()
+                    side_pokemon_species_names.append(species_name)
             # Get the levels of the Pokemon
             if item[0] == "L" and item[1].isdigit():
                 level = item[1] + item[2]
