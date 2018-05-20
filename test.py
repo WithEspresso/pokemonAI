@@ -12,53 +12,82 @@ input("Press a key when the battle is ready.")
 
 console_log = web.driver.get_log('browser')
 clp = ConsoleLogProcessor(console_log)
-print("clp ready")
 team = clp.get_team_data()
-print("Your team is: ")
-for pokemon in team:
-    print(pokemon)
-player = clp.get_p1a_or_p2a()
-enemy = None
+player = clp.get_enemy_as_p1a_or_p2a()
+enemy = "p2a:"
 if player == "p1a":
     enemy = "p2a:"
 else:
     enemy = "p1a:"
-print("You are player: " + str(clp.get_p1a_or_p2a()))
-enemy_pokemon = clp.get_enemy_active(enemy)
-print("The enemy active pokemon is: " + str(enemy_pokemon))
+
+enemy_pokemon = clp.get_enemy_active_initial(enemy)
 active_pokemon = team[0]
+state = clp.generate_initial_gamestate()
+
+# Copy pasta for selecting the best move.
+best_index = calculate_best_damaging_move(active_pokemon, enemy_pokemon, web)
+web.select_move(best_index)
+
+print("You are player: " + str(clp.get_enemy_as_p1a_or_p2a()))
+print("The enemy active pokemon is: " + str(enemy_pokemon))
 print("Your active pokemon is: " + str(active_pokemon))
 
-game = True
+# copy pasta for updating the game state.
+"""
+console_log = web.driver.get_log('browser')
+clp.set_console_log(console_log)
+team = clp.get_team_data()
+state = clp.get_current_turn(state)
+"""
 
+# Copy pasta for looking at turn data in cleaned form.
+"""
+cleaned_data = clp.current_turn.replace("\"", "").replace("\\", " ")
+move_index = cleaned_data.find('|move|')
+switch_index = cleaned_data.find('|switch|')
+index = -1
+if move_index > switch_index:
+    index = move_index
+else:
+    index = switch_index
+    
+
+turn_data = cleaned_data[index:]
+turn_data = turn_data.replace("|", " ").split()
+print(turn_data)
+"""
+
+game = True
 while game:
     # Update console log and game state.
     console_log = web.driver.get_log('browser')
     clp.set_console_log(console_log)
     team = clp.get_team_data()
     active_pokemon = team[0]
-    enemy_pokemon = clp.get_enemy_active(enemy)
+    enemy_pokemon = clp.get_enemy_active_initial(enemy)
 
     # Calculate maximizer's best action
     moveset = web.get_moves()
     print("Your possible moves are: ")
     for move in moveset:
-        print(move, end='', flush=True)
-    best_index = calculate_best_damaging_move(active_pokemon, enemy_pokemon)
+        print(move + " ", end='', flush=True)
+    best_index = calculate_best_damaging_move(active_pokemon, enemy_pokemon, web)
 
     # Calculate minimizer's best action
     print("Enemy's possible moves are: ")
     for move in enemy_pokemon.get_moveset():
-        print(move, end='', flush=True)
+        print(move + " ", end='', flush=True)
     best_enemy_move = calculate_best_damaging_move(enemy_pokemon, active_pokemon)
 
     # TODO: Check for html elements before continuing rather than button presses.
     input("Press a key to fight:")
     web.select_move(best_index)
     input("Press a key when your enemy has selected a move")
+    state = clp.get_current_turn(state)
+
 
 clp.get_current_turn(enemy_pokemon)
-enemy_pokemon = clp.get_enemy_active(enemy)
+enemy_pokemon = clp.get_enemy_active_initial(enemy)
 print("The enemy active pokemon is: " + str(enemy_pokemon))
 active_pokemon = team[0]
 print("Your active pokemon is: " + str(active_pokemon))

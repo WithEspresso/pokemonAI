@@ -6,19 +6,19 @@ IV = 31
 EV = 86
 
 modifier_multiplier = {
-    -6: round((3/9), 2),
-    -5: round((4/9), 2),
-    -4: round((5/9), 2),
-    -3: round((6/9), 2),
-    -2: round((7/9), 2),
-    -1: round((8/9), 2),
-    0: 1,
-    1: round((4/9), 2),
-    2: round((5/9), 2),
-    3: round((6/9), 2),
-    4: round((7/9), 2),
-    5: round((8/9), 2),
-    6: 3,
+    '-6': round((3/9), 2),
+    '-5': round((4/9), 2),
+    '-4': round((5/9), 2),
+    '-3': round((6/9), 2),
+    '-2': round((7/9), 2),
+    '-1': round((8/9), 2),
+    '0': 1,
+    '1': round((4/9), 2),
+    '2': round((5/9), 2),
+    '3': round((6/9), 2),
+    '4': round((7/9), 2),
+    '5': round((8/9), 2),
+    '6': 3,
 }
 
 
@@ -37,12 +37,12 @@ class Pokemon:
 
     # Dictionary of current modifiers for the stats.
     modifiers = {
-        "hp": 0,
-        "atk": 0,
-        "def": 0,
-        "spa": 0,
-        "spd": 0,
-        "spe": 0
+        "hp": '0',
+        "atk": '0',
+        "def": '0',
+        "spa": '0',
+        "spd": '0',
+        "spe": '0'
     }
 
     species = None
@@ -147,7 +147,7 @@ class Pokemon:
             if key is not "hp":
                 value = math.floor(fraction + 5)
             else:
-                value = math.floor(fraction + self.level + 10)
+                value = math.floor(fraction + int(self.level) + 10)
             self.stats[key] = value
         for key in self.modifiers:
             multiplier = modifier_multiplier.get(self.modifiers.get(key))

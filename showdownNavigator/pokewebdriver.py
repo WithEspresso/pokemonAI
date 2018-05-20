@@ -107,6 +107,7 @@ class ShowdownDriver:
             move = element.get_attribute('data-move')
             move = move.lower()
             move = move.replace(" ", "")
+            move = move.replace("-", "")
             legal_moves.append(move)
         return legal_moves
 

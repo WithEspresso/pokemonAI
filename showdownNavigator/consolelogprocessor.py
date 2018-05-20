@@ -56,11 +56,11 @@ class ConsoleLogProcessor:
         :return:    The initial game state.
         """
         team = self.get_team_data()
-        enemy = self.get_p1a_or_p2a()
-        enemy_active = self.get_enemy_active(enemy)
+        enemy = self.get_enemy_as_p1a_or_p2a()
+        enemy_active = self.get_enemy_active_initial(enemy)
         return GameState(team, enemy_active, enemy)
 
-    def get_p1a_or_p2a(self):
+    def get_enemy_as_p1a_or_p2a(self):
         """
         Determines if the bot is p1a or p2a for purposes of processing the
         console log's turn entries. Called during the first turn.
@@ -79,7 +79,7 @@ class ConsoleLogProcessor:
                     else:
                         return "p2a:"
 
-    def get_enemy_active(self, enemy):
+    def get_enemy_active_initial(self, enemy):
         """
         Enemy can be p1a: or p2a:
         :param enemy:
@@ -122,9 +122,12 @@ class ConsoleLogProcessor:
         enemy = game_state.get_enemy_player()
 
         # DEBUG
+        print("*****************************")
         print("Before the turn has occurred: ")
         print("\tActive pokemon is: " + str(active_pokemon))
+        print()
         print("\tEnemy pokemon is: " + str(enemy_pokemon))
+        print("*****************************")
         print()
         print()
 
@@ -142,20 +145,78 @@ class ConsoleLogProcessor:
         # Iterate through the split data and parse for turn information.
         for i in range(0, len(turn_data)):
             item = turn_data[i]
+
             # Search for damage done.
             if item == "-damage":
-                damage_taken = turn_data[i + 2]
+                species = turn_data[i + 2]
+                # Case where the Pokemon's name has two words in it.
+                if not check_name(species.lower()):
+                    damage_taken = turn_data[i + 4]
+                else:
+                    damage_taken = turn_data[i + 3]
                 if turn_data[i + 1] == enemy:
                     enemy_pokemon.take_damage(damage_taken)
-                    print("Enemy pokemon has taken damage: " + damage_taken)
+                    print("Enemy " + enemy_pokemon.species + " has taken damage: " + damage_taken)
+                else:
+                    active_pokemon.take_damage(damage_taken)
+                    print("Friendly " + active_pokemon.species + " has taken damage: " + damage_taken)
+
+            # Search for healing.
+            if item == "-heal":
+                species = turn_data[i + 2]
+                # Case where the Pokemon's name has two words in it.
+                if not check_name(species.lower()):
+                    damage_healed = turn_data[i + 4]
+                else:
+                    damage_healed = turn_data[i + 3]
+                if turn_data[i + 1] == enemy:
+                    enemy_pokemon.take_damage(damage_healed)
+                    print("Enemy pokemon has healed: " + damage_healed)
                 else:
                     active_pokemon.take_damage(turn_data[i + 2])
-                    print("Friendly pokemon has taken damage: " + damage_taken)
+                    print("Friendly pokemon has healed: " + damage_healed)
+
+            # Search for fainted pokemon
+            if item == 'faint':
+                if turn_data[i + 1] == enemy:
+                    enemy_pokemon.status = "fnt"
+                    print("Enemy " + enemy_pokemon.species + "has fainted.")
+                    game_state.enemy_remaining_pokemon -= 1
+                else:
+                    active_pokemon.status = "fnt"
+                    print("Your " + enemy_pokemon.species + "has fainted.")
+                    game_state.remaining_pokemon -= 1
+
+            # Search for status changes (i.e. brn, paralysis, etc.)
+            if item == "-status":
+                species = turn_data[i + 2]
+                # Case where the Pokemon's name has two words in it.
+                if not check_name(species.lower()):
+                    status = turn_data[i + 4]
+                else:
+                    status = turn_data[i + 3]
+                if turn_data[i + 1] == enemy:
+                    enemy_pokemon.set_status(status)
+                    print("Enemy " + enemy_pokemon.species + " has been inflicted with " + status)
+                else:
+                    active_pokemon.set_status(status)
+                    print("Friendly " + enemy_pokemon.species + " has been inflicted with " + status)
 
             # Search for stat boosts
             if item == "-boost":
-                stat = turn_data[i + 2]
-                modifier = turn_data[i + 3]
+                species = turn_data[i + 2]
+                # Case where the Pokemon's name has two words in it.
+                if not check_name(species.lower()):
+                    stat = turn_data[i + 4]
+                    print("Boosting " + stat)
+                    modifier = turn_data[i + 5]
+                    print("by " + modifier + "levels")
+                # Case where the pokemon has a one word name.
+                else:
+                    stat = turn_data[i + 3]
+                    print("Boosting " + stat)
+                    modifier = turn_data[i + 4]
+                    print("by " + modifier + "levels")
                 if turn_data[i + 1] == enemy:
                     enemy_pokemon.modify_stat(stat, modifier)
                     print("Enemy pokemon's " + stat + "has been improved by: " + modifier + "levels")
@@ -178,17 +239,67 @@ class ConsoleLogProcessor:
             # updated with the get_team function. This is only
             # for getting data about the enemy Pokemon
             if item == "switch":
+                species = turn_data[i + 2]
+                # Case where the Pokemon's name has two words in it.
+                if not check_name(species.lower()):
+                    species += turn_data[i + 3]
+                    level = turn_data[i + 6]
+                    hp = turn_data[i + 7]
+                # Case where the pokemon has a one word name.
+                else:
+                    level = turn_data[i + 4]
+                    hp = turn_data[i + 6]
+                level = int(re.sub('[^0-9]', '', level))
                 if turn_data[i + 1] == enemy:
+                    print("Enemy pokemon " + enemy_pokemon.species + " has switched out to " + species)
+                    enemy_pokemon = pokemon.Pokemon(species, level, hp)
+                else:
+                    print("You switched out " + active_pokemon.species + " to " + species)
+                    active_pokemon = self.get_team_data()[0]
+
+                    """
+                    if turn_data[i + 1] == enemy:
                     species = turn_data[i + 2]
+                    if not check_name(species):
+                        species += turn_data[i + 3]
+                        level = turn_data[i + 6]
+                        hp = turn_data[i + 7]
                     level = turn_data[i + 4]
                     hp = turn_data[i + 6]
                     print("Enemy pokemon " + enemy_pokemon.species + " has switched out to " + species)
                     enemy_pokemon = pokemon.Pokemon(species, level, hp)
+                    """
+
+            # Case where a move will force a switch (i.e. Dragon Tail)
+            if item == "drag":
+                species = turn_data[i + 2]
+                # Case where the Pokemon's name has two words in it.
+                if not check_name(species.lower()):
+                    species += turn_data[i + 3]
+                    level = turn_data[i + 6]
+                    level = int(re.sub('[^0-9]', '', level))
+                    hp = turn_data[i + 7]
+                # Case where the pokemon has a one word name.
+                else:
+                    level = turn_data[i + 4]
+                    hp = turn_data[i + 6]
+                if turn_data[i + 1] == enemy:
+                    print("Enemy pokemon " + species + " was dragged out! ")
+                    enemy_pokemon = pokemon.Pokemon(species, level, hp)
+                else:
+                    print("Your " + species + "was dragged out!")
+                    active_pokemon = self.get_team_data()[0]
 
         # DEBUG
+        print()
+        print()
+        print("*****************************")
         print("After the turn has occurred: ")
         print("\tActive pokemon is: " + str(active_pokemon))
         print("\tEnemy pokemon is: " + str(enemy_pokemon))
+        print("*****************************")
+        # END DEBUG
+
         game_state.set_active_pokemon(active_pokemon)
         game_state.set_enemy_active_pokemon(enemy_pokemon)
         return game_state

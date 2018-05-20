@@ -1,14 +1,20 @@
 from battle.pokemonmove import calculate_damage
+from showdownNavigator.pokewebdriver import ShowdownDriver
 
 
-def calculate_best_damaging_move(attacking, defending, weather=None):
+def calculate_best_damaging_move(attacking, defending, web=None, weather=None):
     """
     Returns the index of the best damaging move.
     :param attacking:   The attacking pokemon.
     :param defending:   The defending pokemon.
     :return:    The index of the best damaging move as an integer.
     """
-    moveset = attacking.get_moveset()
+    moveset = None
+    if web is not None:
+        moveset = web.get_moves()
+        print("Moveset is: " + str(moveset))
+    else:
+        moveset = attacking.get_moveset()
     best_move = None
     best_damage = 0
     best_index = 0
