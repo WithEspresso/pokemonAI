@@ -100,6 +100,7 @@ class MinimaxAgent:
                 highest_opposing_damage_move = self.get_highest_damaging_move(self, opposing_pokemon, current_pokemon)
                 switch_damage = calculate_damage(opposing_pokemon, switched_pokemon, highest_opposing_damage_move)
                 switch_evaluation += switch_damage
+                
         return speed_evaluation + damage_evaluation + opposing_damage_evaluation + switch_evaluation
 
     @staticmethod

@@ -25,7 +25,7 @@
     <SUITE FILE_PATH="coverage/pokemonAI$manage.coverage" NAME="manage Coverage Results" MODIFIED="1526613714270" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../csc648-team05/mysite" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.52043754">
+    <splitter split-orientation="horizontal" split-proportion="0.44559586">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="browser.py" pinned="false" current-in-tab="false">
@@ -73,8 +73,8 @@
           <file leaf-file-name="gamestate.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/battle/gamestate.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="501">
-                  <caret line="33" column="48" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="48" />
+                <state relative-caret-position="368">
+                  <caret line="133" column="52" selection-start-line="133" selection-start-column="52" selection-end-line="133" selection-end-column="52" />
                   <folding>
                     <element signature="e#0#47#0" expanded="true" />
                   </folding>
@@ -143,8 +143,8 @@
           <file leaf-file-name="minimax.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/battle/minimax.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="269">
-                  <caret line="98" column="15" lean-forward="true" selection-start-line="98" selection-start-column="15" selection-end-line="98" selection-end-column="50" />
+                <state relative-caret-position="483">
+                  <caret line="96" column="22" lean-forward="true" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="22" />
                   <folding>
                     <element signature="e#0#26#0" expanded="true" />
                   </folding>
@@ -809,8 +809,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/battle/minimax.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="98" column="15" lean-forward="true" selection-start-line="98" selection-start-column="15" selection-end-line="98" selection-end-column="50" />
+        <state relative-caret-position="483">
+          <caret line="96" column="22" lean-forward="true" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="22" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -819,8 +819,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/battle/gamestate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="33" column="48" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="48" />
+        <state relative-caret-position="368">
+          <caret line="133" column="52" selection-start-line="133" selection-start-column="52" selection-end-line="133" selection-end-column="52" />
           <folding>
             <element signature="e#0#47#0" expanded="true" />
           </folding>

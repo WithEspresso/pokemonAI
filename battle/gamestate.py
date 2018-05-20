@@ -22,6 +22,8 @@ class GameState:
     legal_moves = list()
     legal_switches = list()
 
+    turn_number = 0
+
     def __init__(self, friendly_team, enemy_active_pokemon, enemy_player):
         self.friendly_team = friendly_team
         self.enemy_active_pokemon = enemy_active_pokemon
@@ -129,6 +131,7 @@ class GameState:
                               enemy_player=self.enemy_player)
         successor.enemy_remaining_pokemon = self.enemy_remaining_pokemon
         successor.weather = self.weather
+        successor.turn_number = self.turn_number + 1
 
         # If the move is an attack, update the active pokemon's status.
         if is_attack(action):
