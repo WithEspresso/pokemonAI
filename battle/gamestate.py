@@ -28,7 +28,12 @@ class GameState:
         self.enemy_player = enemy_player
 
         self.active_pokemon = friendly_team[0]
-        self.enemy_team.append(enemy_active_pokemon)
+
+        # We only know what the enemy has shown us so far about their team.
+        # If we haven't already seen their Pokemon, we add it to their team
+        # in order to keep track of their team.
+        if enemy_active_pokemon not in self.enemy_team:
+            self.enemy_team.append(enemy_active_pokemon)
 
         for poke in friendly_team:
             self.remaining_pokemon = 0
@@ -54,11 +59,13 @@ class GameState:
             return True
         return False
 
-    def count_living_pokemon(self):
-        for poke in self.friendly_team:
+    @staticmethod
+    def count_living_pokemon(team):
+        remaining_pokemon = 0
+        for poke in team:
             if poke.get_status() is not "fnt":
-                self.remaining_pokemon += 1
-        return self.remaining_pokemon
+                remaining_pokemon += 1
+        return remaining_pokemon
 
     def get_active_pokemon(self):
         """
@@ -91,6 +98,10 @@ class GameState:
     def set_team(self, team):
         self.friendly_team = team
         self.active_pokemon = team[0]
+        self.remaining_pokemon = self.count_living_pokemon(team)
+
+    def set_enemy_team(self, team):
+        self.enemy_team = team
 
     def set_enemy_player(self, enemy):
         """
@@ -106,20 +117,25 @@ class GameState:
     def set_weather(self, weather):
         self.weather = weather
 
-    def generate_successor(self, action, player, target=None):
+    def generate_successor(self, action):
+        """
+        The action is a legal action that may be a move or a Pokemon.
+        :param action:
+        :return:
+        """
         # Copy the values from the current game state.
         successor = GameState(friendly_team=self.friendly_team,
-                              enemy_team=self.enemy_team,
-                              active_pokemon=self.active_pokemon,
-                              enemy_active_pokemon=self.enemy_active_pokemon)
+                              enemy_active_pokemon=self.enemy_active_pokemon,
+                              enemy_player=self.enemy_player)
+        successor.enemy_remaining_pokemon = self.enemy_remaining_pokemon
+        successor.weather = self.weather
 
         # If the move is an attack, update the active pokemon's status.
-        if is_attack(action) and player == self.player:
+        if is_attack(action):
             damage_done = calculate_damage(successor.active_pokemon, successor.enemy_active_pokemon, action)
             previous_hp = successor.enemy_active_pokemon.get_hp().split('/')[0]
             max_hp = successor.enemy_active_pokemon.get_hp().split('/')[1]
             new_hp = previous_hp - damage_done
-
             if new_hp <= 0:
                 successor.enemy_active_pokemon.status = "fnt"
                 successor.enemy_active_pokemon.take_damage(0)
@@ -127,9 +143,8 @@ class GameState:
             else:
                 successor.enemy_active_pokemon.take_damage(str(new_hp) + "/" + str(max_hp))
         # If the move is a switch, update the active pokemon's status.
-        else:
-            if player == successor.player and target is not None:
-                successor.active_pokemon = target
+        elif type(action) is Pokemon:
+            successor.active_pokemon = action
         # Return the successor game state.
         return successor
 
