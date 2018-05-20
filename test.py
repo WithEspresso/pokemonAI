@@ -37,11 +37,14 @@ def run_game():
         clp.set_console_log(console_log)
         print_turn_data(clp)
         state = clp.get_current_turn(state)
+        if state.is_lose() or state.is_win():
+            game = False
+            break
         enemy_pokemon = state.get_enemy_active_pokemon()
         active_pokemon = state.get_active_pokemon()
         time.sleep(5)
-        state.set_legal_moves = web.get_moves()
-        state.set_legal_switches = web.get_legal_switches()
+        state.set_legal_moves(web.get_moves())
+        state.set_legal_switches(web.get_legal_switches())
 
         # If we killed the enemy, just wait for them to switch.
         if enemy_pokemon.get_status() is "fnt" or active_pokemon.hp is 0:
@@ -49,7 +52,10 @@ def run_game():
         # If we were just fainted, switch Pokemon.
         elif active_pokemon.get_status() is "fnt" or active_pokemon.hp is 0:
             switch_index = get_switch_index(state)
+            next_pokemon = state.get_legal_switches()[switch_index].species
+            print("Switching pokemon to : " + str(next_pokemon))
             web.switch_pokemon(switch_index)
+            input("Press a key when your pokemon is out.")
         else:
             # Pick a move and fight.
             best_index = get_index_of_best_move(active_pokemon, enemy_pokemon, web)
@@ -57,15 +63,17 @@ def run_game():
             if best_index is -1:
                 switch_index = get_switch_index(state)
                 next_pokemon = state.get_legal_switches()[switch_index].species
-                input("Switching pokemon to : " + str(next_pokemon))
+                print("Switching pokemon to : " + str(next_pokemon))
                 web.switch_pokemon(switch_index)
-            web.select_move(best_index)
-            # TODO: Implement a way to check if the turn is done. For now,
-            # Just press a button to continue.
-            input("Press a key when there is a new turn.")
+                input("Press a key when your next pokemon is out.")
+            else:
+                web.select_move(best_index)
+                # TODO: Implement a way to check if the turn is done. For now,
+                # Just press a button to continue.
+                input("Press a key when there is a new turn.")
 
 
-def get_switch_index(game_state, web):
+def get_switch_index(game_state):
     """
     Returns the index of the pokemon best to switch to.
     :param game_state:
@@ -140,8 +148,8 @@ else:
 enemy_pokemon = clp.get_enemy_active_initial(enemy)
 active_pokemon = team[0]
 state = clp.generate_initial_gamestate()
-state.set_legal_moves() = web.get_moves()
-state.legal_switches = web.get_legal_switches()
+state.set_legal_moves(web.get_moves())
+state.set_legal_switches(web.get_legal_switches())
 
 # Copy pasta for selecting the best move.
 best_index = get_index_of_best_move(active_pokemon, enemy_pokemon, web)
