@@ -69,3 +69,18 @@ def calculate_best_utility(attacking, defending):
     :param defending:
     :return:
     """
+
+
+def is_kill(attacking, defending, move):
+    """
+    Returns true if the move will kill the defending Pokemon.
+    :param attacking:
+    :param defending:
+    :param move:
+    :return:
+    """
+    damage = calculate_damage(attacking, defending, move)
+    defending_hp = defending.get_hp()
+    if damage > defending_hp:
+        return True
+    return False
