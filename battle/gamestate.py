@@ -185,6 +185,7 @@ class GameState:
         self.legal_switches = legal_switches
 
     def get_legal_switches(self):
+        self.set_legal_switches()
         return self.legal_switches
 
     def __str__(self):

@@ -16,12 +16,7 @@ def run_game():
     console_log = web.driver.get_log('browser')
     clp = ConsoleLogProcessor(console_log)
     team = clp.get_team_data()
-    player = clp.get_enemy_as_p1a_or_p2a()
-    enemy = "p2a:"
-    if player == "p1a":
-        enemy = "p2a:"
-    else:
-        enemy = "p1a:"
+    enemy = clp.get_enemy_as_p1a_or_p2a()
     enemy_pokemon = clp.get_enemy_active_initial(enemy)
     active_pokemon = team[0]
     state = clp.generate_initial_gamestate()
@@ -73,20 +68,24 @@ def get_switch_index(game_state):
     enemy_active_pokemon = game_state.get_enemy_active_pokemon()
     best_index = 0
     index = 0
-    print("Available pokemon are: " + available_pokemon)
+    print("Available pokemon are: " + str(available_pokemon))
     if available_pokemon is not None:
         best_switch = available_pokemon[0].species
         minimum_damage = float('inf')
         for pokemon in available_pokemon:
             damage = calculate_best_damage(enemy_active_pokemon, pokemon)
-            if damage < pokemon.hp:
+            if type(pokemon.hp) == str:
+                hp = pokemon.hp.split('/')[0]
+            else:
+                hp = pokemon.hp
+            if damage < int(hp):
                 if damage < minimum_damage:
                     minimum_damage = damage
                     best_switch = pokemon.species
                     best_index = index
                 index += 1
-        print("Best pokemon to switch to is: " + best_switch)
-        print("This pokemon is at index: " + best_index)
+        print("Best pokemon to switch to is: " + str(best_switch))
+        print("This pokemon is at index: " + str(best_index))
     return best_index
 
 

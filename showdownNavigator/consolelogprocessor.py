@@ -94,17 +94,24 @@ class ConsoleLogProcessor:
             if entry == "switch":
                 if data[i + 1] == enemy:
                     species = data[i + 2]
-                    level = data[i + 4]
-                    level = int(re.sub('[^0-9]', '', level))
-                    hp = data[i + 5]
+                    if not check_name(species.lower()):
+                        species += data[i + 3]
+                        level = data[i + 6]
+                        hp = data[i + 7]
+                    else:
+                        level = data[i + 4]
+                        hp = data[i + 5]
+                    level = re.sub('[^0-9]', '', level)
                     if "/" in hp:
                         print("Found enemy pokemon: " + str(species))
+                        print("inside first if")
                         enemy_pokemon = pokemon.Pokemon(species, level, hp)
                         return enemy_pokemon
                     else:
                         hp = data[i + 6]
                         if "/" in hp:
                             print("Found enemy pokemon: " + str(species))
+                            print("inside second if")
                             enemy_pokemon = pokemon.Pokemon(species, level, hp)
                             return enemy_pokemon
 
@@ -252,8 +259,12 @@ class ConsoleLogProcessor:
                 # Case where the pokemon has a one word name.
                 else:
                     level = turn_data[i + 4]
+                    # Case where pokemon is genderless.
                     hp = turn_data[i + 5]
                 level = int(re.sub('[^0-9]', '', level))
+                # Case where pokemon has a gender
+                if "/" not in hp:
+                    hp = turn_data[i + 6]
                 if turn_data[i + 1] == enemy:
                     print("Enemy pokemon " + enemy_pokemon.species + " has switched out to " + species)
                     enemy_pokemon = pokemon.Pokemon(species, level, hp)
@@ -268,12 +279,12 @@ class ConsoleLogProcessor:
                 if not check_name(species.lower()):
                     species += turn_data[i + 3]
                     level = turn_data[i + 6]
-                    level = int(re.sub('[^0-9]', '', level))
                     hp = turn_data[i + 7]
                 # Case where the pokemon has a one word name.
                 else:
                     level = turn_data[i + 4]
                     hp = turn_data[i + 6]
+                level = int(re.sub('[^0-9]', '', level))
                 if turn_data[i + 1] == enemy:
                     print("Enemy pokemon " + species + " was dragged out! ")
                     enemy_pokemon = pokemon.Pokemon(species, level, hp)
@@ -339,6 +350,9 @@ class ConsoleLogProcessor:
             # like tapu koko.
             if item == "ident":
                 species_name = side[i + 3].lower()
+                # Porygon z breaks the game if you don't do this.
+                if "-" in species_name:
+                    species_name = species_name.replace("-", "")
                 if check_name(species_name):
                     side_pokemon_species_names.append(species_name)
                 else:
@@ -379,7 +393,7 @@ class ConsoleLogProcessor:
                 # Hidden power crashes the program if we don't strip the 60.
                 for j in range(1, 5):
                     move = side[i + (j * 2)]
-                    if "hiddenpower" in move:
+                    if "hiddenpower" in move or "return" in move:
                         move = re.sub('[^a-z]', '', move)
                     moveset.append(move)
                 """

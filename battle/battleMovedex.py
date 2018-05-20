@@ -12408,7 +12408,7 @@ battle_movedex = {
     "return": {
         "num": 216,
         "accuracy": 100,
-        "basePower": 0,
+        "basePower": 102,
         "category": "Physical",
         "desc": "Power is equal to the greater of (user's Happiness * 2/5), rounded down, or 1.",
         "shortDesc": "Max 102 power at maximum Happiness.",
