@@ -22,7 +22,10 @@ def run_game():
     enemy = clp.get_enemy_as_p1a_or_p2a()
     enemy_pokemon = clp.get_enemy_active_initial(enemy)
     active_pokemon = team[0]
+    time.sleep(2)
     state = clp.generate_initial_gamestate()
+    state.set_legal_moves(web.get_moves())
+    state.set_legal_switches(web.get_legal_switches())
 
     # Start off by picking one move to do.
     best_index = get_index_of_best_move(active_pokemon, enemy_pokemon, web)
@@ -35,11 +38,8 @@ def run_game():
         # Update the game state.
         console_log = web.driver.get_log('browser')
         clp.set_console_log(console_log)
-        print_turn_data(clp)
+        # print_turn_data(clp)
         state = clp.get_current_turn(state)
-        if state.is_lose() or state.is_win():
-            game = False
-            break
         enemy_pokemon = state.get_enemy_active_pokemon()
         active_pokemon = state.get_active_pokemon()
         # Wait for HTML elements to load.
@@ -52,6 +52,7 @@ def run_game():
             input("Press a key when they send out another pokemon.")
         # If we were just fainted, switch Pokemon.
         elif active_pokemon.get_status() is "fnt" or active_pokemon.hp is 0:
+            print("Finding a new pokemon to switch to.")
             switch_index = get_switch_index(state)
             next_pokemon = state.get_legal_switches()[switch_index].species
             print("Switching pokemon to : " + str(next_pokemon))
@@ -133,11 +134,18 @@ side_pokemon_data = cleaned_data[index:]
 side = side_pokemon_data.split()
 print(side)
 """
+# Switch Pokemon
+"""
+switch_index = get_switch_index(state)
+next_pokemon = state.get_legal_switches()[switch_index].species
+print("Switching pokemon to : " + str(next_pokemon))
+web.switch_pokemon(switch_index)
+input("Press a key when your pokemon is out.")
+"""
 
 # Start of game
 """
 web = ShowdownDriver()
-
 console_log = web.driver.get_log('browser')
 clp = ConsoleLogProcessor(console_log)
 team = clp.get_team_data()
@@ -171,13 +179,8 @@ console_log = web.driver.get_log('browser')
 clp.set_console_log(console_log)
 print_turn_data(clp)
 state = clp.get_current_turn(state)
-if state.is_lose() or state.is_win():
-    game = False
-    break
 enemy_pokemon = state.get_enemy_active_pokemon()
 active_pokemon = state.get_active_pokemon()
-# Wait for HTML elements to load.
-time.sleep(3)
 state.set_legal_moves(web.get_moves())
 state.set_legal_switches(web.get_legal_switches())
 """

@@ -423,12 +423,6 @@ class ConsoleLogProcessor:
                         move = re.sub('[^a-z]', '', move)
                     if is_attack(move):
                         moveset.append(move)
-                """
-                moveset.append(side[i + 2])
-                moveset.append(side[i + 4])
-                moveset.append(side[i + 6])
-                moveset.append(side[i + 8])
-                """
                 side_pokemon_moves.append(moveset)
 
         # Create friendly pokemon team.
