@@ -1,0 +1,1015 @@
+        Status: Healthy
+        Held Item: leftovers
+        Ability: unaware
+        Moves: ['earthquake', 'toxic', 'recover', 'scald']
+        Types: ['Water', 'Ground']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 209
+        Stats: {'hp': 209, 'atk': 125, 'def': 168, 'spa': 117, 'spd': 168, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+
+
+Enemy rotom has taken damage: 69/100
+Friendly quagsire has healed: 278/280
+
+
+*****************************
+After the turn has occurred:
+        Active pokemon is: Pokemon: quagsire
+        LV: 79
+        HP: Quagsire
+        Stats: {'atk': '180', 'def': '180', 'spa': '148', 'spd': '148', 'spe': '101'}
+        Status: Healthy
+        Held Item: leftovers
+        Ability: unaware
+        Moves: ['earthquake', 'toxic', 'recover', 'scald']
+        Types: ['Water', 'Ground']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 69/100
+        Stats: {'hp': 209, 'atk': 125, 'def': 168, 'spa': 117, 'spd': 168, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+Moveset is: ['earthquake', 'toxic', 'recover', 'scald']
+earthquake will do 209.0
+Non attacking move. Damage will be zero.
+toxic will do 0
+Non attacking move. Damage will be zero.
+recover will do 0
+scald will do 70.0
+Best move is: earthquake
+Press a key when there is a new turn.
+Console log updated.
+*****************************
+Before the turn has occurred:
+        Active pokemon is: Pokemon: quagsire
+        LV: 79
+        HP: Quagsire
+        Stats: {'atk': '180', 'def': '180', 'spa': '148', 'spd': '148', 'spe': '101'}
+        Status: Healthy
+        Held Item: leftovers
+        Ability: unaware
+        Moves: ['earthquake', 'toxic', 'recover', 'scald']
+        Types: ['Water', 'Ground']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 69/100
+        Stats: {'hp': 209, 'atk': 125, 'def': 168, 'spa': 117, 'spd': 168, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+
+
+Friendly quagsire has taken damage: 66/280
+Debuffing defby -1levels
+Enemy pokemon's defhas been debuffed by: -1levels
+Debuffing spdby -1levels
+Enemy pokemon's spdhas been debuffed by: -1levels
+Enemy rotom has taken damage: 60/100
+Enemy rotom has taken damage: 30/100
+Friendly quagsire has healed: 83/280
+
+
+*****************************
+After the turn has occurred:
+        Active pokemon is: Pokemon: quagsire
+        LV: 79
+        HP: Quagsire
+        Stats: {'atk': '180', 'def': '180', 'spa': '148', 'spd': '148', 'spe': '101'}
+        Status: Healthy
+        Held Item: leftovers
+        Ability: unaware
+        Moves: ['earthquake', 'toxic', 'recover', 'scald']
+        Types: ['Water', 'Ground']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 30/100
+        Stats: {'hp': 209, 'atk': 125, 'def': 126, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+Moveset is: ['earthquake', 'toxic', 'recover', 'scald']
+earthquake will do 277.0
+Non attacking move. Damage will be zero.
+toxic will do 0
+Non attacking move. Damage will be zero.
+recover will do 0
+scald will do 92.0
+Best move is: earthquake
+Press a key when there is a new turn.
+Console log updated.
+*****************************
+Before the turn has occurred:
+        Active pokemon is: Pokemon: quagsire
+        LV: 79
+        HP: Quagsire
+        Stats: {'atk': '180', 'def': '180', 'spa': '148', 'spd': '148', 'spe': '101'}
+        Status: Healthy
+        Held Item: leftovers
+        Ability: unaware
+        Moves: ['earthquake', 'toxic', 'recover', 'scald']
+        Types: ['Water', 'Ground']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 30/100
+        Stats: {'hp': 209, 'atk': 125, 'def': 126, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+
+
+Friendly quagsire has taken damage: 0
+Debuffing defby -1levels
+Enemy pokemon's defhas been debuffed by: -1levels
+Debuffing spdby -1levels
+Enemy pokemon's spdhas been debuffed by: -1levels
+Enemy rotom has taken damage: 20/100
+Your quagsire has fainted.
+
+
+*****************************
+After the turn has occurred:
+        Active pokemon is: Pokemon: quagsire
+        LV: 79
+        HP: 0
+        Stats: {'atk': '180', 'def': '180', 'spa': '148', 'spd': '148', 'spe': '101'}
+        Status: fnt
+        Held Item: leftovers
+        Ability: unaware
+        Moves: ['earthquake', 'toxic', 'recover', 'scald']
+        Types: ['Water', 'Ground']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 20/100
+        Stats: {'hp': 209, 'atk': 125, 'def': 126, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+Finding a new pokemon to switch to.
+thunderbolt will do 39.0
+voltswitch will do 31.0
+shadowball will do 35.0
+Non attacking move. Damage will be zero.
+substitute will do 0
+Non attacking move. Damage will be zero.
+painsplit will do 0
+hiddenpowerice will do 71.0
+Non attacking move. Damage will be zero.
+trick will do 0
+Non attacking move. Damage will be zero.
+willowisp will do 0
+Best move is: hiddenpowerice
+thunderbolt will do 71.0
+voltswitch will do 56.0
+shadowball will do 63.0
+Non attacking move. Damage will be zero.
+substitute will do 0
+Non attacking move. Damage will be zero.
+painsplit will do 0
+hiddenpowerice will do 32.0
+Non attacking move. Damage will be zero.
+trick will do 0
+Non attacking move. Damage will be zero.
+willowisp will do 0
+Best move is: thunderbolt
+thunderbolt will do 46.0
+voltswitch will do 37.0
+shadowball will do 83.0
+Non attacking move. Damage will be zero.
+substitute will do 0
+Non attacking move. Damage will be zero.
+painsplit will do 0
+hiddenpowerice will do 21.0
+Non attacking move. Damage will be zero.
+trick will do 0
+Non attacking move. Damage will be zero.
+willowisp will do 0
+Best move is: shadowball
+Best pokemon to switch to is: guzzlord
+This pokemon is at index: 0
+Switching pokemon to : guzzlord
+Press a key when your pokemon is out.
+Console log updated.
+*****************************
+Before the turn has occurred:
+        Active pokemon is: Pokemon: quagsire
+        LV: 79
+        HP: 0
+        Stats: {'atk': '180', 'def': '180', 'spa': '148', 'spd': '148', 'spe': '101'}
+        Status: fnt
+        Held Item: leftovers
+        Ability: unaware
+        Moves: ['earthquake', 'toxic', 'recover', 'scald']
+        Types: ['Water', 'Ground']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 20/100
+        Stats: {'hp': 209, 'atk': 125, 'def': 126, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+
+
+You switched out quagsire to Guzzlord
+
+
+*****************************
+After the turn has occurred:
+        Active pokemon is: Pokemon: guzzlord
+        LV: 81
+        HP: 494/494
+        Stats: {'atk': '210', 'def': '132', 'spa': '204', 'spd': '132', 'spe': '116'}
+        Status: Healthy
+        Held Item: lifeorb
+        Ability: beastboost
+        Moves: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+        Types: ['Dark', 'Dragon']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 20/100
+        Stats: {'hp': 209, 'atk': 125, 'def': 126, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+Moveset is: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+knockoff will do 217.0
+dracometeor will do 208.0
+earthquake will do 220.0
+fireblast will do 117.0
+Best move is: earthquake
+Press a key when there is a new turn.
+Console log updated.
+*****************************
+Before the turn has occurred:
+        Active pokemon is: Pokemon: guzzlord
+        LV: 81
+        HP: 494/494
+        Stats: {'atk': '210', 'def': '132', 'spa': '204', 'spd': '132', 'spe': '116'}
+        Status: Healthy
+        Held Item: lifeorb
+        Ability: beastboost
+        Moves: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+        Types: ['Dark', 'Dragon']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 20/100
+        Stats: {'hp': 209, 'atk': 125, 'def': 126, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+
+
+Enemy rotomatk has been improved by: 1 levels
+Enemy rotomdef has been improved by: 1 levels
+Enemy rotom has taken damage: 0
+Friendly guzzlord has taken damage: 445/494
+Enemy rotom has fainted.
+Friendly guzzlordatk has been improved by: 1 levels
+
+
+*****************************
+After the turn has occurred:
+        Active pokemon is: Pokemon: guzzlord
+        LV: 81
+        HP: 445
+        Stats: {'atk': 280, 'def': 176, 'spa': 122, 'spd': 99, 'spe': 117, 'hp': 494}
+        Status: Healthy
+        Held Item: lifeorb
+        Ability: beastboost
+        Moves: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+        Types: ['Dark', 'Dragon']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 0
+        Stats: {'hp': 209, 'atk': 166, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: fnt
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+Press a key when they send out another pokemon.
+Console log updated.
+*****************************
+Before the turn has occurred:
+        Active pokemon is: Pokemon: guzzlord
+        LV: 81
+        HP: 445
+        Stats: {'atk': 280, 'def': 176, 'spa': 122, 'spd': 99, 'spe': 117, 'hp': 494}
+        Status: Healthy
+        Held Item: lifeorb
+        Ability: beastboost
+        Moves: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+        Types: ['Dark', 'Dragon']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 0
+        Stats: {'hp': 209, 'atk': 166, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: fnt
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+
+
+Enemy pokemon rotom has switched out to Kartana
+
+
+*****************************
+After the turn has occurred:
+        Active pokemon is: Pokemon: guzzlord
+        LV: 81
+        HP: 445
+        Stats: {'atk': 280, 'def': 176, 'spa': 122, 'spd': 99, 'spe': 117, 'hp': 494}
+        Status: Healthy
+        Held Item: lifeorb
+        Ability: beastboost
+        Moves: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+        Types: ['Dark', 'Dragon']
+
+        Enemy pokemon is: Pokemon: kartana
+        LV: 75
+        HP: 212
+        Stats: {'hp': 212, 'atk': 418, 'def': 319, 'spa': 79, 'spd': 67, 'spe': 207}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['leafblade', 'sacredsword', 'smartstrike', 'knockoff', 'swordsdance']
+        Types: ['Grass', 'Steel']
+*****************************
+Moveset is: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+knockoff will do 58.0
+dracometeor will do 117.0
+earthquake will do 59.0
+fireblast will do 527.0
+Best move is: fireblast
+Press a key when there is a new turn.
+Console log updated.
+*****************************
+Before the turn has occurred:
+        Active pokemon is: Pokemon: guzzlord
+        LV: 81
+        HP: 445
+        Stats: {'atk': 280, 'def': 176, 'spa': 122, 'spd': 99, 'spe': 117, 'hp': 494}
+        Status: Healthy
+        Held Item: lifeorb
+        Ability: beastboost
+        Moves: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+        Types: ['Dark', 'Dragon']
+
+        Enemy pokemon is: Pokemon: kartana
+        LV: 75
+        HP: 212
+        Stats: {'hp': 212, 'atk': 418, 'def': 319, 'spa': 79, 'spd': 67, 'spe': 207}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['leafblade', 'sacredsword', 'smartstrike', 'knockoff', 'swordsdance']
+        Types: ['Grass', 'Steel']
+*****************************
+
+
+Enemy kartanaatk has been improved by: 2 levels
+
+
+*****************************
+After the turn has occurred:
+        Active pokemon is: Pokemon: guzzlord
+        LV: 81
+        HP: 445
+        Stats: {'atk': 280, 'def': 176, 'spa': 122, 'spd': 99, 'spe': 117, 'hp': 494}
+        Status: Healthy
+        Held Item: lifeorb
+        Ability: beastboost
+        Moves: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+        Types: ['Dark', 'Dragon']
+
+        Enemy pokemon is: Pokemon: kartana
+        LV: 75
+        HP: 212
+        Stats: {'hp': 212, 'atk': 526, 'def': 319, 'spa': 79, 'spd': 67, 'spe': 207}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['leafblade', 'sacredsword', 'smartstrike', 'knockoff', 'swordsdance']
+        Types: ['Grass', 'Steel']
+*****************************
+Moveset is: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+knockoff will do 58.0
+dracometeor will do 117.0
+earthquake will do 59.0
+fireblast will do 527.0
+Best move is: fireblast
+Press a key when there is a new turn.
+Console log updated.
+*****************************
+Before the turn has occurred:
+        Active pokemon is: Pokemon: guzzlord
+        LV: 81
+        HP: 445
+        Stats: {'atk': 280, 'def': 176, 'spa': 122, 'spd': 99, 'spe': 117, 'hp': 494}
+        Status: Healthy
+        Held Item: lifeorb
+        Ability: beastboost
+        Moves: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+        Types: ['Dark', 'Dragon']
+
+        Enemy pokemon is: Pokemon: kartana
+        LV: 75
+        HP: 212
+        Stats: {'hp': 212, 'atk': 526, 'def': 319, 'spa': 79, 'spd': 67, 'spe': 207}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['leafblade', 'sacredsword', 'smartstrike', 'knockoff', 'swordsdance']
+        Types: ['Grass', 'Steel']
+*****************************
+
+
+Enemy pokemon kartana has switched out to Rotom
+
+
+*****************************
+After the turn has occurred:
+        Active pokemon is: Pokemon: guzzlord
+        LV: 81
+        HP: 445
+        Stats: {'atk': 280, 'def': 176, 'spa': 122, 'spd': 99, 'spe': 117, 'hp': 494}
+        Status: Healthy
+        Held Item: lifeorb
+        Ability: beastboost
+        Moves: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+        Types: ['Dark', 'Dragon']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 209
+        Stats: {'hp': 209, 'atk': 208, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+Moveset is: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+knockoff will do 165.0
+dracometeor will do 125.0
+earthquake will do 167.0
+fireblast will do 71.0
+Best move is: earthquake
+Press a key when there is a new turn.
+Console log updated.
+*****************************
+Before the turn has occurred:
+        Active pokemon is: Pokemon: guzzlord
+        LV: 81
+        HP: 445
+        Stats: {'atk': 280, 'def': 176, 'spa': 122, 'spd': 99, 'spe': 117, 'hp': 494}
+        Status: Healthy
+        Held Item: lifeorb
+        Ability: beastboost
+        Moves: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+        Types: ['Dark', 'Dragon']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 209
+        Stats: {'hp': 209, 'atk': 208, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+
+
+Friendly guzzlord has been inflicted with brn
+Friendly guzzlord has taken damage: 366/494
+
+
+*****************************
+After the turn has occurred:
+        Active pokemon is: Pokemon: guzzlord
+        LV: 81
+        HP: 366/494
+        Stats: {'atk': 280, 'def': 176, 'spa': 122, 'spd': 99, 'spe': 117, 'hp': 494}
+        Status: brn
+        Held Item: lifeorb
+        Ability: beastboost
+        Moves: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+        Types: ['Dark', 'Dragon']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 209
+        Stats: {'hp': 209, 'atk': 208, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+Moveset is: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+knockoff will do 165.0
+dracometeor will do 125.0
+earthquake will do 167.0
+fireblast will do 71.0
+Best move is: earthquake
+Press a key when there is a new turn.
+Console log updated.
+*****************************
+Before the turn has occurred:
+        Active pokemon is: Pokemon: guzzlord
+        LV: 81
+        HP: 366/494
+        Stats: {'atk': 280, 'def': 176, 'spa': 122, 'spd': 99, 'spe': 117, 'hp': 494}
+        Status: brn
+        Held Item: lifeorb
+        Ability: beastboost
+        Moves: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+        Types: ['Dark', 'Dragon']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 209
+        Stats: {'hp': 209, 'atk': 208, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+
+
+Enemy rotom has taken damage: 62/100
+Friendly guzzlord has taken damage: 317/494
+Friendly guzzlord has taken damage: 287/494
+
+
+*****************************
+After the turn has occurred:
+        Active pokemon is: Pokemon: guzzlord
+        LV: 81
+        HP: 287/494
+        Stats: {'atk': 280, 'def': 176, 'spa': 122, 'spd': 99, 'spe': 117, 'hp': 494}
+        Status: brn
+        Held Item: lifeorb
+        Ability: beastboost
+        Moves: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+        Types: ['Dark', 'Dragon']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 62/100
+        Stats: {'hp': 209, 'atk': 208, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+Moveset is: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+knockoff will do 165.0
+dracometeor will do 125.0
+earthquake will do 167.0
+fireblast will do 71.0
+Best move is: earthquake
+Press a key when there is a new turn.
+Console log updated.
+*****************************
+Before the turn has occurred:
+        Active pokemon is: Pokemon: guzzlord
+        LV: 81
+        HP: 287/494
+        Stats: {'atk': 280, 'def': 176, 'spa': 122, 'spd': 99, 'spe': 117, 'hp': 494}
+        Status: brn
+        Held Item: lifeorb
+        Ability: beastboost
+        Moves: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+        Types: ['Dark', 'Dragon']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 62/100
+        Stats: {'hp': 209, 'atk': 208, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+
+
+Friendly guzzlord has taken damage: 231/494
+Enemy rotom has taken damage: 21/100
+Friendly guzzlord has taken damage: 182/494
+Friendly guzzlord has taken damage: 152/494
+
+
+*****************************
+After the turn has occurred:
+        Active pokemon is: Pokemon: guzzlord
+        LV: 81
+        HP: 152/494
+        Stats: {'atk': 280, 'def': 176, 'spa': 122, 'spd': 99, 'spe': 117, 'hp': 494}
+        Status: brn
+        Held Item: lifeorb
+        Ability: beastboost
+        Moves: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+        Types: ['Dark', 'Dragon']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 21/100
+        Stats: {'hp': 209, 'atk': 208, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+Moveset is: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+knockoff will do 165.0
+dracometeor will do 125.0
+earthquake will do 167.0
+fireblast will do 71.0
+Best move is: earthquake
+Press a key when there is a new turn.
+Console log updated.
+*****************************
+Before the turn has occurred:
+        Active pokemon is: Pokemon: guzzlord
+        LV: 81
+        HP: 152/494
+        Stats: {'atk': 280, 'def': 176, 'spa': 122, 'spd': 99, 'spe': 117, 'hp': 494}
+        Status: brn
+        Held Item: lifeorb
+        Ability: beastboost
+        Moves: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+        Types: ['Dark', 'Dragon']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 21/100
+        Stats: {'hp': 209, 'atk': 208, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+
+
+Friendly guzzlord has taken damage: 63/494
+Enemy rotom has taken damage: 0
+Friendly guzzlord has taken damage: 14/494
+Enemy rotom has fainted.
+Friendly guzzlordatk has been improved by: 1 levels
+Friendly guzzlord has taken damage: 0
+Your guzzlord has fainted.
+
+
+*****************************
+After the turn has occurred:
+        Active pokemon is: Pokemon: guzzlord
+        LV: 81
+        HP: 0
+        Stats: {'atk': 280, 'def': 176, 'spa': 122, 'spd': 99, 'spe': 117, 'hp': 494}
+        Status: fnt
+        Held Item: lifeorb
+        Ability: beastboost
+        Moves: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+        Types: ['Dark', 'Dragon']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 0
+        Stats: {'hp': 209, 'atk': 208, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: fnt
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+Press a key when they send out another pokemon.
+Console log updated.
+*****************************
+Before the turn has occurred:
+        Active pokemon is: Pokemon: guzzlord
+        LV: 81
+        HP: 0
+        Stats: {'atk': 280, 'def': 176, 'spa': 122, 'spd': 99, 'spe': 117, 'hp': 494}
+        Status: fnt
+        Held Item: lifeorb
+        Ability: beastboost
+        Moves: ['knockoff', 'dracometeor', 'earthquake', 'fireblast']
+        Types: ['Dark', 'Dragon']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 0
+        Stats: {'hp': 209, 'atk': 208, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: fnt
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+
+
+Enemy pokemon rotom has switched out to Rotom
+You switched out guzzlord to Seviper
+
+
+*****************************
+After the turn has occurred:
+        Active pokemon is: Pokemon: seviper
+        LV: 83
+        HP: 257/257
+        Stats: {'atk': '214', 'def': '147', 'spa': '214', 'spd': '147', 'spe': '156'}
+        Status: Healthy
+        Held Item: choicescarf
+        Ability: infiltrator
+        Moves: ['poisonjab', 'switcheroo', 'gigadrain', 'darkpulse']
+        Types: ['Poison']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 209
+        Stats: {'hp': 209, 'atk': 166, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+Moveset is: ['poisonjab', 'switcheroo', 'gigadrain', 'darkpulse']
+poisonjab will do 40.0
+Non attacking move. Damage will be zero.
+switcheroo will do 0
+gigadrain will do 87.0
+darkpulse will do 184.0
+Best move is: darkpulse
+Press a key when there is a new turn.
+Console log updated.
+*****************************
+Before the turn has occurred:
+        Active pokemon is: Pokemon: seviper
+        LV: 83
+        HP: 257/257
+        Stats: {'atk': '214', 'def': '147', 'spa': '214', 'spd': '147', 'spe': '156'}
+        Status: Healthy
+        Held Item: choicescarf
+        Ability: infiltrator
+        Moves: ['poisonjab', 'switcheroo', 'gigadrain', 'darkpulse']
+        Types: ['Poison']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 209
+        Stats: {'hp': 209, 'atk': 166, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+
+
+Enemy rotom has taken damage: 75/100
+Friendly seviper has taken damage: 127/257
+Enemy rotom has healed: 81/100
+
+
+*****************************
+After the turn has occurred:
+        Active pokemon is: Pokemon: seviper
+        LV: 83
+        HP: 127/257
+        Stats: {'atk': '214', 'def': '147', 'spa': '214', 'spd': '147', 'spe': '156'}
+        Status: Healthy
+        Held Item: choicescarf
+        Ability: infiltrator
+        Moves: ['poisonjab', 'switcheroo', 'gigadrain', 'darkpulse']
+        Types: ['Poison']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 81/100
+        Stats: {'hp': 209, 'atk': 166, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+Moveset is: ['darkpulse']
+darkpulse will do 184.0
+Best move is: darkpulse
+Press a key when there is a new turn.
+Console log updated.
+*****************************
+Before the turn has occurred:
+        Active pokemon is: Pokemon: seviper
+        LV: 83
+        HP: 127/257
+        Stats: {'atk': '214', 'def': '147', 'spa': '214', 'spd': '147', 'spe': '156'}
+        Status: Healthy
+        Held Item: choicescarf
+        Ability: infiltrator
+        Moves: ['poisonjab', 'switcheroo', 'gigadrain', 'darkpulse']
+        Types: ['Poison']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 81/100
+        Stats: {'hp': 209, 'atk': 166, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+
+
+Enemy rotom has taken damage: 56/100
+Friendly seviper has taken damage: 3/257
+Enemy rotom has healed: 62/100
+
+
+*****************************
+After the turn has occurred:
+        Active pokemon is: Pokemon: seviper
+        LV: 83
+        HP: 3/257
+        Stats: {'atk': '214', 'def': '147', 'spa': '214', 'spd': '147', 'spe': '156'}
+        Status: Healthy
+        Held Item: choicescarf
+        Ability: infiltrator
+        Moves: ['poisonjab', 'switcheroo', 'gigadrain', 'darkpulse']
+        Types: ['Poison']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 62/100
+        Stats: {'hp': 209, 'atk': 166, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+Moveset is: ['darkpulse']
+darkpulse will do 184.0
+Best move is: darkpulse
+Press a key when there is a new turn.
+Console log updated.
+*****************************
+Before the turn has occurred:
+        Active pokemon is: Pokemon: seviper
+        LV: 83
+        HP: 3/257
+        Stats: {'atk': '214', 'def': '147', 'spa': '214', 'spd': '147', 'spe': '156'}
+        Status: Healthy
+        Held Item: choicescarf
+        Ability: infiltrator
+        Moves: ['poisonjab', 'switcheroo', 'gigadrain', 'darkpulse']
+        Types: ['Poison']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 62/100
+        Stats: {'hp': 209, 'atk': 166, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+
+
+Enemy rotom has taken damage: 38/100
+Enemy rotom has healed: 26/100
+
+
+*****************************
+After the turn has occurred:
+        Active pokemon is: Pokemon: seviper
+        LV: 83
+        HP: 3/257
+        Stats: {'atk': '214', 'def': '147', 'spa': '214', 'spd': '147', 'spe': '156'}
+        Status: Healthy
+        Held Item: choicescarf
+        Ability: infiltrator
+        Moves: ['poisonjab', 'switcheroo', 'gigadrain', 'darkpulse']
+        Types: ['Poison']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 26/100
+        Stats: {'hp': 209, 'atk': 166, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+Moveset is: ['darkpulse']
+darkpulse will do 184.0
+Best move is: darkpulse
+Press a key when there is a new turn.
+Console log updated.
+*****************************
+Before the turn has occurred:
+        Active pokemon is: Pokemon: seviper
+        LV: 83
+        HP: 3/257
+        Stats: {'atk': '214', 'def': '147', 'spa': '214', 'spd': '147', 'spe': '156'}
+        Status: Healthy
+        Held Item: choicescarf
+        Ability: infiltrator
+        Moves: ['poisonjab', 'switcheroo', 'gigadrain', 'darkpulse']
+        Types: ['Poison']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 26/100
+        Stats: {'hp': 209, 'atk': 166, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: None
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************
+
+
+Enemy rotom has taken damage: 0
+Enemy rotom has fainted.
+You won!
+
+
+*****************************
+After the turn has occurred:
+        Active pokemon is: Pokemon: seviper
+        LV: 83
+        HP: 3/257
+        Stats: {'atk': '214', 'def': '147', 'spa': '214', 'spd': '147', 'spe': '156'}
+        Status: Healthy
+        Held Item: choicescarf
+        Ability: infiltrator
+        Moves: ['poisonjab', 'switcheroo', 'gigadrain', 'darkpulse']
+        Types: ['Poison']
+
+        Enemy pokemon is: Pokemon: rotom
+        LV: 79
+        HP: 0
+        Stats: {'hp': 209, 'atk': 166, 'def': 223, 'spa': 117, 'spd': 126, 'spe': 190}
+        Status: fnt
+        Held Item: None
+        Ability: None
+        Moves: ['thunderbolt', 'voltswitch', 'shadowball', 'substitute', 'painsplit', 'hiddenpowerice', 'trick', 'willowisp']
+        Types: ['Electric', 'Ghost']
+*****************************

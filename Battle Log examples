@@ -1,0 +1,39 @@
+Dragon tail switching out a pokemon has a different tag than switching out a pokemon
+with the regular way.
+
+['move', 'p1a:', 'Raticate', 'Double-Edge', 'p2a:', 'Milotic', 'n', '-damage', 'p2a:', 'Milotic', '45/100', 'n', '-damage', 'p1a:', 'Raticate', '209/260', '[from]', 'Recoil', 'n', '-damage', 'p1a:', 'Raticate', '183/260', '[from]', 'item:', 'Life', 'Orb', 'n', 'move'
+, 'p2a:', 'Milotic', 'Dragon', 'Tail', 'p1a:', 'Raticate', 'n', '-damage', 'p1a:', 'Raticate', '152/260', 'n', 'drag', 'p1a:', 'Tapu', 'Bulu', 'Tapu', 'Bulu,', 'L75', '229/229', 'n', '-fieldstart', 'move:', 'Grassy', 'Terrain', '[from]', 'ability:', 'Grassy', 'Surge'
+, '[of]', 'p1a:', 'Tapu', 'Bulu', 'n', 'n', '-heal', 'p2a:', 'Milotic', '51/100', '[from]', 'item:', 'Leftovers', 'n', '-heal', 'p2a:', 'Milotic', '57/100', '[from]', 'Grassy', 'Terrain', 'n', 'upkeep', 'n', 'turn', '2', 'n']
+
+Example of a mega evolution.
+
+['move', 'p2a:', 'Scyther', 'Knock', 'Off', 'p1a:', 'Sharpedo', 'n', '-resisted', 'p1a:', 'Sharpedo', 'n', '-damage', 'p1a:', 'Sharpedo', '201/234', 'n', 'move', 'p1a:', 'Sharpedo', 'Crunch', 'p2a:', 'Scyther', 'n', '-damage', 'p2a:', 'Scyther', '60/100', 'n', 'n', '
+upkeep', 'n', 'turn', '2', 'n']
+
+Example of friendly pokemon fainting.
+
+['move', 'p2a:', 'Scyther', 'Bug', 'Bite', 'p1a:', 'Sharpedo', 'n', '-supereffective', 'p1a:', 'Sharpedo', 'n', '-damage', 'p1a:', 'Sharpedo', '0', 'fnt', 'n', 'faint', 'p1a:', 'Sharpedo', 'n', 'n', 'upkeep', 'n']
+
+BURNING
+
+['move', 'p1a:', 'Bisharp', 'Sucker', 'Punch', 'p2a:', 'Trevenant', '[still]', 'n', '-fail', 'p1a:', 'Bisharp', 'n', 'move', 'p2a:', 'Trevenant', 'Will-O-Wisp', 'p1a:', 'Bisharp', 'n', '-status', 'p1a:', 'Bisharp', 'brn', 'n', 'n', '-damage', 'p1a:', 'Bisharp', '208/
+221', 'brn', '[from]', 'brn', 'n', 'upkeep', 'n', 'turn', '2', 'n']
+
+BOOSTING
+
+['move', 'p2a:', 'Floatzel', 'Liquidation', 'p1a:', 'Celesteela', 'n', '-damage', 'p1a:', 'Celesteela', '127/269', 'n', 'move', 'p1a:', 'Celesteela', 'Earthquake', 'p2a:', 'Floatzel', 'n', '-damage', 'p2a:', 'Floatzel', '0', 'fnt', 'n', 'faint', 'p2a:', 'Floatzel', '
+n', '-ability', 'p1a:', 'Celesteela', 'Beast', 'Boost', 'boost', 'n', '-boost', 'p1a:', 'Celesteela', 'spa', '1', 'n', 'n', '-heal', 'p1a:', 'Celesteela', '143/269', '[from]', 'item:', 'Leftovers', 'n', 'upkeep', 'n']
+
+TOXIC SPIKES
+
+['move', 'p2a:', 'Qwilfish', 'Toxic', 'Spikes', 'p1a:', 'Zygarde', 'n', '-sidestart', 'p1:', 'csc665', 'move:', 'Toxic', 'Spikes', 'n', 'move', 'p1a:', 'Zygarde', 'Thousand', 'Arrows', 'p2a:', 'Qwilfish', 'n', '-supereffective', 'p2a:', 'Qwilfish', 'n', '-damage', 'p
+2a:', 'Qwilfish', '52/100', 'n', 'n', 'upkeep', 'n', 'turn', '2', 'n']
+
+ENEMY SWITCHING IN
+
+['switch', 'p2a:', 'Groudon', 'Groudon,', 'L73', '100/100', 'n', '-weather', 'SunnyDay', '[from]', 'ability:', 'Drought', '[of]', 'p2a:', 'Groudon', 'n', 'turn', '6', 'n']
+
+Winning
+
+['move', 'p2a:', 'Sharpedo', 'Crunch', 'p1a:', 'Nihilego', 'n', '-damage', 'p1a:', 'Nihilego', '117/294', 'n', '-enditem', 'p1a:', 'Nihilego', 'Air', 'Balloon', 'n', '-damage', 'p2a:', 'Sharpedo', '71/100', '[from]', 'item:', 'Life', 'Orb', 'n', 'move', 'p1a:', 'Nihi
+lego', 'Power', 'Gem', 'p2a:', 'Sharpedo', 'n', '-damage', 'p2a:', 'Sharpedo', '0', 'fnt', 'n', 'faint', 'p2a:', 'Sharpedo', 'n', 'n', 'win', 'csc665', 'n']

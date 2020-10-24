@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../PacMan/.idea/PacMan.iml" filepath="$PROJECT_DIR$/../PacMan/.idea/PacMan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../csc648-team05/.idea/csc648-team05.iml" filepath="$PROJECT_DIR$/../csc648-team05/.idea/csc648-team05.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/pokemonAI.iml" filepath="$PROJECT_DIR$/.idea/pokemonAI.iml" />
     </modules>
   </component>
